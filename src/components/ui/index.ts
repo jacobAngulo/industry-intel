@@ -29,7 +29,7 @@ export {
 export { Switch, type SwitchProps } from "./Switch";
 export { SegmentedControl, type SegmentOption, type SegmentedControlProps } from "./SegmentedControl";
 export { NavTabs, type NavTabItem, type NavTabsProps } from "./NavTabs";
-export { pathMatches } from "./paths";
+export { pathMatches, withBasePath } from "./paths";
 export { Dialog, type DialogProps } from "./Dialog";
 export { Disclosure, type DisclosureProps } from "./Disclosure";
 export { Banner, type BannerProps, type BannerTone } from "./Banner";

@@ -28,6 +28,7 @@ import {
   Td,
   Th,
   Textarea,
+  withBasePath,
   Tr,
 } from "@/components/ui";
 import { listFeeds, listSources, type FeedSummary, type SourceRow } from "@/lib/services";
@@ -147,7 +148,7 @@ export default async function SourcesPage({ searchParams }: { searchParams: Prom
 
 function FilterForm({ query, feeds }: { query: DirectoryQuery; feeds: FeedSummary[] }) {
   return (
-    <form method="get" action="/sources" role="search" aria-label="Filter the sources" className="mb-5">
+    <form method="get" action={withBasePath("/sources")} role="search" aria-label="Filter the sources" className="mb-5">
       {query.type ? <input type="hidden" name="type" value={query.type} /> : null}
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(12rem,1.4fr)_1fr_1fr_1fr_auto] lg:items-end">
         <Field id="sources-q" label="Search by name">
@@ -410,7 +411,7 @@ function AddMoreBox({ type, feedSlug }: { type: SourceType; feedSlug: string | n
       <h2 id="add-more-heading" className="mb-1 font-medium">
         Add more {SOURCE_TYPE_LABELS[type]} sources
       </h2>
-      <form method="get" action="/sources/new" className="flex flex-col gap-3">
+      <form method="get" action={withBasePath("/sources/new")} className="flex flex-col gap-3">
         <input type="hidden" name="type" value={type} />
         {feedSlug ? <input type="hidden" name="feed" value={feedSlug} /> : null}
         <Field id="add-more" label="Add more: one per line" hint="The next page finds each one. Nothing is added before you confirm.">

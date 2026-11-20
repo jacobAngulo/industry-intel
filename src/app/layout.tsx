@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { getActor } from "@/app/_lib/identity";
 import { Banners } from "@/components/Banners";
+import { FeedbackButton } from "@/components/FeedbackButton";
 import { TopNav, type FeedTab } from "@/components/nav";
 import { getBanners, listFeeds, type AppBanner } from "@/lib/services";
 
@@ -78,6 +79,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
             <Link href="/activity" className="text-muted underline hover:text-fg">
               Recent changes
             </Link>
+            <span aria-hidden="true">·</span>
+            <FeedbackButton />
           </div>
         </footer>
       </body>

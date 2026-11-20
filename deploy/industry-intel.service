@@ -1,0 +1,36 @@
+[Unit]
+Description=Industry Intel private news site (Next.js web + pipeline worker)
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/projects/industry-intel
+Environment=NODE_ENV=production
+Environment=PORT=8070
+Environment=DATABASE_PATH=/srv/data/industry-intel/db/industry-intel.sqlite3
+# npm wants a writable HOME even to run a script; a --no-create-home system
+# account has none. Keep it inside ReadWritePaths.
+Environment=HOME=/srv/data/industry-intel/home
+Environment=npm_config_cache=/srv/data/industry-intel/home/.npm
+# Secrets. Next.js and the worker (src/lib/load-env.ts) also read this file
+# themselves; loading it here too makes the values visible to both the same way.
+# Owned by industry-intel, mode 0600, ignored by Git.
+EnvironmentFile=-/projects/industry-intel/.env
+# Migrations run inside each process at its first getDb() call, behind a lock,
+# so there is no ExecStartPre migration step.
+ExecStart=/usr/bin/npm run start
+Restart=always
+RestartSec=5
+TimeoutStopSec=20
+
+User=industry-intel
+Group=industry-intel
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/srv/data/industry-intel
+
+[Install]
+WantedBy=multi-user.target

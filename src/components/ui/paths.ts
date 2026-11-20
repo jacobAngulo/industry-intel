@@ -6,3 +6,12 @@ export function pathMatches(pathname: string, href: string, match: "exact" | "pr
   const base = path.endsWith("/") ? path : `${path}/`;
   return pathname.startsWith(base);
 }
+
+/**
+ * `path` with the build-time base path in front, for the places that Next.js
+ * does not prefix itself (a plain `<form action>`). `next/link` and
+ * `redirect()` need no help.
+ */
+export function withBasePath(path: string): string {
+  return `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+}

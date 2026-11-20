@@ -1,0 +1,95 @@
+schema_version = 1
+
+[deployment]
+slug        = "industry-intel"
+name        = "Industry Intel"
+description = "Private news site: the worker reads the shared sources, a model judges each item per feed, and the web app shows what changed and why it matters."
+kind        = "service"
+repo        = "https://github.com/jacobAngulo/industry-intel.git"
+root        = "/projects/industry-intel"
+depends_on  = []
+
+[runtime]
+# One unit runs both processes (`npm start`: Next.js web + tsx worker under
+# `concurrently --kill-others`), so a crash of either restarts both.
+systemd_unit = "industry-intel.service"
+unit_file    = "deploy/industry-intel.service"
+host         = "127.0.0.1"
+port         = 8070
+
+[health]
+# The app is built with basePath=/industry-intel, so the prefix is part of
+# every path the process answers, API routes included. A stopped worker
+# reports `degraded`; an unreadable database reports `fail`.
+url       = "http://127.0.0.1:8070/industry-intel/api/health"
+timeout_s = 5
+
+# The app has no login: everybody who can open it can read and change
+# everything. That is why it lives on the VPN-only admin plane and nowhere else.
+[[routes]]
+path        = "/industry-intel/"
+public      = false
+description = "VPN-only. No login by design; see README.md. Built with BASE_PATH=/industry-intel."
+
+[data]
+root = "/srv/data/industry-intel"
+
+[[data.stores]]
+name        = "application"
+kind        = "sqlite"
+path        = "/srv/data/industry-intel/db/industry-intel.sqlite3"
+description = "Feeds, sources, items, stories, judgements, votes, digests, and worker state. The web process and the worker both write it (WAL)."
+backup      = { enabled = true, keep = 7, dir = "/srv/data/industry-intel/backups" }
+
+# Logs go to journald only (journalctl -u industry-intel), so no [logs] block.
+
+[[config.keys]]
+name        = "OLLAMA_API_KEY"
+secret      = true
+required    = true
+description = "Ollama cloud key. Without it the worker reads sources but judges nothing, so no story shows."
+
+[[config.keys]]
+name        = "X_BEARER_TOKEN"
+secret      = true
+required    = false
+description = "X API token for X user / keyword sources. Billed per post read."
+
+[[config.keys]]
+name     = "GITHUB_TOKEN"
+secret   = true
+required = false
+
+[[config.keys]]
+name     = "REDDIT_CLIENT_SECRET"
+secret   = true
+required = false
+
+[[config.keys]]
+name     = "IMAP_PASSWORD"
+secret   = true
+required = false
+
+[[config.keys]]
+name        = "DATABASE_PATH"
+secret      = false
+required    = true
+description = "Set by the unit file, not .env."
+
+[[config.keys]]
+name        = "TICKET_BOARD_INTAKE_TOKEN"
+secret      = true
+required    = false
+description = "Project-scoped Ticket Board intake credential used only by the Send feedback Server Action."
+
+[[config.keys]]
+name        = "TICKET_BOARD_URL"
+secret      = false
+required    = false
+description = "Loopback Ticket Board origin; defaults to http://127.0.0.1:8040."
+
+[[config.keys]]
+name        = "TICKET_BOARD_PROJECT_SLUG"
+secret      = false
+required    = false
+description = "Ticket Board destination project; defaults to industry-intel."

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Example Engineering</title>
+  <link>https://blog.example.com/</link>
+  <description>A hand-made feed with short entries (synthetic).</description>
+  <item>
+    <title>Short post 7</title>
+    <link>https://blog.example.com/posts/7</link>
+    <guid isPermaLink="false">post-7</guid>
+    <pubDate>Wed, 17 Nov 2026 09:00:00 GMT</pubDate>
+    <category>Engineering</category>
+    <description><![CDATA[<p>Short teaser number 7. Read more on the site.</p>]]></description>
+  </item>
+  <item>
+    <title>Short post 6</title>
+    <link>https://blog.example.com/posts/6</link>
+    <guid isPermaLink="false">post-6</guid>
+    <pubDate>Wed, 16 Nov 2026 09:00:00 GMT</pubDate>
+    <category>Engineering</category>
+    <description><![CDATA[<p>Short teaser number 6. Read more on the site.</p>]]></description>
+  </item>
+  <item>
+    <title>Short post 5</title>
+    <link>https://blog.example.com/posts/5</link>
+    <guid isPermaLink="false">post-5</guid>
+    <pubDate>Wed, 15 Nov 2026 09:00:00 GMT</pubDate>
+    <category>Engineering</category>
+    <description><![CDATA[<p>Short teaser number 5. Read more on the site.</p>]]></description>
+  </item>
+  <item>
+    <title>Short post 4</title>
+    <link>https://blog.example.com/posts/4</link>
+    <guid isPermaLink="false">post-4</guid>
+    <pubDate>Wed, 14 Nov 2026 09:00:00 GMT</pubDate>
+    <category>Engineering</category>
+    <description><![CDATA[<p>Short teaser number 4. Read more on the site.</p>]]></description>
+  </item>
+  <item>
+    <title>Short post 3</title>
+    <link>https://blog.example.com/posts/3</link>
+    <guid isPermaLink="false">post-3</guid>
+    <pubDate>Wed, 13 Nov 2026 09:00:00 GMT</pubDate>
+    <category>Engineering</category>
+    <description><![CDATA[<p>Short teaser number 3. Read more on the site.</p>]]></description>
+  </item>
+  <item>
+    <title>Short post 2</title>
+    <link>https://blog.example.com/posts/2</link>
+    <guid isPermaLink="false">post-2</guid>
+    <pubDate>Wed, 12 Nov 2026 09:00:00 GMT</pubDate>
+    <category>Engineering</category>
+    <description><![CDATA[<p>Short teaser number 2. Read more on the site.</p>]]></description>
+  </item>
+  <item>
+    <title>Short post 1</title>
+    <link>https://blog.example.com/posts/1</link>
+    <guid isPermaLink="false">post-1</guid>
+    <pubDate>Wed, 11 Nov 2026 09:00:00 GMT</pubDate>
+    <category>Engineering</category>
+    <description><![CDATA[<p>Short teaser number 1. Read more on the site.</p>]]></description>
+  </item>
+</channel>
+</rss>

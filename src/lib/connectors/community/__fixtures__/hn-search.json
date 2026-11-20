@@ -1,0 +1,113 @@
+{
+  "hits": [
+    {
+      "_tags": [
+        "story",
+        "story_50554973",
+        "show_hn"
+      ],
+      "author": "hnuser50554973",
+      "created_at": "2026-11-19T01:33:52Z",
+      "created_at_i": 1795052032,
+      "num_comments": 7,
+      "objectID": "50554973",
+      "points": 25,
+      "story_id": 50554973,
+      "title": "Show HN: ADE Index – a sourced and ranked index of 975 agentic coding tools",
+      "updated_at": "2026-11-20T08:17:05Z",
+      "url": "https://adeindex.com",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50549188",
+        "launch_hn"
+      ],
+      "author": "hnuser50549188",
+      "created_at": "2026-11-18T17:26:28Z",
+      "created_at_i": 1795022788,
+      "num_comments": 63,
+      "objectID": "50549188",
+      "points": 60,
+      "story_id": 50549188,
+      "story_text": "Hi HN, we&#x27;re Ary and Maria, co-founders of Maritime (<a href=\"https:&#x2F;&#x2F;maritime.sh\">https:&#x2F;&#x2F;maritime.sh</a>). We&#x27;re building an agent-native cloud that handles everything from custom environments to lifecycle management for AI agents.<p>Demo: <a href=\"https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=lCWMdBQ96rY\" rel=\"nofollow\">https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=lCWMdBQ96rY</a><p>There’s been an explosion of sandbox companies coming out of SF, but sandboxes solve maybe 10% of the infrastructure problem for AI agents. The approach that most sandboxing companies take is:<p>You buy Hetzner&#x2F;OVH Cloud bare metal servers, use Firecracker to slice the servers up into VMs, sell those VMs with low margins.<p>It’s a bit of an oversimplification, but the point is it’s a narrow solution to a fairly difficult problem.<p>We talked to a couple hundred companies that are building AI agents. From personal assistants and coding agents to specialized healthcare agents, and the main pattern we saw was that even after choosing a sandbox provider, you still have to build additional infrastructure just to get things working. These were the primary points of friction:<p>1. Agent lifecycle management.<p>There’s a lot that you have to build in order to properly give your agents VMs: things like sleep&#x2F;wake, persistent storage, triggers, scheduling, per-user routing and spend caps, health monitoring, failure recovery, and deploying updates across thousands",
+      "title": "Launch HN: Maritime (YC F26) – A managed cloud for production AI agents",
+      "updated_at": "2026-11-20T11:47:29Z"
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50548660",
+        "show_hn"
+      ],
+      "author": "hnuser50548660",
+      "created_at": "2026-11-18T16:53:42Z",
+      "created_at_i": 1795020822,
+      "num_comments": 42,
+      "objectID": "50548660",
+      "points": 151,
+      "story_id": 50548660,
+      "story_text": "Hi HN, we&#x27;re Shane, Sam, and Abhi.<p>Almost two years ago, we shared Mastra, our open-source TypeScript agent framework, on Show HN: <a href=\"https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=43103073\">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=43103073</a>. It got a few hundred upvotes; a couple of weeks later our downloads had doubled, and we were off to the races.<p>Today we&#x27;re sharing Mastra Factory, the open-source software factory we built to help maintain Mastra itself.<p>At Mastra, we now average nearly 4M downloads per week, and with Factory our team now merges hundreds of PRs a week across the mastra-ai GitHub org. Last week, Factory opened and merged 238 PRs, alongside 630 merged PRs from humans.<p>There&#x27;s a lot of debate about what a software factory is. For us Factory is a configurable agentic kanban board that&#x27;s @-taggable in Slack.<p>Under the hood, it uses Mastra’s durable agents for long-running sessions, our conversational memory system, a markdown based wiki with source citations to incorporate company knowledge, signals that subscribe to PR comments wired up into sessions, and a customizable cloud sandbox with our coding harness (working on supporting Claude Code, Codex etc).<p>When we started out, we modeled Factory around our existing workflow-oriented process (triage, plan, build, review, shipped). Three months later, we find ourselves mostly driving it through Slack vs a web UI.<p>We’ve seen more senior engineers kick off",
+      "title": "Show HN: Mastra Factory, the open-source software factory we use to build Mastra",
+      "updated_at": "2026-11-20T11:29:15Z"
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50538303"
+      ],
+      "author": "hnuser50538303",
+      "created_at": "2026-11-17T21:16:12Z",
+      "created_at_i": 1794950172,
+      "num_comments": 460,
+      "objectID": "50538303",
+      "points": 325,
+      "story_id": 50538303,
+      "title": "Harvard researchers find AI coding agents shifted the bottleneck to code review",
+      "updated_at": "2026-11-20T12:11:00Z",
+      "url": "https://complexdiscovery.com/harvard-researchers-find-ai-coding-agents-shifted-the-bottleneck-to-code-review/",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50536468",
+        "launch_hn"
+      ],
+      "author": "hnuser50536468",
+      "created_at": "2026-11-17T19:01:43Z",
+      "created_at_i": 1794942103,
+      "num_comments": 53,
+      "objectID": "50536468",
+      "points": 87,
+      "story_id": 50536468,
+      "story_text": "We’re Yonas and Daniel and we’re building StarSling (<a href=\"https:&#x2F;&#x2F;starsling.dev\">https:&#x2F;&#x2F;starsling.dev</a>), fast GitHub Actions runners with AI agents that ship PRs to continuously improve your tests and workflows.<p>Every CI job gets its own ephemeral sandbox on the fastest Zen 5 machines and NVMe Disk with unlimited concurrency so a burst of agent PRs all run at once. We’re different from other runners because ours come with agents that cut down your CI bill over time. PRs are generated through our CI harness, which runs an agent loop that’s tuned to improve your CI speed and reduce cost.<p>Mastra now merges over 1,800 PRs a month and we got their slowest workflow from 29m 56s on GitHub-hosted runners down to 5m 06s (5.87x) on StarSling. We realized the true value of having an agent loop running on top of fast runners when our agents found an 11-month-old performance bottleneck in better-auth. The fix made one of their test jobs 5.4x faster: <a href=\"https:&#x2F;&#x2F;github.com&#x2F;better-auth&#x2F;better-auth&#x2F;pull&#x2F;10762\" rel=\"nofollow\">https:&#x2F;&#x2F;github.com&#x2F;better-auth&#x2F;better-auth&#x2F;pull&#x2F;10762</a>.<p>I previously founded StackShare, which grew to over 1.5M developers. Daniel helped build Netflix&#x27;s internal developer portal. Last year we started building AI agents for DevOps because shipping code to prod fell way behind agentic coding. We hit the CI bottleneck ourselves as we were building agents. Our own ag",
+      "title": "Launch HN: StarSling (YC P25) – Self-improving CI for agent-volume repos",
+      "updated_at": "2026-11-20T11:46:14Z"
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50533270",
+        "show_hn"
+      ],
+      "author": "hnuser50533270",
+      "created_at": "2026-11-17T16:01:04Z",
+      "created_at_i": 1794931264,
+      "num_comments": 8,
+      "objectID": "50533270",
+      "points": 54,
+      "story_id": 50533270,
+      "story_text": "Hi HN, Sanchit here from RunAnywhere (YC W26). We just open-sourced TrnRT: Trainium RunTime, our inference engine for AWS Trainium. We started 3 weeks back, and currently we’re able to serve and run GLM 5.3 flash (FP8) on AWS trn2.48xlarge, and will bring more models support soon. It’s open to contributions :)<p>What it does today:<p>- Serves 2 instances of GLM-5.3 flash on a single box, 8 trn2 with a cache aware router.<p>- Can process 3.57M TPM (tokens per minute) on SemiAnalysis&#x27;s AgentX benchmarks.<p>- Runs decode as one NKI kernel per layer half, or for the 11 sparse-attention layers fuses both blocks into a single kernel, for faster performance.<p>We started working on Trn2 because we wanted to explore it and see if we can come close to beating it’s performance in terms of cost efficiency compared to H100&#x2F;H200. A big MoE with 1M context window such as GLM-5.3 flash requires a lot of memory, and memory&#x2F;tb on a trn2.48xlarge costs less than half compared to 8x h200 on AWS, and hence we wanted to experiment with it and now we’re sharing some early results.<p>But AWS&#x27;s own stack didn&#x27;t support the model: vLLM Neuron&#x27;s latest release did not register any GLM model, and NxDI, AWS&#x27;s own distributed inference framework, is no longer under active development. We also saw the drop of SGLang Neuron implementation yesterday, but there is no good support for Trn2, which is the only chip available for public use right now.<p>We ran semiAnalysis&#x27",
+      "title": "Show HN: TrnRT – An open-source LLM inference engine for AWS Trainium",
+      "updated_at": "2026-11-20T03:09:00Z",
+      "url": "https://github.com/RunanywhereAI/trnrt"
+    }
+  ],
+  "nbHits": 6,
+  "page": 0,
+  "nbPages": 1,
+  "hitsPerPage": 50,
+  "params": "query=coding+agent&tags=story&numericFilters=points%3E%3D20%2Cnum_comments%3E%3D0%2Ccreated_at_i%3E1794917706&hitsPerPage=50&advancedSyntax=true&analyticsTags=backend"
+}

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Microsoft Foundry Blog</title>
+	<atom:link href="https://devblogs.microsoft.com/foundry/feed/" rel="self" type="application/rss+xml" />
+	<link>https://devblogs.microsoft.com/foundry/</link>
+	<description>Your source for learning and building with our models, agents, and tools.</description>
+	<lastBuildDate>Fri, 20 Nov 2026 06:46:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2025/11/cropped-Microsoft-Foundry.2mb-scaled-1-32x32.webp</url>
+	<title>Microsoft Foundry Blog</title>
+	<link>https://devblogs.microsoft.com/foundry/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Build trusted autonomous agents for your team with Microsoft Foundry</title>
+		<link>https://devblogs.microsoft.com/foundry/build-trusted-autonomous-agents-for-your-team-with-microsoft-foundry/</link>
+					<comments>https://devblogs.microsoft.com/foundry/build-trusted-autonomous-agents-for-your-team-with-microsoft-foundry/#respond</comments>
+		
+		<dc:creator><![CDATA[Amanda Foster]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2026 19:53:30 +0000</pubDate>
+				<category><![CDATA[Microsoft Foundry]]></category>
+		<guid isPermaLink="false">https://devblogs.microsoft.com/foundry/?p=3401</guid>
+
+					<description><![CDATA[<p>A new kind of agent can work alongside your team in Microsoft 365, with its own identity, permissions, and a manager accountable for its work.   Enterprises are all-in on AI agents, but the ROI hasn’t followed. What&#8217;s holding those agents back isn&#8217;t capability. Today&#8217;s agents can do remarkable work on their own. They can start on [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/foundry/build-trusted-autonomous-agents-for-your-team-with-microsoft-foundry/">Build trusted autonomous agents for your team with Microsoft Foundry</a> appeared first on <a href="https://devblogs.microsoft.com/foundry">Microsoft Foundry Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong><span class="TextRun SCXW77070872 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW77070872 BCX8" data-ccp-parastyle="heading 4">A new kind of agent can work alongside your team in Microsoft 365, with its own identity, permissions, and a manager accountable for its work.</span><span class="NormalTextRun SCXW77070872 BCX8" data-ccp-parastyle="heading 4"> </span></span><span class="EOP Selected SCXW77070872 BCX8" data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:200,&quot;335559739&quot;:0}"> </span></strong></p>
+<p><span data-contrast="none">Enterprises are all-in on AI agents, but the ROI hasn’t followed. </span><span data-contrast="none">What&#8217;s holding those agents back isn&#8217;t capability.</span><span data-ccp-props="{&quot;335559739&quot;:120}"> </span><span data-contrast="none">Today&#8217;s agents can do remarkable work on their own. They can start on a bug as soon as it&#8217;s assigned, turn a finished design into a working app, learn a task by watching you do it once, and spend the night researching and testing ideas so results are waiting by morning.</span><span data-ccp-props="{&quot;335559739&quot;:120}"> </span></p>
+<p dir="ltr">The gap shows up when you ask one of those agents to work with your team. Unless an agent has an account of its own, the only way it can work in Outlook or Teams is with your permissions. That works for a personal assistant, but it breaks down in two common scenarios:</p>
+<ul>
+<li aria-setsize="-1" data-leveltext="%1." data-font="Aptos" data-listid="10" data-list-defn-props="{&quot;335551671&quot;:1,&quot;335552541&quot;:0,&quot;335559683&quot;:0,&quot;335559684&quot;:-1,&quot;335559685&quot;:360,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Aptos&quot;,&quot;469769242&quot;:[65533,0],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;%1.&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><b><span data-contrast="none">No user is signed in.</span></b> <span data-contrast="none">An agent triggered by an event has no signed-in user to act for, so it either can’t take Microsoft 365 actions at all or has to hold on to someone’s credentials to do it.</span><span data-ccp-props="{&quot;134233279&quot;:false,&quot;335559739&quot;:120}"> </span></li>
+</ul>
+<ul>
+<li aria-setsize="-1" data-leveltext="%1." data-font="Aptos" data-listid="10" data-list-defn-props="{&quot;335551671&quot;:1,&quot;335552541&quot;:0,&quot;335559683&quot;:0,&quot;335559684&quot;:-1,&quot;335559685&quot;:360,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Aptos&quot;,&quot;469769242&quot;:[65533,0],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;%1.&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="2" data-aria-level="1"><b><span data-contrast="none">Group settings.</span></b> <span data-contrast="none">In a group chat, the agent must guess on whose behalf to act, and there’s no right answer. Whoever it picks, that person’s permissions apply to the whole thread: actions get attributed to someone who didn’t ask, and members can see content they don’t have access to.</span><span data-ccp-props="{&quot;134233279&quot;:false,&quot;335559739&quot;:120}"> </span></li>
+</ul>
+<p><span data-contrast="none">So most agents stay single-player: one user, one agent, one private conversation. But enterprise work rarely happens alone. Shipping a feature, launching a campaign, closing a deal, or leading a workstream happens across teams, meetings, documents, channels, SharePoint sites, and group chats. Agents won’t deliver business value until they can work there, safely. </span></p>
+<h2><span class="TextRun SCXW121473968 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW121473968 BCX8" data-ccp-parastyle="heading 1">A trusted member of your team</span></span></h2>
+<p dir="ltr">Foundry now lets you build agents that bring that autonomy to your team. Each one works under its own identity as a named member of your organization, in a standing role rather than performing one request at a time.</p>
+<p dir="ltr"><strong>You may have seen Autopilot in Microsoft 365 Copilot. These agents are the same type: Autopilot comes out of the box, and in Foundry you build your own.</strong></p>
+<p dir="ltr"><strong>What makes them trustworthy is identity and the governance controls that come with it.</strong> Identity is what makes any actor in an enterprise governable, because every action traces back to it. It’s how an organization answers three questions: who took this action, were they authorized to, and can we prove it afterward? An agent you build in Foundry is a member of your organization in the ways that count:</p>
+<!-- fixture: trimmed here -->]]></content:encoded>
+					
+					<wfw:commentRss>https://devblogs.microsoft.com/foundry/build-trusted-autonomous-agents-for-your-team-with-microsoft-foundry/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			<image url="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/Autonomous-agents.webp" type="image/png" />
+	</item>
+    <item>
+		<title>Hosted agents in Foundry Agent Service at Ignite 2026: from pilot to production inside your enterprise boundaries</title>
+		<link>https://devblogs.microsoft.com/foundry/hosted-agents-foundry-agent-service-ignite-2026/</link>
+					<comments>https://devblogs.microsoft.com/foundry/hosted-agents-foundry-agent-service-ignite-2026/#respond</comments>
+		
+		<dc:creator><![CDATA[Muzz Imam, Eamon O'Reilly]]></dc:creator>
+		<pubDate>Wed, 18 Nov 2026 17:00:54 +0000</pubDate>
+				<category><![CDATA[Agents]]></category>
+		<category><![CDATA[Foundry Agent Service]]></category>
+		<category><![CDATA[Microsoft Foundry]]></category>
+		<category><![CDATA[aks]]></category>
+		<category><![CDATA[Hosted Agents]]></category>
+		<category><![CDATA[ignite-2026]]></category>
+		<category><![CDATA[network-egress]]></category>
+		<guid isPermaLink="false">https://devblogs.microsoft.com/foundry/?p=3365</guid>
+
+					<description><![CDATA[<p>What is new for hosted agents in Foundry Agent Service at Ignite 2026: shared subnet IPs, private CA trust, network egress controls, deployment to your own AKS clusters, resilient execution and memory snapshots.</p>
+<p>The post <a href="https://devblogs.microsoft.com/foundry/hosted-agents-foundry-agent-service-ignite-2026/">Hosted agents in Foundry Agent Service at Ignite 2026: from pilot to production inside your enterprise boundaries</a> appeared first on <a href="https://devblogs.microsoft.com/foundry">Microsoft Foundry Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Over the last few months I&#8217;ve worked with a lot of teams taking a hosted agent from pilot to production. A working demo is only the start. The questions that decide whether it ships come next: Will the subnet hold up when usage takes off? Can the agent call internal services that use our own certificates? Where exactly can it connect, and who decides? Can it run on the Azure Kubernetes Service (AKS) clusters we already operate? And what happens when a two-hour job gets interrupted?</p>
+<p>At Microsoft Ignite 2026, we&#8217;re announcing a solution to each of these challenges for hosted agents in Foundry Agent Service. Below you&#8217;ll find what&#8217;s new, what you can use today, and what&#8217;s still to come. The egress and private CA updates apply to managed hosted agents, the ones Foundry runs for you; BYO-AKS support will be documented separately.</p>
+<h2>At a glance</h2>
+<table>
+<thead>
+<tr>
+<th>What&#8217;s new</th>
+<th>What it means for you</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared subnet IPs</td>
+<td>Run many more sessions from the same subnet; your session quota still applies</td>
+<td>Generally available (GA)</td>
+</tr>
+<tr>
+<td>Private CA trust</td>
+<td>Call internal services that use your company&#8217;s certificates, with certificate checks still on</td>
+<td>Public preview</td>
+</tr>
+<tr>
+<td>Network egress controls</td>
+<td>One place to decide where an agent can connect, enforced outside the agent</td>
+<td>Generally available (GA)</td>
+</tr>
+<tr>
+<td>Azure Policy governance for egress</td>
+<td>Admins require compliant egress settings across a subscription or resource group</td>
+<td>Public preview, starting in three regions</td>
+</tr>
+<tr>
+<td>Deploy hosted agents to your own AKS clusters</td>
+<td>Foundry&#8217;s agent runtime on your own AKS cluster</td>
+<td>Public preview targeted for early December</td>
+</tr>
+<tr>
+<td>Long-running resilient execution</td>
+<td>Opt-in recovery for long jobs after a crash or redeploy</td>
+<td>Generally available</td>
+</tr>
+<tr>
+<td>Configurable idle timeout</td>
+<td>Sessions can wait from 2 minutes to 4 hours between requests</td>
+<td>Generally available</td>
+</tr>
+<tr>
+<td>Memory snapshots</td>
+<td>Faster cold starts for agents with heavy startup</td>
+<td>Public preview</td>
+</tr>
+</tbody>
+</table>
+<h2>Scale: run far more sessions from the subnet you already have (GA)</h2>
+<p>If you run hosted agents in your own virtual network, each session used to take its own IP address from your delegated subnet. A /24 topped out at about 250 concurrent sessions, and teams with a tight IP plan hit that wall fast.</p>
+<p>Hosted agent sessions now share subnet IP addresses. Each session still runs in its own VM-isolated sandbox. What changes is how far your subnet goes: our planning estimate for a /24 is now about 60,000 concurrent sessions, and even a /27, the smallest supported size, is planned for about 7,500. IP sharing is on for everyone, with no request needed.</p>
+<p>These are planning estimates, not guarantees, and we still recommend a /24 or larger for production so there&#8217;s room for upgrades and maintenance. For most teams, your regional session quota is now the practical ceiling: by default 2,000 or 1,000 concurrent sessions per subscription, depending on the region. You can ask for more through a support request.</p>
+<p><strong>Status:</strong> Generally available now. See <a href="https://learn.microsoft.com/azure/foundry/agents/concepts/agents-networking-deep-dive#subnet-size-and-concurrent-sessions">subnet size and concurrent sessions</a>.</p>
+<h2>Trust: call internal services that use your company&#8217;s certificates (public preview)</h2>
+<p>Internal MCP servers, APIs and model gateways often use certificates from a private certificate authority (CA). Agents didn&#8217;t trust them, so calls failed, and the tempting fix was turning off certificate checks. Security teams don&#8217;t like that fix, for good reason.</p>
+<p>Now you register your CA once on the Foundry resource. The CA certificate lives in Azure Key Vault, and every project in the resource picks it up. Certificate and hostname checks stay on, public CAs stay trusted, and you don&#8217;t bake CA files into container images or recreate project capability hosts.</p>
+<p>Trust covers two paths. Tools, toolboxes and bring-your-own-model gateways use your CA in projects on your own virtual network, usually within a minute of the update. Hosted agent code that calls internal services directly trusts your CA in new sessions. The docs list what isn&#8217;t covered yet, such as remote builds and mutual TLS.</p>
+<p><strong>Status:</strong> Public preview. See <a href="https://learn.microsoft.com/azure/foundry/agents/how-to/private-certificate-authority">Connect agents to services that use a private certificate authority</a>.</p>
+<h2>Control: network egress controls are generally available (GA)</h2>
+<p>A tool list isn&#8217;t a network boundary. Agent code can start a subprocess, a library can follow a redirect, and generated code can call anything. Security teams want one place to say &#8220;these hosts, nothing else.&#8221;</p>
+<p>Network egress controls for hosted agents are now generally available. You attach an ordered list of rules to an agent: allow or deny hosts, add headers on the way out, or send traffic through your own gateway. Foundry enforces the rules outside the agent&#8217;s sandbox, before requests reach their destination, so they don&#8217;t depend on the agent&#8217;s code behaving. If a policy can&#8217;t be evaluated, the request is denied. Egress controls add to your own network controls, like Azure Firewall; they don&#8217;t replace them.</p>
+<p>If security review is what&#8217;s holding your agent back, start here. Turn on Audit mode with a default of deny. In Audit mode, Foundry logs every request it would have blocked but lets it through. Header changes and rewrites still apply, so test them in a non-production environment first. Run representative tasks, review the destinations you see, and refine the allowlist. Then switch to Enforce and deploy a new agent version, since running sessions keep the policy they started with. Your security team reviews a list built from real traffic instead of a guess.</p>
+<!-- fixture: trimmed here -->]]></content:encoded>
+					
+					<wfw:commentRss>https://devblogs.microsoft.com/foundry/hosted-agents-foundry-agent-service-ignite-2026/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			<image url="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/hosted-agents-ignite-2026.webp" type="image/png" />
+	</item>
+    <item>
+		<title>Browser Automation Tool in Microsoft Foundry : Ignite&#8217;26 Announcements</title>
+		<link>https://devblogs.microsoft.com/foundry/browser-automation-tool-ignite/</link>
+					<comments>https://devblogs.microsoft.com/foundry/browser-automation-tool-ignite/#respond</comments>
+		
+		<dc:creator><![CDATA[Nandini Muralidharan, Abhinav Premsekhar]]></dc:creator>
+		<pubDate>Wed, 18 Nov 2026 17:00:47 +0000</pubDate>
+				<category><![CDATA[Microsoft Foundry]]></category>
+		<category><![CDATA[agents]]></category>
+		<category><![CDATA[Browser Automation]]></category>
+		<category><![CDATA[ignite]]></category>
+		<category><![CDATA[mcp]]></category>
+		<category><![CDATA[playwright workspaces]]></category>
+		<guid isPermaLink="false">https://devblogs.microsoft.com/foundry/?p=3334</guid>
+
+					<description><![CDATA[<p>Enterprise-ready cloud browsers for every Foundry agent: MCP action batching, Live View and Take control, session recording, VNet injection, browser proxy, profile reuse, secret management, and CAPTCHA handling.</p>
+<p>The post <a href="https://devblogs.microsoft.com/foundry/browser-automation-tool-ignite/">Browser Automation Tool in Microsoft Foundry : Ignite&#8217;26 Announcements</a> appeared first on <a href="https://devblogs.microsoft.com/foundry">Microsoft Foundry Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<h1>Enterprise-ready cloud browsers for every agent</h1>
+<p>Much of the work that keeps a business running still happens in a browser: internal portals, vendor consoles and legacy apps with no API. The <strong>Browser Automation tool in Foundry Agent Service</strong>, powered by Azure Playwright Workspaces, is now generally available. It gives every Foundry agent secure, scalable browsers with isolated sessions, and includes the following capabilities:</p>
+<ul>
+<li>Efficiency: Expanded MCP tool primitives with action batching (GA)</li>
+<li>Human-in-the-loop: Live View and Take control for authentication and steering the agent (GA)</li>
+<li>Networking: Private websites with VNet injection (preview) </li>
+<li>Observability: Traces, Session recording (GA)</li>
+</ul>
+<p>This Ignite, the Browser automation tool is enabled with additional features for your agentic automation workloads</p>
+<ul>
+<li>Networking: Developers can bring their own browser proxy (preview)</li>
+<li>CAPTCHA management through Web Bot Auth (preview)</li>
+<li>Secure sign-in: Secret management (preview) and profile reuse (preview, coming soon)</li>
+</ul>
+<h2>See it work: processing invoices across multiple apps</h2>
+<p>Our sample agent&#8217;s task is clear &#8211; Process 15 invoices, validate them against the rules, flag anomalies in Excel, and enter the validated invoices into the expense portal. That&#8217;s a multi-app task, and the agent hits the ground running with Browser automation tool in its toolbox. <div style="width: 1920px;" class="wp-video"><video class="wp-video-shortcode" id="video-3334-1" width="1920" height="1080" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/BAT_Ignite-demo_Final.mp4?_=1" /><a href="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/BAT_Ignite-demo_Final.mp4">https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/BAT_Ignite-demo_Final.mp4</a></video></div></p>
+<h2>MCP with expanded tool primitives and batching of actions</h2>
+<p>Browser automation tool offers a larger set of MCP tools built for browser work, so agents can choose the right level of control for each step of a workflow. Step-by-step tools cover the full range of interactions: opening and reading pages, taking accessibility snapshots, clicking, typing, completing forms, selecting options, handling dialogs, managing tabs, uploading files, and capturing screenshots, console messages and network requests. For multistep sequences, agents can batch actions with the run-code tool. It runs one Playwright script for the whole sequence instead of a long chain of snapshot, click and type calls. We understand efficiency matters and hence recommend batched scripts for repetitive flows, and step-by-step tools for unfamiliar pages and flows with dialogs, where checking the page at each step pays off and LLM is an enabler. Because scripts can run any code, the run-code tools stay opt-in and should be enabled only for reviewed scenarios. <a href="https://learn.microsoft.com/en-us/azure/app-testing/playwright-cloud-browsers/how-to-playwright-workspaces-remote-mcp">Learn more</a></p>
+<h2>Live View and Take control: Human-in-the-loop</h2>
+<p>Browser workflows sometimes reach an unexpected page state, an ambiguous choice, or a step that needs human judgement. Live View shows the agent&#8217;s browser in headed mode in real time, so developers and operators can watch it work and see exactly how it performs each action. With Take control, a person can step in to steer the browser, for example to complete a sign-in (as seen in the demo above), give an approval or recover from an unexpected dialog. They can then hand control back and let the agent continue from where it left off. This keeps people in the loop for high-impact actions without giving up the speed of automation.</p>
+<h2>Session recording</h2>
+<p>When you need to know what an agent did, session recordings let you replay its browser sessions for debugging, auditing and compliance reviews. Recording is opt-in, and recordings are stored in your own storage account, so storage role-based access control decides who can view them. Activity logs and billing observability are also available, giving you a complete record of browser activity across your workloads.</p>
+<pre class="prettyprint language-default"><code class="language-default">{
+"tags": null,
+"location": null,
+"id": "/subscriptions/&lt;subscription-id&gt;/resourceGroups/&lt;resource- group&gt;/providers/Microsoft.CognitiveServices/accounts/&lt;resource-name&gt;/projects/proj-default/connections/browserautomation_&lt;string&gt;",
+"name": "&lt;string&gt;",
+"type": "Microsoft.CognitiveServices/accounts/projects/connections",
+"properties":
+{
+"authType": "ApiKey",
+"credentials": {
+"key": "&lt;API_KEY&gt;"
+},
+"group": "ServicesAndApps",
+"category": "PlaywrightWorkspace",
+"target": "https://&lt;region-name&gt;.mcp.playwright.microsoft.com/playwrightworkspaces/&lt;playwright workspace -id&gt;/mcp",
+"metadata":
+{
+"resourceId": ""/subscriptions/&lt;subscription-id&gt;/resourceGroups/&lt;resource-group&gt;/providers/Microsoft.ManagedIdentity/userAssignedIdentities/&lt;identity-name&gt;",
+"enableRecording": "false"
+}
+},
+}</code></pre>
+<h2>Private websites and VNet injection (preview)</h2>
+<p>Many of the most valuable enterprise workflows run on applications that aren&#8217;t on the public internet, such as internal portals, admin consoles and line-of-business systems. With VNet injection, now in preview, you can link your own virtual network and subnet directly to your Playwright Workspace. Cloud browsers can then reach applications and endpoints hosted inside that private network. The integration uses a dedicated delegated subnet, so you can set network boundaries and control browser egress with the networking policies you already apply to the subnet. Your agents can automate private applications while network access stays within your organization&#8217;s security requirements.</p>
+<p><img decoding="async" src="https://learn.microsoft.com/en-us/azure/app-testing/playwright-workspaces/media/how-to-access-private-websites/resource-creation-azure-portal.png" alt="Diagram that shows an architecture overview of Playwright Workspaces." /></p>
+<!-- fixture: trimmed here -->]]></content:encoded>
+					
+					<wfw:commentRss>https://devblogs.microsoft.com/foundry/browser-automation-tool-ignite/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		<enclosure url="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/BAT_Ignite-demo_Final.mp4" length="20762991" type="video/mp4" />
+
+			<image url="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/Browser-automation.webp" type="image/png" />
+	</item>
+	</channel>
+</rss>

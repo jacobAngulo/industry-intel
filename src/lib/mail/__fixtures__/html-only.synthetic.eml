@@ -1,0 +1,13 @@
+Message-ID: <html-only-7@mail.example.com>
+Date: Tue, 17 Nov 2026 18:00:00 +0000
+From: "Data Digest" <digest@letters.example.com>
+Subject: Data Digest #7
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+<html><body>
+<p>A new release of the document parser is out.</p>
+<ul><li>Faster table extraction</li><li>Better OCR for scans</li></ul>
+<p>Read the notes at <a href="https://parser.example.com/releases/7">the release page</a>.</p>
+<p><a href="https://letters.example.com/p/data-digest-7">View this post on the web</a></p>
+</body></html>

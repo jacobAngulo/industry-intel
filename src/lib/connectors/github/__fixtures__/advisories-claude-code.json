@@ -1,0 +1,162 @@
+[
+ {
+  "ghsa_id": "GHSA-5xjx-9qx6-jcrv",
+  "cve_id": "CVE-2026-88968",
+  "url": "https://api.github.com/repos/anthropics/claude-code/security-advisories/GHSA-5xjx-9qx6-jcrv",
+  "html_url": "https://github.com/anthropics/claude-code/security/advisories/GHSA-5xjx-9qx6-jcrv",
+  "summary": "TOCTOU Race in Edit Tool Allows File Writes Outside the Workspace",
+  "description": "Claude Code validated Edit tool targets using point-in-time pathname and symlink resolution that was not bound to the underlying directory inodes or file descriptors. On macOS, a process running inside Claude Code's Bash sandbox could exploit the resulting time-of-check to time-of-use window by atomically swapping an in-workspace parent directory with a symlink after validation completed, causing the unsandboxed Edit implementation to overwrite an attacker-selected user-writable file outside the workspace. Exploiting this required the ability to run attacker-controlled code inside the sandbox, such as through a malicious repository or dependency script.\r\n\r\nUsers on standard Claude Code ...",
+  "severity": "high",
+  "state": "published",
+  "created_at": null,
+  "updated_at": "2026-10-26T11:43:04Z",
+  "published_at": "2026-10-26T11:43:04Z",
+  "closed_at": null,
+  "withdrawn_at": null,
+  "vulnerabilities": [
+   {
+    "package": {
+     "ecosystem": "npm",
+     "name": "@anthropic-ai/claude-code"
+    },
+    "vulnerable_version_range": "< 2.1.251",
+    "patched_versions": "2.1.251",
+    "vulnerable_functions": []
+   }
+  ],
+  "cvss_severities": {
+   "cvss_v3": {
+    "vector_string": null,
+    "score": null
+   },
+   "cvss_v4": {
+    "vector_string": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N",
+    "score": 7.7
+   }
+  },
+  "cwe_ids": [
+   "CWE-59",
+   "CWE-367"
+  ]
+ },
+ {
+  "ghsa_id": "GHSA-4p2j-qj3c-6x84",
+  "cve_id": "CVE-2026-88066",
+  "url": "https://api.github.com/repos/anthropics/claude-code/security-advisories/GHSA-4p2j-qj3c-6x84",
+  "html_url": "https://github.com/anthropics/claude-code/security/advisories/GHSA-4p2j-qj3c-6x84",
+  "summary": "Uncontrolled Search Path Enables Arbitrary Code Execution via Malicious Git Executable",
+  "description": "Claude Desktop on Windows used `uv_spawn` to execute `git.exe` without specifying an absolute path, causing the process to search the current working directory (CWD) before system directories. An attacker could place a malicious `git.exe` in a project directory (e.g., via a shared git repository), and it would be automatically executed when a user opened that directory in Claude Desktop, without any explicit user interaction beyond opening the project. This constituted a remote code execution vulnerability exploitable through supply chain vectors such as cloned repositories.\r\n\r\nUsers on standard Claude Desktop auto-update have received this fix already. Users performing manual updates are ...",
+  "severity": "high",
+  "state": "published",
+  "created_at": null,
+  "updated_at": "2026-10-13T12:24:43Z",
+  "published_at": "2026-10-13T12:24:43Z",
+  "closed_at": null,
+  "withdrawn_at": null,
+  "vulnerabilities": [
+   {
+    "package": {
+     "ecosystem": "anthropic",
+     "name": "Claude Desktop"
+    },
+    "vulnerable_version_range": "< 1.8089.0",
+    "patched_versions": "1.8089.0",
+    "vulnerable_functions": []
+   }
+  ],
+  "cvss_severities": {
+   "cvss_v3": {
+    "vector_string": null,
+    "score": null
+   },
+   "cvss_v4": {
+    "vector_string": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:A/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N",
+    "score": 7.5
+   }
+  },
+  "cwe_ids": [
+   "CWE-427"
+  ]
+ },
+ {
+  "ghsa_id": "GHSA-pq7j-f95f-qfcv",
+  "cve_id": "CVE-2026-86063",
+  "url": "https://api.github.com/repos/anthropics/claude-code/security-advisories/GHSA-pq7j-f95f-qfcv",
+  "html_url": "https://github.com/anthropics/claude-code/security/advisories/GHSA-pq7j-f95f-qfcv",
+  "summary": "Plugin Commit SHA Pin Bypass Allows Installation of Attacker-Controlled Code",
+  "description": "The plugin install flow in Claude Code and Claude Desktop checked out a marketplace's pinned commit SHA using `git checkout` without verifying that the resulting HEAD matched the pinned SHA. An attacker controlling a plugin's upstream repository could create a branch named identically to the pinned 40-character SHA, causing the checkout to silently resolve to the attacker's branch tip instead of the reviewed commit, resulting in attacker-controlled code being installed bypassing the pinned hash. Exploitation required a user to install a malicious plugin, pin to a safe hash, and for the plugin source to be hosted on a git host that permitted SHA-shaped branch names.\r\n\r\nUsers on standard ...",
+  "severity": "high",
+  "state": "published",
+  "created_at": null,
+  "updated_at": "2026-10-09T15:14:01Z",
+  "published_at": "2026-10-09T15:14:01Z",
+  "closed_at": null,
+  "withdrawn_at": null,
+  "vulnerabilities": [
+   {
+    "package": {
+     "ecosystem": "npm",
+     "name": "@anthropic-ai/claude-code"
+    },
+    "vulnerable_version_range": "< 2.1.179",
+    "patched_versions": "2.1.179",
+    "vulnerable_functions": []
+   }
+  ],
+  "cvss_severities": {
+   "cvss_v3": {
+    "vector_string": null,
+    "score": null
+   },
+   "cvss_v4": {
+    "vector_string": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N",
+    "score": 7.7
+   }
+  },
+  "cwe_ids": [
+   "CWE-494",
+   "CWE-829"
+  ]
+ },
+ {
+  "ghsa_id": "GHSA-5j29-h97v-84ch",
+  "cve_id": "CVE-2026-103435",
+  "url": "https://api.github.com/repos/anthropics/claude-code/security-advisories/GHSA-5j29-h97v-84ch",
+  "html_url": "https://github.com/anthropics/claude-code/security/advisories/GHSA-5j29-h97v-84ch",
+  "summary": "Arbitrary File Write via Write-Time Symlink Following (TOCTOU) in Claude Code",
+  "description": "Claude Code validated that a target file path resided within the project working directory at permission-check time, but re-resolved the path at write time without repeating that validation. This time-of-check to time-of-use (TOCTOU) gap allowed an attacker who could write to the workspace to atomically replace a project file with a symlink, causing Claude Code to follow the symlink and write its output to an arbitrary file outside the project sandbox. Exploitation required the ability to win a race condition against the write operation and write access to the shared workspace, enabling a lower-privileged attacker to redirect benign edits to sensitive files (e.g., shell configuration) in a ...",
+  "severity": "high",
+  "state": "published",
+  "created_at": null,
+  "updated_at": "2026-10-05T12:45:33Z",
+  "published_at": "2026-10-05T12:45:33Z",
+  "closed_at": null,
+  "withdrawn_at": null,
+  "vulnerabilities": [
+   {
+    "package": {
+     "ecosystem": "npm",
+     "name": "@anthropic-ai/claude-code"
+    },
+    "vulnerable_version_range": "< 2.1.129",
+    "patched_versions": "2.1.129",
+    "vulnerable_functions": []
+   }
+  ],
+  "cvss_severities": {
+   "cvss_v3": {
+    "vector_string": null,
+    "score": null
+   },
+   "cvss_v4": {
+    "vector_string": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:P/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N",
+    "score": 7.7
+   }
+  },
+  "cwe_ids": [
+   "CWE-22",
+   "CWE-61",
+   "CWE-367"
+  ]
+ }
+]

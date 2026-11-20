@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:podcast="https://podcastindex.org/namespace/1.0">
+<channel>
+  <title>Example Show (synthetic)</title>
+  <link>https://show.example.com/</link>
+  <itunes:author>Example Host</itunes:author>
+  <item>
+    <title>Episode 10: agents and evaluations</title>
+    <link>https://show.example.com/episodes/10</link>
+    <guid isPermaLink="false">ep-10</guid>
+    <pubDate>Thu, 19 Nov 2026 10:00:00 GMT</pubDate>
+    <itunes:duration>3000</itunes:duration>
+    <enclosure url="https://cdn.example.com/ep10.mp3" type="audio/mpeg" length="1000"/>
+    <description><![CDATA[<p>Show notes of episode 10. We talk about <a href="https://tools.example.org/eval-10">an eval tool</a>.</p>]]></description>
+    <podcast:transcript url="https://cdn.example.com/ep10.json" type="application/json" />
+    <podcast:transcript url="https://cdn.example.com/ep10.vtt" type="text/vtt" />
+    <podcast:transcript url="https://cdn.example.com/ep10.srt" type="application/x-subrip" />
+    <podcast:transcript url="https://cdn.example.com/ep10.txt" type="text/plain" />
+  </item>
+  <item>
+    <title>Episode 9: agents and evaluations</title>
+    <link>https://show.example.com/episodes/9</link>
+    <guid isPermaLink="false">ep-9</guid>
+    <pubDate>Thu, 18 Nov 2026 10:00:00 GMT</pubDate>
+    <itunes:duration>2700</itunes:duration>
+    <enclosure url="https://cdn.example.com/ep9.mp3" type="audio/mpeg" length="1000"/>
+    <description><![CDATA[<p>Show notes of episode 9. We talk about <a href="https://tools.example.org/eval-9">an eval tool</a>.</p>]]></description>
+    <podcast:transcript url="https://cdn.example.com/ep9.json" type="application/json" />
+    <podcast:transcript url="https://cdn.example.com/ep9.srt" type="application/srt" />
+    <podcast:transcript url="https://cdn.example.com/ep9.vtt" type="text/vtt" />
+  </item>
+  <item>
+    <title>Episode 8: agents and evaluations</title>
+    <link>https://show.example.com/episodes/8</link>
+    <guid isPermaLink="false">ep-8</guid>
+    <pubDate>Thu, 17 Nov 2026 10:00:00 GMT</pubDate>
+    <itunes:duration>2400</itunes:duration>
+    <enclosure url="https://cdn.example.com/ep8.mp3" type="audio/mpeg" length="1000"/>
+    <description><![CDATA[<p>Show notes of episode 8. We talk about <a href="https://tools.example.org/eval-8">an eval tool</a>.</p>]]></description>
+    <podcast:transcript url="https://cdn.example.com/ep8.json" type="application/json" />
+    <podcast:transcript url="https://cdn.example.com/ep8.srt" type="application/x-subrip" />
+  </item>
+  <item>
+    <title>Episode 7: agents and evaluations</title>
+    <link>https://show.example.com/episodes/7</link>
+    <guid isPermaLink="false">ep-7</guid>
+    <pubDate>Thu, 16 Nov 2026 10:00:00 GMT</pubDate>
+    <itunes:duration>2100</itunes:duration>
+    <enclosure url="https://cdn.example.com/ep7.mp3" type="audio/mpeg" length="1000"/>
+    <description><![CDATA[<p>Show notes of episode 7. We talk about <a href="https://tools.example.org/eval-7">an eval tool</a>.</p>]]></description>
+    <podcast:transcript url="https://cdn.example.com/ep7.html" type="text/html" />
+    <podcast:transcript url="https://cdn.example.com/ep7.json" type="application/json" />
+  </item>
+  <item>
+    <title>Episode 6: agents and evaluations</title>
+    <link>https://show.example.com/episodes/6</link>
+    <guid isPermaLink="false">ep-6</guid>
+    <pubDate>Thu, 15 Nov 2026 10:00:00 GMT</pubDate>
+    <itunes:duration>1800</itunes:duration>
+    <enclosure url="https://cdn.example.com/ep6.mp3" type="audio/mpeg" length="1000"/>
+    <description><![CDATA[<p>Show notes of episode 6. We talk about <a href="https://tools.example.org/eval-6">an eval tool</a>.</p>]]></description>
+    <podcast:transcript url="https://cdn.example.com/ep6.json" type="application/json" />
+  </item>
+  <item>
+    <title>Episode 5: agents and evaluations</title>
+    <link>https://show.example.com/episodes/5</link>
+    <guid isPermaLink="false">ep-5</guid>
+    <pubDate>Thu, 14 Nov 2026 10:00:00 GMT</pubDate>
+    <itunes:duration>1500</itunes:duration>
+    <enclosure url="https://cdn.example.com/ep5.mp3" type="audio/mpeg" length="1000"/>
+    <description><![CDATA[<p>Show notes of episode 5. We talk about <a href="https://tools.example.org/eval-5">an eval tool</a>.</p>]]></description>
+    <podcast:transcript url="https://cdn.example.com/ep5.pdf" type="application/pdf" />
+  </item>
+  <item>
+    <title>Episode 4: agents and evaluations</title>
+    <link>https://show.example.com/episodes/4</link>
+    <guid isPermaLink="false">ep-4</guid>
+    <pubDate>Thu, 13 Nov 2026 10:00:00 GMT</pubDate>
+    <itunes:duration>1200</itunes:duration>
+    <enclosure url="https://cdn.example.com/ep4.mp3" type="audio/mpeg" length="1000"/>
+    <description><![CDATA[<p>Show notes of episode 4. We talk about <a href="https://tools.example.org/eval-4">an eval tool</a>.</p>]]></description>
+    <podcast:transcript url="https://cdn.example.com/ep4.txt" type="text/plain" />
+  </item>
+  <item>
+    <title>Episode 3: agents and evaluations</title>
+    <link>https://show.example.com/episodes/3</link>
+    <guid isPermaLink="false">ep-3</guid>
+    <pubDate>Thu, 12 Nov 2026 10:00:00 GMT</pubDate>
+    <itunes:duration>900</itunes:duration>
+    <enclosure url="https://cdn.example.com/ep3.mp3" type="audio/mpeg" length="1000"/>
+    <description><![CDATA[<p>Show notes of episode 3. We talk about <a href="https://tools.example.org/eval-3">an eval tool</a>.</p>]]></description>
+    <podcast:transcript url="https://cdn.example.com/ep3.txt" type="text/plain" />
+  </item>
+  <item>
+    <title>Episode 2: agents and evaluations</title>
+    <link>https://show.example.com/episodes/2</link>
+    <guid isPermaLink="false">ep-2</guid>
+    <pubDate>Thu, 11 Nov 2026 10:00:00 GMT</pubDate>
+    <itunes:duration>600</itunes:duration>
+    <enclosure url="https://cdn.example.com/ep2.mp3" type="audio/mpeg" length="1000"/>
+    <description><![CDATA[<p>Show notes of episode 2. We talk about <a href="https://tools.example.org/eval-2">an eval tool</a>.</p>]]></description>
+    <podcast:transcript url="https://cdn.example.com/ep2.txt" type="text/plain" />
+  </item>
+  <item>
+    <title>Episode 1: agents and evaluations</title>
+    <link>https://show.example.com/episodes/1</link>
+    <guid isPermaLink="false">ep-1</guid>
+    <pubDate>Thu, 01 Oct 2026 10:00:00 GMT</pubDate>
+    <itunes:duration>300</itunes:duration>
+    <enclosure url="https://cdn.example.com/ep1.mp3" type="audio/mpeg" length="1000"/>
+    <description><![CDATA[<p>Show notes of episode 1. We talk about <a href="https://tools.example.org/eval-1">an eval tool</a>.</p>]]></description>
+    <podcast:transcript url="https://cdn.example.com/ep1.txt" type="text/plain" />
+  </item>
+</channel>
+</rss>

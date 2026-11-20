@@ -1,0 +1,37 @@
+Return-Path: <news@example.com>
+Message-ID: <issue-42.abc123@mail.example.com>
+Date: Wed, 18 Nov 2026 07:30:00 +0000
+From: Example Weekly <news@example.com>
+To: reader@example.org
+Subject: =?UTF-8?Q?Issue_42:_Agents_in_production_=E2=80=94_what_changed?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="b1"
+
+--b1
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+View in browser: https://weekly.example.com/p/issue-42
+
+Hello readers,
+
+This week three teams shared how they run coding agents in production.
+The first story covers evaluation harnesses: https://blog.example.net/evals
+
+Unsubscribe: https://weekly.example.com/unsubscribe?u=1
+
+--b1
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body>
+<p style=3D"font-size:11px"><a href=3D"https://weekly.example.com/p/issue-42?utm_source=3Demail">View in browser</a></p>
+<h1>Issue 42</h1>
+<p>Hello readers,</p>
+<p>This week three teams shared how they run coding agents in production.
+The first story covers <a href=3D"https://blog.example.net/evals">evaluation harnesses</a>.</p>
+<p><img src=3D"https://track.example.com/open.gif" width=3D"1" height=3D"1"></p>
+<p><a href=3D"https://weekly.example.com/unsubscribe?u=3D1">Unsubscribe</a></p>
+</body></html>
+
+--b1--

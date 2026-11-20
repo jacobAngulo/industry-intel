@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+ <link rel="self" href="http://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw"/>
+ <id>yt:channel:_x5XG1OV2P6uZZ5FSM9Ttw</id>
+ <yt:channelId>_x5XG1OV2P6uZZ5FSM9Ttw</yt:channelId>
+ <title>Google for Developers</title>
+ <link rel="alternate" href="https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw"/>
+ <author>
+  <name>Google for Developers</name>
+  <uri>https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw</uri>
+ </author>
+ <published>2007-08-23T00:34:43+00:00</published>
+ <entry>
+  <id>yt:video:f2bpv9mFUeE</id>
+  <yt:videoId>f2bpv9mFUeE</yt:videoId>
+  <yt:channelId>UC_x5XG1OV2P6uZZ5FSM9Ttw</yt:channelId>
+  <title>Google Antigravity and Gemini 4: Building a custom groovebox on a $40 macro pad</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=f2bpv9mFUeE"/>
+  <author>
+   <name>Google for Developers</name>
+   <uri>https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw</uri>
+  </author>
+  <published>2026-11-18T20:00:24+00:00</published>
+  <updated>2026-11-19T08:01:14+00:00</updated>
+  <media:group>
+   <media:title>Google Antigravity and Gemini 4: Building a custom groovebox on a $40 macro pad</media:title>
+   <media:content url="https://www.youtube.com/v/f2bpv9mFUeE?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/f2bpv9mFUeE/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Watch music producer, DJ, and pianist Arlander Taylor transform a generic $40 16-key, 3-knob gaming macro pad into a custom groovebox and polyrhythmic synthesizer in a single shot using Gemini 4 Carbon and Antigravity.
+
+What custom hardware would you build with Gemini 4 Carbon or upcoming Gemini models? Drop your ideas in the comments, and subscribe for more hands-on build demos!
+
+
+🔗 Resources:
+Gemini 4 Carbon Blog → https://goo.gle/3VEGoHz
+Build with the Gemini API (paid tier) →  https://goo.gle/4fCGBle and https://goo.gle/4fCGFBu
+Build with the Gemini API (ultra subscriber) → https://goo.gle/4A4uLsr
+
+
+Subscribe to Google for Developers → https://goo.gle/developers    
+
+
+Speaker: Arlander Taylor
+Products Mentioned: Gemini, Antigravity</media:description>
+   <media:community>
+    <media:starRating count="168" average="5.00" min="1" max="5"/>
+    <media:statistics views="13551"/>
+   </media:community>
+  </media:group>
+ </entry>
+    <entry>
+  <id>yt:video:aRIFzzr_Mi0</id>
+  <yt:videoId>aRIFzzr_Mi0</yt:videoId>
+  <yt:channelId>UC_x5XG1OV2P6uZZ5FSM9Ttw</yt:channelId>
+  <title>EmbeddingGemma 2: How natively multimodal embeddings work</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=aRIFzzr_Mi0"/>
+  <author>
+   <name>Google for Developers</name>
+   <uri>https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw</uri>
+  </author>
+  <published>2026-11-17T17:00:29+00:00</published>
+  <updated>2026-11-19T23:50:10+00:00</updated>
+  <media:group>
+   <media:title>EmbeddingGemma 2: How natively multimodal embeddings work</media:title>
+   <media:content url="https://www.youtube.com/v/aRIFzzr_Mi0?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/aRIFzzr_Mi0/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Learn how EmbeddingGemma 2, Google's open, lightweight multimodal embedding model, maps text, code, images, video, and audio into a single, unified embedding space. 
+
+The video covers:
+* How modality-specific encoders and a bidirectional transformer turn multimodal data into a single representation.
+* The two-stage training recipe: initializing from Gemma 4 and distilling from Gemini Embedding 2, then finetuning with contrastive and spread-out losses.
+* Efficiency techniques for running in resource-constrained environments.
+
+Have questions? Drop them in the comments.
+
+
+🔗Resources:
+Read EmbeddingGemma 2 tech report → https://goo.gle/4eAIY7W 
+Download model weights → https://goo.gle/4fbzYpU
+View docs → https://goo.gle/3WJLEKh
+
+
+Subscribe to Google for Developers → https://goo.gle/developers    
+
+
+
+Speakers: Henrique Schechter Vera, Sahil Dua
+Products Mentioned: Gemma</media:description>
+   <media:community>
+    <media:starRating count="550" average="5.00" min="1" max="5"/>
+    <media:statistics views="44566"/>
+   </media:community>
+  </media:group>
+ </entry>
+    <entry>
+  <id>yt:video:vLAegkGGWrM</id>
+  <yt:videoId>vLAegkGGWrM</yt:videoId>
+  <yt:channelId>UC_x5XG1OV2P6uZZ5FSM9Ttw</yt:channelId>
+  <title>Building with Gemini in Google Antigravity</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=vLAegkGGWrM"/>
+  <author>
+   <name>Google for Developers</name>
+   <uri>https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw</uri>
+  </author>
+  <published>2026-11-12T17:00:11+00:00</published>
+  <updated>2026-11-18T17:56:23+00:00</updated>
+  <media:group>
+   <media:title>Building with Gemini in Google Antigravity</media:title>
+   <media:content url="https://www.youtube.com/v/vLAegkGGWrM?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/vLAegkGGWrM/hqdefault.jpg" width="480" height="360"/>
+   <media:description>See what you can build using our latest Gemini models in Google Antigravity.  From in-browser animation and multimodal prototyping to autonomous codebase modernization, explore how you can ship complex architectures straight from a prompt.
+
+What are you building with Gemini in Google Antigravity? Share your projects in the comments!
+
+
+Try out Google Antigravity today → https://goo.gle/4zGqjzT
+
+
+Subscribe to Google for Developers → https://goo.gle/developers 
+
+
+Speaker: Tiger Souvannakoumane
+Products Mentioned: Google Antigravity</media:description>
+   <media:community>
+    <media:starRating count="213" average="5.00" min="1" max="5"/>
+    <media:statistics views="21612"/>
+   </media:community>
+  </media:group>
+ </entry>
+    <entry>
+  <id>yt:video:rsOiZE19RVo</id>
+  <yt:videoId>rsOiZE19RVo</yt:videoId>
+  <yt:channelId>UC_x5XG1OV2P6uZZ5FSM9Ttw</yt:channelId>
+  <title>Accelerate shipping to scale with Google Antigravity</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=rsOiZE19RVo"/>
+  <author>
+   <name>Google for Developers</name>
+   <uri>https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw</uri>
+  </author>
+  <published>2026-10-29T20:00:20+00:00</published>
+  <updated>2026-11-04T14:22:25+00:00</updated>
+  <media:group>
+   <media:title>Accelerate shipping to scale with Google Antigravity</media:title>
+   <media:content url="https://www.youtube.com/v/rsOiZE19RVo?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/rsOiZE19RVo/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Building software to move tens of millions of vehicles requires massive infrastructure. Using Google Antigravity, Move Cars delivers fully tested production features in a single day, letting a small team scale complex logistics while staying in total control. 
+
+Discover what changes when agents run autonomously while developers maintain full control. Check out the video to learn more!
+
+
+Try building today → https://goo.gle/4zmpGvq
+
+
+Subscribe to Google for Developers → https://goo.gle/developers   
+
+
+Products Mentioned: Google Antigravity
+Speaker: Nick Padgett</media:description>
+   <media:community>
+    <media:starRating count="116" average="5.00" min="1" max="5"/>
+    <media:statistics views="14696"/>
+   </media:community>
+  </media:group>
+ </entry>
+</feed>

@@ -1,0 +1,13 @@
+{
+  "errors": [
+    {
+      "value": "nosuchuser_42",
+      "detail": "Could not find user with username: [nosuchuser_42].",
+      "title": "Not Found Error",
+      "resource_type": "user",
+      "parameter": "username",
+      "resource_id": "nosuchuser_42",
+      "type": "https://api.x.com/2/problems/resource-not-found"
+    }
+  ]
+}

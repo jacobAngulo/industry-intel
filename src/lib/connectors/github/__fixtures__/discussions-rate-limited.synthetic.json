@@ -1,0 +1,5 @@
+{
+  "errors": [
+    { "type": "RATE_LIMITED", "message": "API rate limit exceeded for user ID 1." }
+  ]
+}

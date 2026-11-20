@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/rJCoFkEmv9XovnfY1fmMHs93tz4</id>
+  <title>arXiv Query: search_query=au:"Percy Liang"&amp;id_list=&amp;start=0&amp;max_results=3</title>
+  <updated>2026-11-20T12:16:01Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=au:%22Percy+Liang%22&amp;start=0&amp;max_results=3&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>280</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2611.24927v1</id>
+    <title>Mapping the AI Supply Chain: Dependencies, Vulnerabilities, and Market Concentration in the AI Ecosystem</title>
+    <updated>2026-11-18T18:53:58Z</updated>
+    <link href="https://arxiv.org/abs/2611.24927v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2611.24927v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>AI systems are built across many organizations that contribute models, data, compute, capital, talent, and other assets. While the layers of the AI stack are relatively well understood, the relationships between actors and components across layers remains sparsely documented. In this work, we focus on the organizations that make up the AI supply chain: the complex network of actors that contribute to the development and deployment of AI. We motivate the examination of the organizational AI supply chain---highlighting concerns about concentration, power, chokepoints, cascading failures, fragmented accountability, and risk---then describe our pipeline for mapping the AI supply chain. Our pipeline yields our main contribution: a multilayered, large-scale dataset of actors and relationships in the AI ecosystem, annotated with dates, descriptions, types, tags, and more. This work takes a step toward systematically mapping and measuring the AI supply chain and its properties, cataloging how models, data, chips, infrastructure, capital, and even talent flow between organizations. This data enable critical examinations of industry relationships and yield insights into the political economy of AI development and concentration. We provide several illustrative analyses, including studying the most central actors, analyzing network concentration, and identifying communities and chokepoints. While our dataset is fairly comprehensive, it is also necessarily incomplete: public documents omit private deals, and coverage is shaped by search design. Together, the approach, data, and findings aim to serve as a resource for studying the AI ecosystem. The dataset is publicly available at https://huggingface.co/datasets/sarahcen/ai-supply-chain and can be explored interactively at https://aisupplychains.org/.</summary>
+    <category term="cs.CY" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-11-18T18:53:58Z</published>
+    <arxiv:comment>80 pages, 31 figures, 16 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.CY"/>
+    <author>
+      <name>Sarah H. Cen</name>
+    </author>
+    <author>
+      <name>Lindsey A. Gailmard</name>
+    </author>
+    <author>
+      <name>Joohan Kim</name>
+    </author>
+    <author>
+      <name>Rishi Bommasani</name>
+    </author>
+    <author>
+      <name>Daniel E. Ho</name>
+    </author>
+    <author>
+      <name>Percy Liang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2611.02270v1</id>
+    <title>Hinted Scaling Laws</title>
+    <updated>2026-11-01T22:50:43Z</updated>
+    <link href="https://arxiv.org/abs/2611.02270v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2611.02270v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Scaling laws predict the outcome of large, expensive training runs by extrapolating trends from smaller, cheaper runs. On downstream accuracy evaluations, these predictions fail when the weaker models produced by the cheaper runs score near zero accuracy, because these scores give no trend to extrapolate to larger scales. We introduce hinted scaling laws, which use privileged information to turn a benchmark into a continuum of easier versions so that even the small models score above zero. We find that accuracy rises smoothly and predictably with the hint level, enabling new types of scaling laws that operate below the noise threshold. On the Delphi pretraining ladder, a hinted scaling law fit on models trained with at most $10^{20}$ FLOPs forecasts the GSM8K accuracy of a $10^{23}$ FLOP model (25.9%) to within 3 percentage points; a standard scaling law under-forecasts it by 13 percentage points when fit on the same models and by 12 even with models up to $10^{22}$ FLOPs in the fit. Across both this pretraining ladder and a collection of post-trained model families, hinted scaling laws reduce the median forecasting error on GSM8K, AIME and HLE from 21 percentage points to 4.3. Hinting also reduces the number of test examples needed to tell whether one model is better than another by widening the accuracy gaps between models while approximately preserving their order: a single hinted rollout per problem ranks nearly indistinguishable models as accurately as five unhinted rollouts. Our results suggest that hinting is a general primitive for improving the accuracy and cost of downstream scaling laws and other prediction tasks in model development.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-11-01T22:50:43Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Suze van Adrichem</name>
+    </author>
+    <author>
+      <name>Luke Bailey</name>
+    </author>
+    <author>
+      <name>Rohith Kuditipudi</name>
+    </author>
+    <author>
+      <name>Christine Ye</name>
+    </author>
+    <author>
+      <name>Neil Band</name>
+    </author>
+    <author>
+      <name>Ahmed Ahmed</name>
+    </author>
+    <author>
+      <name>John Duchi</name>
+    </author>
+    <author>
+      <name>Percy Liang</name>
+    </author>
+    <author>
+      <name>Tatsunori Hashimoto</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2610.31867v1</id>
+    <title>Rewriting Scaling Laws for Synthetic Data with Compute and Data Constraints</title>
+    <updated>2026-10-22T19:56:45Z</updated>
+    <link href="https://arxiv.org/abs/2610.31867v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2610.31867v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Synthetic rewrites, where a language model rewrites a natural document e.g. into a target style, are now a standard ingredient of pretraining corpora. However, critical aspects of their use remain poorly understood, such as how much compute should be spent rewriting training data and whether a model trained on rewrites can outperform the rewriter. We study these two questions by proposing a rewriting scaling law that predicts loss from model size, training tokens, the fraction of training tokens that are rewrites, and the number of epochs over the natural data, charging the compute spent generating rewrites. We fit this scaling law in two settings. In the compute-limited setting, natural data is plentiful and rewrites come from a third-party rewriter trained with more compute than our largest run. We find that the estimated optimal rewrite fraction increases with compute, from under $10\%$ at $3\times10^{18}$ FLOPs to $32\%$ at $10^{22}$ FLOPs. Our scaling forecast extrapolates $33\times$ in FLOPs to train a 22B-parameter model, whose final loss is within $1.1\%$ of our prediction. This model achieves a better BPB than its rewriter on several web domains at one-tenth the rewriter's training compute. In the data-limited setting, we assume we only have a fixed seed set of natural data and that our rewriter is a model of the same size as the target, pretrained on that seed set. Again, we find the optimal rewrite fraction increases with the compute budget. We also demonstrate that a model trained on rewrites of its own pretraining data, generated by a rewriter of the same size, beats the best run on natural data alone at every model size up to 3B. Our results show that synthetic rewriting can be studied through the scaling law lens: that optimal methodological choices are predictable and scaling does not necessarily break down beyond the rewriter's capabilities.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-10-22T19:56:45Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Nicholas Roberts</name>
+    </author>
+    <author>
+      <name>Ahmed Ahmed</name>
+    </author>
+    <author>
+      <name>Suhas Kotha</name>
+    </author>
+    <author>
+      <name>Percy Liang</name>
+    </author>
+    <author>
+      <name>Yu Wang</name>
+    </author>
+    <author>
+      <name>Alex Renda</name>
+    </author>
+    <author>
+      <name>Nitya Mani</name>
+    </author>
+  </entry>
+</feed>

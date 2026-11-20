@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+ <link rel="self" href="http://www.youtube.com/feeds/videos.xml?playlist_id=PLOU2XLYxmsILZpGc5gWRO1vL0n9CtcPJL"/>
+ <id>yt:playlist:PLOU2XLYxmsILZpGc5gWRO1vL0n9CtcPJL</id>
+ <yt:playlistId>PLOU2XLYxmsILZpGc5gWRO1vL0n9CtcPJL</yt:playlistId>
+ <yt:channelId>UC_x5XG1OV2P6uZZ5FSM9Ttw</yt:channelId>
+ <title>New releases: Inside Google’s latest models</title>
+ <author>
+  <name>Google for Developers</name>
+  <uri>https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw</uri>
+ </author>
+ <published>2026-03-02T20:09:09+00:00</published>
+ <entry>
+  <id>yt:video:LOP8ul3KqQI</id>
+  <yt:videoId>LOP8ul3KqQI</yt:videoId>
+  <yt:channelId>UC_x5XG1OV2P6uZZ5FSM9Ttw</yt:channelId>
+  <title>Introducing Genie 4</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=LOP8ul3KqQI"/>
+  <author>
+   <name>Google for Developers</name>
+   <uri>https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw</uri>
+  </author>
+  <published>2026-10-27T16:18:01+00:00</published>
+  <updated>2026-11-03T22:39:51+00:00</updated>
+  <media:group>
+   <media:title>Introducing Genie 4</media:title>
+   <media:content url="https://www.youtube.com/v/LOP8ul3KqQI?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i1.ytimg.com/vi/LOP8ul3KqQI/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Raia Hadsell, Diego Rivas, and Hang Qi from Google DeepMind join host Logan Kilpatrick to introduce Genie 4, the latest world model from Google DeepMind. 
+
+Their conversation covers:
+*What world models are
+*The arc from Genie 1 to Genie 4
+*Live demos showcasing the model’s biggest leaps forward
+*The role of Gemini in the loop
+*The path to robotics and education applications
+*What it means to make Genie available in the API for the first time
+
+Chapters
+0:00 — Welcome and Genie 4 introduction
+1:02 — What are world models?
+2:10 — The arc from Genie 1 to Genie 4
+5:10 — Live demos, audio, photorealism, and real-time interaction
+11:03 — Egocentric first-person view
+11:53 — Dialogue with characters in the world
+15:10 — Gemini in the loop
+17:10 — Fantastical world simulation
+19:01 — Genie 4 and robotics
+24:11 — What makes Genie 4 shine vs. previous models
+25:55 — Scaling and future directions
+34:42 — API availability
+35:04 — Safety and SynthID in real time
+41:36 — Go-to prompts from the team
+45:36 — Evaluating world model quality
+
+
+🔗 Resources:
+Genie 4 Blog → https://goo.gle/4ipGTNa
+
+
+Subscribe to Google for Developers → https://goo.gle/developers    
+
+
+
+Speakers: Raia Hadsell, Diego Rivas</media:description>
+   <media:community>
+    <media:starRating count="808" average="5.00" min="1" max="5"/>
+    <media:statistics views="63548"/>
+   </media:community>
+  </media:group>
+ </entry>
+<entry>
+  <id>yt:video:Jh6mgf9M06M</id>
+  <yt:videoId>Jh6mgf9M06M</yt:videoId>
+  <yt:channelId>UC_x5XG1OV2P6uZZ5FSM9Ttw</yt:channelId>
+  <title>Gemini 4 Argon: What’s new and what’s next</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=Jh6mgf9M06M"/>
+  <author>
+   <name>Google for Developers</name>
+   <uri>https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw</uri>
+  </author>
+  <published>2026-10-14T17:01:36+00:00</published>
+  <updated>2026-10-18T00:31:36+00:00</updated>
+  <media:group>
+   <media:title>Gemini 4 Argon: What’s new and what’s next</media:title>
+   <media:content url="https://www.youtube.com/v/Jh6mgf9M06M?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/Jh6mgf9M06M/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Josh Woodward, Melvin Johnson, Sergey Brin, and Tulsee Doshi from Google DeepMind join host Logan Kilpatrick to introduce Gemini 4 Argon. Their conversation covers what made this release possible and how 100,000 Googlers tested the model before launch. They also discuss industry-leading one million output tokens, improvements to writing quality and model behavior, and the real-world breakthroughs teams are already seeing across coding, cybersecurity, and knowledge work.
+
+Chapters: 
+0:45 — Welcome and Gemini 4 Argon launch 
+1:05 — Where Argon is available 
+1:43 — Early testing with cyber defenders and enterprises 
+2:50 — Internal testing at scale 
+3:28 — Building models with models 
+5:43 — Writing quality improvements and AI slop 
+8:08 — Agents in the model building process 
+8:58 — Real world use cases from Googlers 
+12:50 — How to validate model output 
+17:36 — What made Gemini 4 Argon possible 
+18:45 — Aha moments with Argon 
+23:02 — One million output tokens explained 
+26:46 — Model behavior, persistence, and transparency 
+29:00 — Closing thoughts and feedback 
+
+
+🔗Resources:
+Gemini 4 Argon Blog → https://goo.gle/4B5pphz
+
+
+Subscribe to Google for Developers → https://goo.gle/devel</media:description>
+   <media:community>
+    <media:starRating count="1338" average="5.00" min="1" max="5"/>
+    <media:statistics views="97702"/>
+   </media:community>
+  </media:group>
+ </entry>
+<entry>
+  <id>yt:video:anPsS6huQk0</id>
+  <yt:videoId>anPsS6huQk0</yt:videoId>
+  <yt:channelId>UC_x5XG1OV2P6uZZ5FSM9Ttw</yt:channelId>
+  <title>Introducing EmbeddingGemma 2: An open model for natively multimodal embeddings</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=anPsS6huQk0"/>
+  <author>
+   <name>Google for Developers</name>
+   <uri>https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw</uri>
+  </author>
+  <published>2026-10-06T16:10:20+00:00</published>
+  <updated>2026-10-16T16:09:19+00:00</updated>
+  <media:group>
+   <media:title>Introducing EmbeddingGemma 2: An open model for natively multimodal embeddings</media:title>
+   <media:content url="https://www.youtube.com/v/anPsS6huQk0?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/anPsS6huQk0/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Sebastian Russo, Ivan Llanos, and Sahil Dua from Google DeepMind introduce EmbeddingGemma 2, a lightweight open model that maps text, images, video, and audio into a single unified embedding space.
+
+At just 740 million parameters, EmbeddingGemma 2 is engineered for on-device use cases. Watch this  video to discover:
+
+*EmbeddingGemma 2’s modular architecture with optional audio and vision encoders
+*Instant media search and video moment retrieval running fully offline on device
+*Retrieval-augmented generation (RAG) pipelines where sensitive data never leaves the hardware
+*Fine-tuning for domain-specific use cases
+
+
+🔗 Resources:
+Learn about the model → https://goo.gle/4hE3Lb9
+Read the developer guide → https://goo.gle/4hFnyqO 
+Explore on-device embeddings with Google AI Edge → https://goo.gle/3VSXqS1 
+Download model weights from HuggingFace → https://goo.gle/4i45qbp 
+Get started with the Gemma Cookbook → https://goo.gle/3TCsqVO 
+
+Have questions? Drop them in the comments.
+
+
+
+Subscribe to Google for Developers → https://goo.gle/developers    
+
+
+
+Speakers: Sebastian Russo, Ivan Llanos, Sahil Dua
+Products Mentioned: Gemma, Google AI Edge</media:description>
+   <media:community>
+    <media:starRating count="3866" average="5.00" min="1" max="5"/>
+    <media:statistics views="9795397"/>
+   </media:community>
+  </media:group>
+ </entry>
+<entry>
+  <id>yt:video:9_PtOVH2FPE</id>
+  <yt:videoId>9_PtOVH2FPE</yt:videoId>
+  <yt:channelId>UC_x5XG1OV2P6uZZ5FSM9Ttw</yt:channelId>
+  <title>Introducing Gemini 3.7 Flash</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=9_PtOVH2FPE"/>
+  <author>
+   <name>Google for Developers</name>
+   <uri>https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw</uri>
+  </author>
+  <published>2026-08-13T19:44:11+00:00</published>
+  <updated>2026-10-27T18:55:15+00:00</updated>
+  <media:group>
+   <media:title>Introducing Gemini 3.7 Flash</media:title>
+   <media:content url="https://www.youtube.com/v/9_PtOVH2FPE?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/9_PtOVH2FPE/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Introducing Gemini 3.7 Flash — our most intelligent workhorse model yet for coding and agents.
+
+Follow along as we build an animated sprite-based 90s game using the model in Google Antigravity. We go from a single prompt to a plan, then to a playable game with assets generated by Nano Banana Pro and infinite remixing possibilities. 
+
+Explore agent-first workflows in Antigravity or start building in the Gemini API via Google AI Studio and Android Studio. 
+
+Subscribe to Google for Developers → https://goo.gle/developers 
+
+#GoogleDeepMind #GoogleAI 
+
+Speakers: 
+Products Mentioned: Google Antigravity, Gemini</media:description>
+   <media:community>
+    <media:starRating count="1826" average="5.00" min="1" max="5"/>
+    <media:statistics views="2673189"/>
+   </media:community>
+  </media:group>
+ </entry>
+</feed>

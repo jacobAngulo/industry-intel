@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Rundown AI</title>
+    <link>https://www.therundown.ai</link>
+    <atom:link href="https://www.therundown.ai/feed" rel="self" type="application/rss+xml"/>
+    <description>Get the latest AI news, understand why it matters, and learn how to apply it in your work.</description>
+    <language>en</language>
+    <item>
+      <title>Google’s shipping spree continues with Neon </title>
+      <link>https://www.therundown.ai/articles/google-shipping-spree-continues-with-neon</link>
+      <guid isPermaLink="true">https://www.therundown.ai/articles/google-shipping-spree-continues-with-neon</guid>
+      <pubDate>Thu, 19 Nov 2026 10:00:00 GMT</pubDate>
+      <description>PLUS: Use AI to rework your LinkedIn profile</description>
+      <category>ai</category>
+    </item>
+<item>
+      <title>OpenAI’s newest release lands to rough reviews</title>
+      <link>https://www.therundown.ai/articles/openai-newest-release-lands-to-rough-reviews</link>
+      <guid isPermaLink="true">https://www.therundown.ai/articles/openai-newest-release-lands-to-rough-reviews</guid>
+      <pubDate>Wed, 18 Nov 2026 11:00:00 GMT</pubDate>
+      <description>PLUS: Turn a spreadsheet into a data story with AI</description>
+      <category>ai</category>
+    </item>
+<item>
+      <title>The U.S. has an outage problem</title>
+      <link>https://www.therundown.ai/articles/the-us-has-an-outage-problem</link>
+      <guid isPermaLink="true">https://www.therundown.ai/articles/the-us-has-an-outage-problem</guid>
+      <pubDate>Tue, 17 Nov 2026 15:30:00 GMT</pubDate>
+      <description>PLUS: Instagram’s inbox gets its own app</description>
+      <category>tech</category>
+    </item>
+</channel>
+</rss>

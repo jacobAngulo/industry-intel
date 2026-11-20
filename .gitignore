@@ -1,0 +1,31 @@
+# dependencies
+node_modules/
+
+# build output
+.next/
+out/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
+# local data (the SQLite database and its backups)
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# secrets
+.env
+.env.*
+!.env.example
+
+# tests and tools
+coverage/
+.vitest/
+
+# OS and editors
+.DS_Store
+*.log
+
+# the lock file that guards the database migrations
+*.migrate.lock

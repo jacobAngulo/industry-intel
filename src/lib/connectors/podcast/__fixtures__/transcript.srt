@@ -1,0 +1,53 @@
+1
+00:00:02,320 --> 00:00:05,440
+Narrator: Welcome to the
+Practical AI Podcast, where we
+
+2
+00:00:05,440 --> 00:00:08,160
+break down the real world
+applications of artificial
+
+3
+00:00:08,160 --> 00:00:11,840
+intelligence and how it's
+shaping the way we live, work,
+
+4
+00:00:11,840 --> 00:00:16,275
+and create. Our goal is to help
+make AI technology practical,
+
+5
+00:00:16,355 --> 00:00:19,395
+productive, and accessible to
+everyone. Whether you're a
+
+6
+00:00:19,395 --> 00:00:22,355
+developer, business leader, or
+just curious about the tech
+
+7
+00:00:22,355 --> 00:00:25,635
+behind the buzz, you're in the
+right place. Be sure to connect
+
+8
+00:00:25,635 --> 00:00:29,020
+with us on LinkedIn, X, or Blue
+Sky to stay up to date with
+
+9
+00:00:29,020 --> 00:00:33,100
+episode drops, behind the scenes
+content, and AI insights. You
+
+10
+00:00:33,100 --> 00:00:35,740
+can learn more at
+practicalai.fm.
+
+11
+00:00:35,820 --> 00:00:37,100
+Now onto the show.

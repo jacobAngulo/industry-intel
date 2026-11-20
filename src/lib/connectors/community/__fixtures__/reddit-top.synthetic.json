@@ -1,0 +1,90 @@
+{
+  "kind": "Listing",
+  "data": {
+    "after": "t3_1q0z004",
+    "dist": 4,
+    "modhash": "",
+    "children": [
+      {
+        "kind": "t3",
+        "data": {
+          "id": "1q0z001",
+          "name": "t3_1q0z001",
+          "subreddit": "LocalLLaMA",
+          "title": "New open-weights coding model beats last month's release on SWE-bench",
+          "selftext": "",
+          "is_self": false,
+          "url": "https://example.com/blog/new-coding-model",
+          "permalink": "/r/LocalLLaMA/comments/1q0z001/new_openweights_coding_model/",
+          "author": "example_user_a",
+          "created_utc": 1795089600,
+          "score": 812,
+          "num_comments": 214,
+          "link_flair_text": "New Model",
+          "over_18": false,
+          "stickied": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "id": "1q0z002",
+          "name": "t3_1q0z002",
+          "subreddit": "LocalLLaMA",
+          "title": "How we run evals for our agent harness",
+          "selftext": "We run 300 tasks each night.\n\nThe harness is at https://github.com/example/agent-evals and the results go into a dashboard.",
+          "is_self": true,
+          "url": "https://www.reddit.com/r/LocalLLaMA/comments/1q0z002/how_we_run_evals/",
+          "permalink": "/r/LocalLLaMA/comments/1q0z002/how_we_run_evals/",
+          "author": "example_user_b",
+          "created_utc": 1795082400,
+          "score": 156,
+          "num_comments": 37,
+          "link_flair_text": "Discussion",
+          "over_18": false,
+          "stickied": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "id": "1q0z003",
+          "name": "t3_1q0z003",
+          "subreddit": "LocalLLaMA",
+          "title": "Small question about quantization",
+          "selftext": "Which format do you use?",
+          "is_self": true,
+          "url": "https://www.reddit.com/r/LocalLLaMA/comments/1q0z003/small_question/",
+          "permalink": "/r/LocalLLaMA/comments/1q0z003/small_question/",
+          "author": "example_user_c",
+          "created_utc": 1795086000,
+          "score": 12,
+          "num_comments": 4,
+          "link_flair_text": null,
+          "over_18": false,
+          "stickied": false
+        }
+      },
+      {
+        "kind": "t3",
+        "data": {
+          "id": "1q0z004",
+          "name": "t3_1q0z004",
+          "subreddit": "LocalLLaMA",
+          "title": "Benchmark thread: local inference on a laptop",
+          "selftext": "[removed]",
+          "is_self": true,
+          "url": "https://www.reddit.com/r/LocalLLaMA/comments/1q0z004/benchmark_thread/",
+          "permalink": "/r/LocalLLaMA/comments/1q0z004/benchmark_thread/",
+          "author": "[deleted]",
+          "created_utc": 1795075200,
+          "score": 64,
+          "num_comments": 19,
+          "link_flair_text": null,
+          "over_18": false,
+          "stickied": false
+        }
+      }
+    ]
+  }
+}

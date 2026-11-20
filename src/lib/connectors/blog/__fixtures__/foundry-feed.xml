@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Microsoft Foundry Blog</title>
+	<atom:link href="https://devblogs.microsoft.com/foundry/feed/" rel="self" type="application/rss+xml" />
+	<link>https://devblogs.microsoft.com/foundry/</link>
+	<description>Your source for learning and building with our models, agents, and tools.</description>
+	<lastBuildDate>Fri, 20 Nov 2026 06:46:21 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	
+
+<image>
+	<url>https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2025/11/cropped-Microsoft-Foundry.2mb-scaled-1-32x32.webp</url>
+	<title>Microsoft Foundry Blog</title>
+	<link>https://devblogs.microsoft.com/foundry/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Build trusted autonomous agents for your team with Microsoft Foundry</title>
+		<link>https://devblogs.microsoft.com/foundry/build-trusted-autonomous-agents-for-your-team-with-microsoft-foundry/</link>
+					<comments>https://devblogs.microsoft.com/foundry/build-trusted-autonomous-agents-for-your-team-with-microsoft-foundry/#respond</comments>
+		
+		<dc:creator><![CDATA[Amanda Foster]]></dc:creator>
+		<pubDate>Thu, 19 Nov 2026 19:53:30 +0000</pubDate>
+				<category><![CDATA[Microsoft Foundry]]></category>
+		<guid isPermaLink="false">https://devblogs.microsoft.com/foundry/?p=3401</guid>
+
+					<description><![CDATA[<p>A new kind of agent can work alongside your team in Microsoft 365, with its own identity, permissions, and a manager accountable for its work.   Enterprises are all-in on AI agents, but the ROI hasn’t followed. What&#8217;s holding those agents back isn&#8217;t capability. Today&#8217;s agents can do remarkable work on their own. They can start on [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/foundry/build-trusted-autonomous-agents-for-your-team-with-microsoft-foundry/">Build trusted autonomous agents for your team with Microsoft Foundry</a> appeared first on <a href="https://devblogs.microsoft.com/foundry">Microsoft Foundry Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p><strong><span class="TextRun SCXW77070872 BCX8" lang="EN-US" xml:lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW77070872 BCX8" data-ccp-parastyle="heading 4">A new kind of agent can work alongside your team in Microsoft 365, with its own identity, permissions, and a manager accountable for its work.</span><span class="NormalTextRun SCXW77070872 BCX8" data-ccp-parastyle="heading 4"> </span></span><span class="EOP Selected SCXW77070872 BCX8" data-ccp-props="{&quot;134245418&quot;:true,&quot;134245529&quot;:true,&quot;335559738&quot;:200,&quot;335559739&quot;:0}"> </span></strong></p>
+<p><span data-contrast="none">Enterprises are all-in on AI agents, but the ROI hasn’t followed. </span><span data-contrast="none">What&#8217;s holding those agents back isn&#8217;t capability.</span><span data-ccp-props="{&quot;335559739&quot;:120}"> </span><span data-contrast="none">Today&#8217;s agents can do remarkable work on their own. They can start on a bug as soon as it&#8217;s assigned, turn a finished design into a working app, learn a task by watching you do it once, and spend the night researching and testing ideas so results are waiting by morning.</span><span data-ccp-props="{&quot;335559739&quot;:120}"> </span></p>
+<p dir="ltr">The gap shows up when you ask one of those agents to work with your team. Unless an agent has an account of its own, the only way it can work in Outlook or Teams is with your permissions. That works for a personal assistant, but it breaks down in two common scenarios:</p>
+<ul>
+<li aria-setsize="-1" data-leveltext="%1." data-font="Aptos" data-listid="10" data-list-defn-props="{&quot;335551671&quot;:1,&quot;335552541&quot;:0,&quot;335559683&quot;:0,&quot;335559684&quot;:-1,&quot;335559685&quot;:360,&quot;335559991&quot;:360,&quot;469769226&quot;:&quot;Aptos&quot;,&quot;469769242&quot;:[65533,0],&quot;469777803&quot;:&quot;left&quot;,&quot;469777804&quot;:&quot;%1.&quot;,&quot;469777815&quot;:&quot;hybridMultilevel&quot;}" data-aria-posinset="1" data-aria-level="1"><b><span data-contrast="none">No user is signed in.</span></b> <span data-contrast="none">An agent triggered by an event has no signed-in user to act for, so it either can’t take Microsoft 365 actions at all or has to hold on to someone’s credentials to do it.</span><span data-ccp-props="{&quot;134233279&quot;:false,&quot;335559739&quot;:120}"> </span></li>
+</ul>
+<ul>
+</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://devblogs.microsoft.com/foundry/build-trusted-autonomous-agents-for-your-team-with-microsoft-foundry/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			<image url="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/Autonomous-agents.webp" type="image/png" />
+	</item>
+<item>
+		<title>Hosted agents in Foundry Agent Service at Ignite 2026: from pilot to production inside your enterprise boundaries</title>
+		<link>https://devblogs.microsoft.com/foundry/hosted-agents-foundry-agent-service-ignite-2026/</link>
+					<comments>https://devblogs.microsoft.com/foundry/hosted-agents-foundry-agent-service-ignite-2026/#respond</comments>
+		
+		<dc:creator><![CDATA[Muzz Imam, Eamon O'Reilly]]></dc:creator>
+		<pubDate>Wed, 18 Nov 2026 17:00:54 +0000</pubDate>
+				<category><![CDATA[Agents]]></category>
+		<category><![CDATA[Foundry Agent Service]]></category>
+		<category><![CDATA[Microsoft Foundry]]></category>
+		<category><![CDATA[aks]]></category>
+		<category><![CDATA[Hosted Agents]]></category>
+		<category><![CDATA[ignite-2026]]></category>
+		<category><![CDATA[network-egress]]></category>
+		<guid isPermaLink="false">https://devblogs.microsoft.com/foundry/?p=3365</guid>
+
+					<description><![CDATA[<p>What is new for hosted agents in Foundry Agent Service at Ignite 2026: shared subnet IPs, private CA trust, network egress controls, deployment to your own AKS clusters, resilient execution and memory snapshots.</p>
+<p>The post <a href="https://devblogs.microsoft.com/foundry/hosted-agents-foundry-agent-service-ignite-2026/">Hosted agents in Foundry Agent Service at Ignite 2026: from pilot to production inside your enterprise boundaries</a> appeared first on <a href="https://devblogs.microsoft.com/foundry">Microsoft Foundry Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p>Over the last few months I&#8217;ve worked with a lot of teams taking a hosted agent from pilot to production. A working demo is only the start. The questions that decide whether it ships come next: Will the subnet hold up when usage takes off? Can the agent call internal services that use our own certificates? Where exactly can it connect, and who decides? Can it run on the Azure Kubernetes Service (AKS) clusters we already operate? And what happens when a two-hour job gets interrupted?</p>
+<p>At Microsoft Ignite 2026, we&#8217;re announcing a solution to each of these challenges for hosted agents in Foundry Agent Service. Below you&#8217;ll find what&#8217;s new, what you can use today, and what&#8217;s still to come. The egress and private CA updates apply to managed hosted agents, the ones Foundry runs for you; BYO-AKS support will be documented separately.</p>
+<h2>At a glance</h2>
+<table>
+<thead>
+<tr>
+<th>What&#8217;s new</th>
+<th>What it means for you</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared subnet IPs</td>
+<td>Run many more sessions from the same subnet; your session quota still applies</td>
+<td>Generally available (GA)</td>
+</tr>
+<tr>
+<td>Private CA trust</td>
+<td>Call internal services that use your company&#8217;s certificates, with certificate checks still on</td>
+<td>Public preview</td>
+</tr>
+<tr>
+<td>Network egress controls</td>
+<td>One place to decide where an agent can connect, enforced outside the agent</td>
+<td>Generally available (GA)</td>
+</tr>
+<tr>
+<td>Azure Policy governance for egress</td>
+<td>Admins require compliant egress settings across a subscription or resource group</td>
+<td>Public preview, starting in three regions</td>
+</tr>
+<tr>
+<td>Deploy hosted agents to your own AKS clusters</td>
+<td>Foundry&#8217;s agent runtime on your own AKS cluster</td>
+<td>Public preview targeted for early December</td>
+</tr>
+<tr>
+<td>Long-running resilient execution</td>
+<td>Opt-in recovery for long jobs after a crash or redeploy</td>
+<td>Generally available</td>
+</tr>
+<tr>
+<td>Configurable idle timeout</td>
+<td>Sessions can wait from 2 minutes to 4 hours between requests</td>
+<td>Generally available</td>
+</tr>
+<tr>
+<td>Memory snapshots</td>
+<td>Faster cold starts for agents with heavy startup</td>
+<td>Public preview</td>
+</tr>
+</tbody>
+</table>
+<h2>Scale: run far more sessions from the subnet you already have (GA)</h2>
+<p>If you run hosted agents in your own virtual network, each session used to take its own IP address from y</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://devblogs.microsoft.com/foundry/hosted-agents-foundry-agent-service-ignite-2026/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			<image url="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/hosted-agents-ignite-2026.webp" type="image/png" />
+	</item>
+<item>
+		<title>Browser Automation Tool in Microsoft Foundry : Ignite&#8217;26 Announcements</title>
+		<link>https://devblogs.microsoft.com/foundry/browser-automation-tool-ignite/</link>
+					<comments>https://devblogs.microsoft.com/foundry/browser-automation-tool-ignite/#respond</comments>
+		
+		<dc:creator><![CDATA[Nandini Muralidharan, Abhinav Premsekhar]]></dc:creator>
+		<pubDate>Wed, 18 Nov 2026 17:00:47 +0000</pubDate>
+				<category><![CDATA[Microsoft Foundry]]></category>
+		<category><![CDATA[agents]]></category>
+		<category><![CDATA[Browser Automation]]></category>
+		<category><![CDATA[ignite]]></category>
+		<category><![CDATA[mcp]]></category>
+		<category><![CDATA[playwright workspaces]]></category>
+		<guid isPermaLink="false">https://devblogs.microsoft.com/foundry/?p=3334</guid>
+
+					<description><![CDATA[<p>Enterprise-ready cloud browsers for every Foundry agent: MCP action batching, Live View and Take control, session recording, VNet injection, browser proxy, profile reuse, secret management, and CAPTCHA handling.</p>
+<p>The post <a href="https://devblogs.microsoft.com/foundry/browser-automation-tool-ignite/">Browser Automation Tool in Microsoft Foundry : Ignite&#8217;26 Announcements</a> appeared first on <a href="https://devblogs.microsoft.com/foundry">Microsoft Foundry Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<h1>Enterprise-ready cloud browsers for every agent</h1>
+<p>Much of the work that keeps a business running still happens in a browser: internal portals, vendor consoles and legacy apps with no API. The <strong>Browser Automation tool in Foundry Agent Service</strong>, powered by Azure Playwright Workspaces, is now generally available. It gives every Foundry agent secure, scalable browsers with isolated sessions, and includes the following capabilities:</p>
+<ul>
+<li>Efficiency: Expanded MCP tool primitives with action batching (GA)</li>
+<li>Human-in-the-loop: Live View and Take control for authentication and steering the agent (GA)</li>
+<li>Networking: Private websites with VNet injection (preview) </li>
+<li>Observability: Traces, Session recording (GA)</li>
+</ul>
+<p>This Ignite, the Browser automation tool is enabled with additional features for your agentic automation workloads</p>
+<ul>
+<li>Networking: Developers can bring their own browser proxy (preview)</li>
+<li>CAPTCHA management through Web Bot Auth (preview)</li>
+<li>Secure sign-in: Secret management (preview) and profile reuse (preview, coming soon)</li>
+</ul>
+<h2>See it work: processing invoices across multiple apps</h2>
+<p>Our sample agent&#8217;s task is clear &#8211; Process 15 invoices, validate them against the rules, flag anomalies in Excel, and enter the validated invoices into the expense portal. That&#8217;s a multi-app task, and the agent hits the ground running with Browser automation tool in its toolbox. <div style="width: 1920px;" class="wp-video"><video class="wp-video-shortcode" id="video-3334-1" width="1920" height="1080" preload="metadata" controls="controls"><source type="video/mp4" src="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/BAT_Ignite-demo_Final.mp4?_=1" /><a href="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/BAT_Ignite-demo_Final.mp4">https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/BAT_Ignite-demo_Final.mp4</a></video></div></p>
+<h2>MCP with expanded tool primitives and batching of actions</h2>
+<p>Browser automation tool offers a larger set of MCP tools built for browser work, so agents can choose the right level of control for each step of a workflow. Step-by-step tools cover the full range of interactions: opening and reading pages, taking accessibility snapshots, clicking, typing, completing forms, selecting options, handling dialogs, managing tabs, uploading files, and capturing sc</p>]]></content:encoded>
+					
+					<wfw:commentRss>https://devblogs.microsoft.com/foundry/browser-automation-tool-ignite/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		<enclosure url="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/BAT_Ignite-demo_Final.mp4" length="20762991" type="video/mp4" />
+
+			<image url="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/Browser-automation.webp" type="image/png" />
+	</item>
+<item>
+		<title>The Foundry Dev Pack is here: build Foundry agents your way</title>
+		<link>https://devblogs.microsoft.com/foundry/the-foundry-dev-pack-is-here-build-foundry-agents-your-way/</link>
+					<comments>https://devblogs.microsoft.com/foundry/the-foundry-dev-pack-is-here-build-foundry-agents-your-way/#respond</comments>
+		
+		<dc:creator><![CDATA[Rong Lu]]></dc:creator>
+		<pubDate>Wed, 18 Nov 2026 17:00:39 +0000</pubDate>
+				<category><![CDATA[Agents]]></category>
+		<category><![CDATA[Foundry Agent Service]]></category>
+		<category><![CDATA[Microsoft Foundry]]></category>
+		<guid isPermaLink="false">https://devblogs.microsoft.com/foundry/?p=3348</guid>
+
+					<description><![CDATA[<p>Your next agent can start wherever you like to build: in your editor, at the terminal, or with your favorite coding agent. At Microsoft Ignite, we&#8217;re making that first step easier: the Foundry Dev Pack (aka.ms/foundrydevpack) is now generally available, bringing the Microsoft Foundry developer tools to your machine in a single install. Move from [&#8230;]</p>
+<p>The post <a href="https://devblogs.microsoft.com/foundry/the-foundry-dev-pack-is-here-build-foundry-agents-your-way/">The Foundry Dev Pack is here: build Foundry agents your way</a> appeared first on <a href="https://devblogs.microsoft.com/foundry">Microsoft Foundry Blog</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[<p class="wp-block-paragraph"><span style="font-family: arial, helvetica, sans-serif;">Your next agent can start wherever you like to build: in your editor, at the terminal, or with your favorite coding agent. At Microsoft Ignite, we&#8217;re making that first step easier: the <a href="https://aka.ms/foundrydevpack">Foundry Dev Pack (aka.ms/foundrydevpack)</a> is now <strong>generally available</strong>, bringing the Microsoft Foundry developer tools to your machine in a single install. Move from setup to building, debugging, evaluating, and deploying agents in the environment you already know.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif;"></p>
+<p></span></p>
+<p class="wp-block-paragraph"><span style="font-family: arial, helvetica, sans-serif;">The Dev Pack combines the Foundry CLI (<code>azd ai</code>) and Microsoft Foundry Skill, and installs the Foundry Toolkit for VS Code and Foundry plugin for the GitHub Copilot app when those apps are present. It builds on a major milestone from November 5: the <a href="https://devblogs.microsoft.com/foundry/microsoft-foundry-azure-developer-cli-ga/">Foundry CLI reached general availability</a>. Together, these tools give you more ways to move from an idea to an agent you can test and ship more efficiently.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif;"></p>
+<p></span></p>
+<h2 class="wp-block-heading"><span style="font-family: arial, helvetica, sans-serif;">Foundry developer tools meet you where you work</span></h2>
+<p><span style="font-family: arial, helvetica, sans-serif;"></p>
+<p></span></p>
+<p class="wp-block-paragraph"><span style="font-family: arial, helvetica, sans-serif;">With a single command, the Foundry Dev Pack sets up your development environment so you can start building Foundry agents wherever you prefer to work.</span></p>
+<p><span style="font-family: arial, helvetica, sans-serif;"></p>
+<p></span></p>
+<figure class="wp-block-table">
+<table>
+<thead>
+<tr>
+<th><span style="font-family: arial, helvetica, sans-serif;">Tool</span></th>
+<th><span style="font-family: arial, helvetica, sans-serif;">Where you work</span></th>
+<th><span style="font-family: arial, helvetica, sans-serif;">Best for</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="font-family: arial, helvetica, sans-serif;"><strong>Foundry Toolkit for VS Code</strong></span></td>
+<td><span style="font-family: arial, helvetica, sans-serif;">Editor</span></td>
+<td></p>]]></content:encoded>
+					
+					<wfw:commentRss>https://devblogs.microsoft.com/foundry/the-foundry-dev-pack-is-here-build-foundry-agents-your-way/feed/</wfw:commentRss>
+			<slash:comments>0</slash:comments>
+		
+		
+			<image url="https://devblogs.microsoft.com/foundry/wp-content/uploads/sites/89/2026/11/Foundry-dev-pack.webp" type="image/png" />
+	</item>
+</channel>
+</rss>

@@ -1,0 +1,241 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens (specification §15). The look: a calm, text-first briefing on
+ * warm paper. Each token is a CSS variable with a light value and a dark value
+ * (prefers-color-scheme). `@theme inline` makes Tailwind utilities from the
+ * tokens, for example `bg-surface`, `text-muted`, `border-border`, `bg-accent`,
+ * `bg-alert-soft`, `text-warning`, `font-serif`, `rounded-card`.
+ *
+ * Contrast (WCAG 2.1, computed): fg on bg 16.5:1 (light) / 15.5:1 (dark);
+ * muted on bg 5.3:1 / 6.7:1; accent on bg 7.4:1 / 8.8:1; each semantic text
+ * color on its soft background at least 5.6:1. All pass AA for body text.
+ */
+:root {
+  color-scheme: light;
+
+  --bg: #fbfaf8;
+  --surface: #ffffff;
+  --surface-2: #f3f1ec; /* a quiet fill: table heads, hover, code */
+  --fg: #1c1b19;
+  --muted: #6b6862;
+  --border: #e6e2da;
+  --border-strong: #cfc9bd;
+
+  --accent: #0f5c5c;
+  --accent-hover: #0b4a4a;
+  --accent-fg: #ffffff;
+  --accent-soft: #e3f0ef;
+
+  --alert: #b42318;
+  --alert-fg: #ffffff;
+  --alert-soft: #fdeceb;
+  --warning: #8a4b00;
+  --warning-soft: #fdf1dc;
+  --success: #1e6b3d;
+  --success-soft: #e5f3ea;
+
+  --focus: #0f5c5c;
+  --shadow-soft: 0 1px 2px rgb(28 27 25 / 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --bg: #141413;
+    --surface: #1c1c1a;
+    --surface-2: #24241f;
+    --fg: #ecebe7;
+    --muted: #a09c93;
+    --border: #2e2d2a;
+    --border-strong: #45433e;
+
+    --accent: #5fc2c0;
+    --accent-hover: #7fd1cf;
+    --accent-fg: #0b1f1f;
+    --accent-soft: #153433;
+
+    --alert: #f28b80;
+    --alert-fg: #1a0a08;
+    --alert-soft: #3a1c19;
+    --warning: #e9b65c;
+    --warning-soft: #33270f;
+    --success: #74c995;
+    --success-soft: #15301f;
+
+    --focus: #5fc2c0;
+    --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-alert: var(--alert);
+  --color-alert-fg: var(--alert-fg);
+  --color-alert-soft: var(--alert-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  /* Kept from the scaffold: `ok` is the success color. */
+  --color-ok: var(--success);
+  --color-focus: var(--focus);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  --radius-card: 10px;
+  --radius-control: 6px;
+
+  --shadow-card: var(--shadow-soft);
+}
+
+@layer base {
+  html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-size: 0.96875rem; /* 15.5 px */
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--fg);
+  }
+
+  /* One visible focus ring for every control: 2 px accent with an offset. */
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  a {
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
+  }
+
+  code,
+  kbd,
+  pre {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+
+  hr {
+    border-color: var(--border);
+  }
+
+  dialog::backdrop {
+    background: rgb(20 20 19 / 0.45);
+  }
+
+  summary {
+    cursor: pointer;
+  }
+
+  /* The native details marker is replaced by the Disclosure chevron. */
+  summary.ui-summary {
+    list-style: none;
+  }
+  summary.ui-summary::-webkit-details-marker {
+    display: none;
+  }
+  details[open] > summary .ui-summary-chevron {
+    transform: rotate(90deg);
+  }
+
+  /* The kit Switch: a native checkbox with role="switch". */
+  input.ui-switch {
+    appearance: none;
+    position: relative;
+    flex: none;
+    width: 2.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+    background: var(--border-strong);
+    transition: background-color 120ms ease;
+    cursor: pointer;
+  }
+  input.ui-switch::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(1.25rem - 4px);
+    height: calc(1.25rem - 4px);
+    border-radius: 9999px;
+    background: var(--surface);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.25);
+    transition: transform 120ms ease;
+  }
+  input.ui-switch:checked {
+    background: var(--accent);
+  }
+  input.ui-switch:checked::before {
+    transform: translateX(1rem);
+  }
+  input.ui-switch:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Horizontal scroll with no visible bar (the feed tabs at phone width). */
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animate-saved-fade {
+    animation: ui-saved-fade 2.6s ease forwards;
+  }
+}
+
+@keyframes ui-saved-fade {
+  0% {
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

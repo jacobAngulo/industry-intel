@@ -1,0 +1,128 @@
+{
+  "data": [
+    {
+      "id": "1990000000000000005",
+      "text": "Shipped: the agent runner now supports parallel tool calls &amp; retries. Notes: https://t.co/AbCdEf1234 https://t.co/PiCtUrE999",
+      "created_at": "2026-11-19T21:10:00.000Z",
+      "author_id": "1500000000000000001",
+      "conversation_id": "1990000000000000005",
+      "lang": "en",
+      "edit_history_tweet_ids": ["1990000000000000005"],
+      "entities": {
+        "urls": [
+          {
+            "start": 80,
+            "end": 103,
+            "url": "https://t.co/AbCdEf1234",
+            "expanded_url": "https://example.com/blog/agent-runner-2?utm_source=x",
+            "display_url": "example.com/blog/agent-run…",
+            "unwound_url": "https://example.com/blog/agent-runner-2?utm_source=x"
+          },
+          {
+            "start": 104,
+            "end": 127,
+            "url": "https://t.co/PiCtUrE999",
+            "expanded_url": "https://x.com/Example_Dev/status/1990000000000000005/photo/1",
+            "display_url": "pic.x.com/PiCtUrE999",
+            "media_key": "3_1990000000000000100"
+          }
+        ]
+      },
+      "public_metrics": { "retweet_count": 12, "reply_count": 4, "like_count": 210, "quote_count": 3, "bookmark_count": 9, "impression_count": 18000 }
+    },
+    {
+      "id": "1990000000000000004",
+      "text": "A long note about evaluation harnesses for coding agents. The short version: measure the task, not the model. https://t.co/LoNgNoTe01",
+      "created_at": "2026-11-19T15:00:00.000Z",
+      "author_id": "1500000000000000001",
+      "conversation_id": "1990000000000000004",
+      "lang": "en",
+      "edit_history_tweet_ids": ["1990000000000000004"],
+      "note_tweet": {
+        "text": "A long note about evaluation harnesses for coding agents. The short version: measure the task, not the model.\n\nFirst, keep a fixed set of tasks from your own repositories. Second, run each agent three times, because the results vary. Third, record the cost of each run next to the pass rate. Fourth, read the failed transcripts by hand every week.\n\nDetails and the scripts: https://t.co/HaRnEsS777",
+        "entities": {
+          "urls": [
+            {
+              "start": 351,
+              "end": 374,
+              "url": "https://t.co/HaRnEsS777",
+              "expanded_url": "https://github.com/example/eval-harness",
+              "display_url": "github.com/example/eval-h…"
+            }
+          ]
+        }
+      },
+      "entities": {
+        "urls": [
+          {
+            "start": 111,
+            "end": 134,
+            "url": "https://t.co/LoNgNoTe01",
+            "expanded_url": "https://x.com/i/web/status/1990000000000000004",
+            "display_url": "x.com/i/web/status/1…"
+          }
+        ]
+      },
+      "public_metrics": { "retweet_count": 30, "reply_count": 11, "like_count": 540, "quote_count": 7, "bookmark_count": 80, "impression_count": 52000 }
+    },
+    {
+      "id": "1990000000000000003",
+      "text": "This is the right take on agent permissions https://t.co/QuOtE00003",
+      "created_at": "2026-11-18T12:30:00.000Z",
+      "author_id": "1500000000000000001",
+      "conversation_id": "1990000000000000003",
+      "lang": "en",
+      "edit_history_tweet_ids": ["1990000000000000003"],
+      "referenced_tweets": [{ "type": "quoted", "id": "1980000000000000777" }],
+      "entities": {
+        "urls": [
+          {
+            "start": 44,
+            "end": 67,
+            "url": "https://t.co/QuOtE00003",
+            "expanded_url": "https://twitter.com/other_dev/status/1980000000000000777",
+            "display_url": "x.com/other_dev/stat…"
+          }
+        ]
+      },
+      "public_metrics": { "retweet_count": 2, "reply_count": 1, "like_count": 40, "quote_count": 0, "bookmark_count": 1, "impression_count": 3000 }
+    },
+    {
+      "id": "1990000000000000002",
+      "text": "Good morning.",
+      "created_at": "2026-11-18T07:00:00.000Z",
+      "author_id": "1500000000000000001",
+      "conversation_id": "1990000000000000002",
+      "lang": "en",
+      "edit_history_tweet_ids": ["1990000000000000002"],
+      "public_metrics": { "retweet_count": 0, "reply_count": 2, "like_count": 15, "quote_count": 0, "bookmark_count": 0, "impression_count": 900 }
+    },
+    {
+      "id": "1990000000000000001",
+      "text": "Release notes for v2.1 are out: https://t.co/ReLeAsE021",
+      "created_at": "2026-11-17T18:45:00.000Z",
+      "author_id": "1500000000000000001",
+      "conversation_id": "1990000000000000001",
+      "lang": "en",
+      "edit_history_tweet_ids": ["1990000000000000001"],
+      "entities": {
+        "urls": [
+          {
+            "start": 32,
+            "end": 55,
+            "url": "https://t.co/ReLeAsE021",
+            "expanded_url": "https://example.com/releases/v2.1/",
+            "display_url": "example.com/releases/v2.1"
+          }
+        ]
+      },
+      "public_metrics": { "retweet_count": 5, "reply_count": 0, "like_count": 77, "quote_count": 1, "bookmark_count": 3, "impression_count": 6400 }
+    }
+  ],
+  "meta": {
+    "result_count": 5,
+    "newest_id": "1990000000000000005",
+    "oldest_id": "1990000000000000001",
+    "next_token": "7140dibdnow9c7btw4b0ycc0zwjchosxg2k1qfgcj1jdz"
+  }
+}

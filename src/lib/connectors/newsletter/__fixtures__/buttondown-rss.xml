@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Computer Things</title><link>https://buttondown.com/hillelwayne</link><description>&lt;!-- buttondown-editor-mode: fancy --&gt;&lt;p&gt;Hi, I'm Hillel. This is the newsletter version of &lt;a target="_blank" rel="noopener noreferrer nofollow" href="https://www.hillelwayne.com"&gt;my website&lt;/a&gt;. I post all website updates here. I also post weekly content just for the newsletter, on topics like&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Formal Methods&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Software History and Culture&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Fringetech and exotic tooling&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;The philosophy and theory of software engineering&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;You can see the archive of all public essays &lt;a target="_blank" rel="noopener noreferrer nofollow" href="https://buttondown.email/hillelwayne/archive/"&gt;here&lt;/a&gt;.&lt;/p&gt;</description><atom:link href="https://buttondown.email/hillelwayne/rss" rel="self"/><language>en-us</language><lastBuildDate>Thu, 19 Nov 2026 15:40:32 +0000</lastBuildDate><item><title>My Least Favorite Example in Software Engineering</title><link>https://buttondown.com/hillelwayne/archive/my-least-favorite-example-in-software-engineering/</link><description>&lt;p&gt;I'm doing a lightning talk at &lt;a href="https://pools.events/event/zi6aTBiA/brooklyn-web-workers-november-2026/?i=BLZSWFoo" target="_blank"&gt;Brooklyn Web Workers&lt;/a&gt; on 11/30! If you're in the area, come check it out. If you're not in the area (like 99.90% of the world), you can just read this newsletter instead.&lt;/p&gt;
+&lt;p&gt;As you probably know, I am obsessed with examples. &lt;a href="https://www.hillelwayne.com/post/persuasive-examples/" target="_blank"&gt;Really&lt;/a&gt;, &lt;a href="https://buttondown.com/hillelwayne/archive/canonical-examples/" target="_blank"&gt;really&lt;/a&gt;, &lt;a href="https://buttondown.com/hillelwayne/archive/the-halting-problem-is-a-terrible-example-of-np/" target="_blank"&gt;really&lt;/a&gt; obsessed with examples. The best examples should at least:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Be simple enough to understand&lt;/li&gt;
+&lt;li&gt;Clearly showcase the topic under discussion&lt;/li&gt;
+&lt;li&gt;Actually correspond to how the topic manifests in the real world&lt;/li&gt;
+&lt;li&gt;Give some rough idea on how to find other examples in the same vein&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Basically, the example needs to both help the student understand the topic and also why the topic matters. If not to them, at least to someone they know.&lt;/p&gt;
+&lt;p&gt;A good example of a good example is demonstrating type safety with option types, which ensure that you always handle nulls in your program. It's intuitive, clear, and simple, and it shows why and how this would be useful in practice.&lt;/p&gt;
+&lt;p&gt;But I'm not here to talk about good examples.&lt;/p&gt;
+&lt;h2&gt;I'm here to talk about bad examples&lt;/h2&gt;
+&lt;p&gt;Specifically my &lt;em&gt;least favorite&lt;/em&gt; example. &lt;strong&gt;Property-Based Testing&lt;/strong&gt; is a testing approach where we generate random inputs to a program and check the outputs all satisfy some property. And like half the PBT introductions online use this same example:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;test reverse-reverse:
+    l = random_list()
+    reverse(reverse(l)) == l
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;I hate this example because 1) I see it every-freakin'-where, and 2) it fails the "this topic matters" criteria &lt;em&gt;hard&lt;/em&gt;. It gives you some idea of what property-based testing is, but doesn't give you any way to relate it to actual real-world testing. I mean, who writes list reversal algorithms for their job?&lt;sup id="fnref:roundtrip"&gt;&lt;a class="footnote-ref" href="#fn:roundtrip"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;And sure, common examples of regular testing like &lt;code&gt;add(1, 2) == 3&lt;/code&gt; are also useless, but 1) regular testing is mundane and you can probably figure out more useful tests from that 2) most people can give you better examples than that! PBT, on the other hand, is quite exotic for most people and they need a lot of guidance on how to go from "learning about the concept of properties and generators" to "testing real software". It's dying for really good example, but double-reversal and similar are all ya get.&lt;/p&gt;
+&lt;h2&gt;I blame John Hughes for this&lt;/h2&gt;
+&lt;div class="buttondown-subscribe-form"&gt;&lt;/div&gt;
+&lt;p&gt;Why do we use this example in the first place? I propose two reasons.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It's a really easy example to remember and share, unlike more useful and interesting examples, which often add complexity. It's also language agnostic, which should really be a separate reason but is logically kinda the same as "easy".&lt;/li&gt;
+&lt;li&gt;The first guy to talk about PBT used it and everybody followed his example.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first guy in this case is John Hughes and &lt;a href="https://users.cs.northwestern.edu/~robby/courses/395-495-2009-fall/quick.pdf" target="_blank"&gt;Quickcheck&lt;/a&gt;. He opened his paper with reversing a list twice and the rest is history.&lt;/p&gt;
+&lt;p&gt;(He had some other examples but they quickly got into the weeds of example generation and domain-specific properties. See reason one for why double-reversing is popular.)&lt;/p&gt;
+&lt;h2&gt;I shouldn't blame John Hughes for this&lt;/h2&gt;
+&lt;p&gt;That's the useful part of the lightning talk. There's one more thing I want to try covering if I have time, though: While John Hughes was the guy who introduced PBT, he was not the first guy to use the double-reverse example! Zohar Manna used the example in &lt;a href="https://dl.acm.org/doi/epdf/10.1145/355609.362336" target="_blank"&gt;Inductive Methods for Proving Properties of Programs&lt;/a&gt; and Boyer and Moore (yes, &lt;em&gt;that&lt;/em&gt; &lt;a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm" target="_blank"&gt;Boyer and Moore&lt;/a&gt;) used it in &lt;a href="https://dl.acm.org/doiTrey/epdf/10.1145/321864.321875" target="_blank"&gt;Proving Theorems about LISP Functions&lt;/a&gt;. Richard Bird and Philip Wadler also used the example in their book &lt;a href="https://usi-pl.github.io/doc/Bird_Wadler.%20Introduction%20to%20Functional%20Programming.1ed.pdf" target="_blank"&gt;Introduction to Functional Programming&lt;/a&gt; (pg 68). So it was probably already a standard example that John Hughes took.&lt;/p&gt;
+&lt;p&gt;I'll observe that Manna/Boyer/Moore/Bird/Wadler used double-reverse as an example of &lt;em&gt;how to prove things&lt;/em&gt;, while Hughes used it as a &lt;em&gt;property to test&lt;/em&gt;. An example can be good in one context and bad in another.&lt;/p&gt;
+&lt;p&gt;I'll also note that Hughes did a lot of work on &lt;a href="https://www.cs.tufts.edu/~nr/cs257/archive/john-hughes/lists.pdf" target="_blank"&gt;efficient functional representations of lists&lt;/a&gt;, so verifying double-reverse was a useful application to &lt;em&gt;his&lt;/em&gt; context. It's not his fault everybody else in PBT ran with it.&lt;/p&gt;
+&lt;p&gt;And to be absolutely clear, he didn't have any kind of ethical responsibility to "pick a better example". It &lt;em&gt;does&lt;/em&gt; demonstrate what PBT is. It's just not a &lt;em&gt;useful&lt;/em&gt; example, and I really value usefulness in my teaching examples. Prolly more than most people tbh.&lt;/p&gt;
+&lt;p&gt;Anyway, that's roughly what I'm going to be talking about. If you've read this, you've probably seen most of the talk. I'm just going to be a bit rantier when I give it. Happy Thanksgiving to those of you who celebrate it!&lt;/p&gt;
+&lt;h3&gt;Donation Drive&lt;/h3&gt;
+&lt;p&gt;Still time to get &lt;a href="https://leanpub.com/logic/c/feedchicago2026" target="_blank"&gt;&lt;em&gt;Logic for Programmers&lt;/em&gt; for $20 off&lt;/a&gt;! All proceeds go to the &lt;a href="https://www.chicagosfoodbank.org/" target="_blank"&gt;Greater Chicago Food Depository&lt;/a&gt;&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:roundtrip"&gt;
+&lt;p&gt;Arguably double-reverse can be generalized to roundtrip properties, but nobody explains it like that&amp;#160;&lt;a class="footnote-backref" href="#fnref:roundtrip" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description><pubDate>Thu, 19 Nov 2026 15:40:32 +0000</pubDate><guid>https://buttondown.com/hillelwayne/archive/my-least-favorite-example-in-software-engineering/</guid></item>
+<item><title>New Article, Annual LFP Charity Discount</title><link>https://buttondown.com/hillelwayne/archive/new-article-annual-lfp-charity-discount/</link><description>&lt;p&gt;My first blog post for Antithesis is now up! It's called &lt;a href="https://antithesis.com/blog/2026/hillel-joins-antithesis/" target="_blank"&gt;Why Antithesis&lt;/a&gt; and is a 2000 word overview on the relative merits of Deterministic Simulation Testing as compared to Formal Methods (tldr there's an essential tradeoff between input coverage and code fidelity). &lt;a href="https://antithesis.com/blog/2026/hillel-joins-antithesis/" target="_blank"&gt;Check it out&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;Also: last year I did a charity drive for the &lt;a href="https://www.chicagosfoodbank.org/" target="_blank"&gt;Greater Chicago Food Depository&lt;/a&gt;. It was successful enough that I want to run it again!  From now until the end of the month, you can get &lt;a href="https://leanpub.com/logic/c/feedchicago2026" target="_blank"&gt;Logic for Programmers at half price&lt;/a&gt; with the coupon &lt;code&gt;feedchicago2026&lt;/code&gt;. All royalties from that coupon will go to the Greater Chicago Food Depository. This is only the pdf for now because I have no idea how to make Amazon coupons yet. Thank you!&lt;/p&gt;</description><pubDate>Tue, 03 Nov 2026 18:06:44 +0000</pubDate><guid>https://buttondown.com/hillelwayne/archive/new-article-annual-lfp-charity-discount/</guid></item>
+<item><title>NYC, New Webinar, Differential Testing</title><link>https://buttondown.com/hillelwayne/archive/nyc-new-webinar-differential-testing/</link><description>&lt;p&gt;Been a while! Man, it's so much harder to write essays for a newsletter when I have a full time job writing essays for a company.&lt;/p&gt;
+&lt;p&gt;So three bits of housekeeping first of all:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;As of last month I now live in NYC! Let me know if you want to get coffee or have me swing by an office or something.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/hillelogram" target="_blank"&gt;I'm back on Twitter&lt;/a&gt;. Do not mourn me for I do not deserve it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;My first big Antithesis deliverable is coming out next Thursday, and it's a &lt;a href="https://pages.antithesis.com/webinar-property-based-testing.html?utm_source=a-chorus-of-ghosts" target="_blank"&gt;webinar on property-based testing&lt;/a&gt;. What's going to make this one interesting is that it's about property testing &lt;em&gt;web applications&lt;/em&gt;. I've got this crazy idea that the main way to make randomized testing accessible and useful is to focus on state-based system invariants as opposed to algebraic laws and roundtrip properties. Send it to webdevs you know!&lt;sup id="fnref:disclosure"&gt;&lt;a class="footnote-ref" href="#fn:disclosure"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Anyway, to make this actually a newsletter and not just a bunch of updates, one thing I've been thinking about recently is nondeterministic &lt;a href="https://en.wikipedia.org/wiki/Differential_testing" target="_blank"&gt;differential testing&lt;/a&gt;. Say we have a python program and we tell a slopinator to convert it to rust. How do we know that it didn't change the program's behavior? &lt;/p&gt;
+&lt;p&gt;For a totally deterministic program, this is straightforward &lt;strong&gt;differential testing&lt;/strong&gt;: feed inputs into both and compare the results. Let's scrap out a quick notation and say that &lt;code&gt;A -&amp;gt; (x, y)&lt;/code&gt; represents an execution where we input &lt;code&gt;A&lt;/code&gt;, and observe that the original program output &lt;code&gt;x&lt;/code&gt; and the new program output &lt;code&gt;y&lt;/code&gt;. So &lt;code&gt;A -&amp;gt; (1, 1)&lt;/code&gt; means that the programs agree on input &lt;code&gt;A&lt;/code&gt;, while &lt;code&gt;B -&amp;gt; (1, 2)&lt;/code&gt; means they get different values for input &lt;code&gt;B&lt;/code&gt;. The programs are different if we observe a single disagreement, meaning we can increase our relative confidence in our translating by trying an increasing number of inputs. &lt;/p&gt;
+&lt;p&gt;That's the base case, anyway. But this only really works because there's no point in repeating observations on the same input. If the program is nondeterministic, we can get situations like this:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;A -&amp;gt; (200 OK, 408 request timeout)
+A -&amp;gt; (200, 200)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Are the program different? We can't be sure! If the &lt;em&gt;original&lt;/em&gt; system always returns 200, then they're different. But we don't know that for sure from the observations we have! Maybe a third observation will give us &lt;code&gt;A -&amp;gt; (408, 200)&lt;/code&gt;. In other words, a table of what we know, given an observation and level of uncertainty:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Deterministic?&lt;/th&gt;
+&lt;th&gt;A -&amp;gt; (x, y)&lt;/th&gt;
+&lt;th&gt;A -&amp;gt; (x, x)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;definitely different&lt;/td&gt;
+&lt;td&gt;¯\_(ツ)_/¯&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;td&gt;¯\_(ツ)_/¯&lt;/td&gt;
+&lt;td&gt;¯\_(ツ)_/¯&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Once you need mutiple observations you're already dealing with the mess known as &lt;a href="https://buttondown.com/hillelwayne/archive/hyperproperties/" target="_blank"&gt;hyperproperties&lt;/a&gt;. But we can make it even more complicated than that! What if we have this set of observations:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;A -&amp;gt; (200, 408)
+A -&amp;gt; (200, 200)
+A -&amp;gt; (408, 408)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;You could argue the two programs agree on observations of A. Not so fast! One thing we &lt;em&gt;haven't&lt;/em&gt; seen is &lt;code&gt;A -&amp;gt; (408, 200)&lt;/code&gt;. Maybe there's no world where the &lt;em&gt;old&lt;/em&gt; program times out but the &lt;em&gt;new&lt;/em&gt; program gets 200. Even though they get the same set of nondeterministic outputs, one can still be more reliable than the other. This makes it much harder to show the two programs are the same: if you observe &lt;code&gt;A -&amp;gt; (x, y)&lt;/code&gt;, it's not enough to observe &lt;code&gt;A -&amp;gt; (z, x)&lt;/code&gt;, you have to &lt;em&gt;specifically&lt;/em&gt; observe &lt;code&gt;A -&amp;gt; (y, x)&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Okay, but what if the &lt;em&gt;relative rate&lt;/em&gt; of values in observations matter? What if the new program gets a &lt;code&gt;408 timeout&lt;/code&gt; 100x as often? What if your LLM converted a fair coin flip to an unfair coin flip? Then even if we see &lt;code&gt;A -&amp;gt; (H, T)&lt;/code&gt; and &lt;code&gt;A -&amp;gt; (T, H)&lt;/code&gt;, we still have a program divergence.&lt;/p&gt;
+&lt;p&gt;In short, two challenges with nondeterministic differential testing are 1) we can't conclude a difference from a single divergent observation and 2) the concept of "difference" is way murkier than in deterministic programs. Though TBF even with deterministic programs the same output can be a divergence if one takes a &lt;em&gt;lot&lt;/em&gt; longer. It all depends on how you define correctness! &lt;/p&gt;
+&lt;p&gt;(I think in most cases, we can get away with just showing two nondeterministic programs produce the same set of values. That's still pretty hard, but at least it's not messing with probability.)&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:disclosure"&gt;
+&lt;p&gt;Disclosure: while the webinar will mention some Antithesis projects, it'll all be open source tech and is not pitching any of the paid products. That said, we're running it &lt;em&gt;because&lt;/em&gt; we think expanding PBT's mindshare will be downstream beneficial for selling our business.&amp;#160;&lt;a class="footnote-backref" href="#fnref:disclosure" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description><pubDate>Thu, 22 Oct 2026 15:14:05 +0000</pubDate><guid>https://buttondown.com/hillelwayne/archive/nyc-new-webinar-differential-testing/</guid></item>
+</channel>
+</rss>

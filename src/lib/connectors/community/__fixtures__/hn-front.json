@@ -1,0 +1,225 @@
+{
+  "hits": [
+    {
+      "_tags": [
+        "story",
+        "story_50562754",
+        "front_page"
+      ],
+      "author": "hnuser50562754",
+      "created_at": "2026-11-19T17:02:40Z",
+      "created_at_i": 1795107760,
+      "num_comments": 2173,
+      "objectID": "50562754",
+      "points": 1096,
+      "story_id": 50562754,
+      "title": "Anthropic’s Nasdaq debut",
+      "updated_at": "2026-11-20T12:14:59Z",
+      "url": "https://www.reuters.com/business/finance/anthropics-historic-debut-put-ais-promise-peril-wall-st-test-2026-11-19/",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50563066",
+        "front_page"
+      ],
+      "author": "hnuser50563066",
+      "created_at": "2026-11-19T17:25:33Z",
+      "created_at_i": 1795109133,
+      "num_comments": 139,
+      "objectID": "50563066",
+      "points": 797,
+      "story_id": 50563066,
+      "story_text": "<a href=\"https:&#x2F;&#x2F;archive.ph&#x2F;2Et0x\" rel=\"nofollow\">https:&#x2F;&#x2F;archive.ph&#x2F;2Et0x</a><p><a href=\"https:&#x2F;&#x2F;clinicaltrials.gov&#x2F;study&#x2F;NCT06693986\" rel=\"nofollow\">https:&#x2F;&#x2F;clinicaltrials.gov&#x2F;study&#x2F;NCT06693986</a>",
+      "title": "Pancreatic cancer halted by virus injection in three patients",
+      "updated_at": "2026-11-20T12:14:59Z",
+      "url": "https://www.newscientist.com/article/2528235-pancreatic-cancer-halted-by-virus-injection-in-three-patients/"
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50563148",
+        "front_page"
+      ],
+      "author": "hnuser50563148",
+      "created_at": "2026-11-19T17:30:44Z",
+      "created_at_i": 1795109444,
+      "num_comments": 242,
+      "objectID": "50563148",
+      "points": 514,
+      "story_id": 50563148,
+      "title": "Claude solves two open problems in the physics of black holes",
+      "updated_at": "2026-11-20T12:14:59Z",
+      "url": "https://www.anthropic.com/research/claude-black-hole-physics",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50558906",
+        "front_page"
+      ],
+      "author": "hnuser50558906",
+      "created_at": "2026-11-19T11:47:03Z",
+      "created_at_i": 1795088823,
+      "num_comments": 122,
+      "objectID": "50558906",
+      "points": 438,
+      "story_id": 50558906,
+      "title": "Someone reported java4shell bug in September 2026",
+      "updated_at": "2026-11-20T12:14:14Z",
+      "url": "https://github.com/openjdk/jdk/pull/32781",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50564159",
+        "front_page"
+      ],
+      "author": "hnuser50564159",
+      "created_at": "2026-11-19T18:35:17Z",
+      "created_at_i": 1795113317,
+      "num_comments": 159,
+      "objectID": "50564159",
+      "points": 309,
+      "story_id": 50564159,
+      "title": "The 98% Slot Machine: How Paid Advertising Became an Extraction Tax",
+      "updated_at": "2026-11-20T12:14:59Z",
+      "url": "https://globalcommercegraph.com/writing/the-ninety-eight-percent-slot-machine",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50528119",
+        "front_page"
+      ],
+      "author": "hnuser50528119",
+      "created_at": "2026-11-17T06:29:57Z",
+      "created_at_i": 1794896997,
+      "num_comments": 96,
+      "objectID": "50528119",
+      "points": 288,
+      "story_id": 50528119,
+      "title": "How to CAD Almost Anything",
+      "updated_at": "2026-11-20T12:11:00Z",
+      "url": "https://ocw.mit.edu/courses/res-16-002-how-to-cad-almost-anything-january-iap-2024/",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50569226",
+        "front_page"
+      ],
+      "author": "hnuser50569226",
+      "created_at": "2026-11-20T02:01:09Z",
+      "created_at_i": 1795140069,
+      "num_comments": 223,
+      "objectID": "50569226",
+      "points": 285,
+      "story_id": 50569226,
+      "title": "OpenSSL: Buffer overflow in EVP_EncodeBlock() (CVE-2026-121481, CVSS 9.8)",
+      "updated_at": "2026-11-20T12:14:59Z",
+      "url": "https://github.com/openssl/openssl/pull/33652",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50561508",
+        "front_page"
+      ],
+      "author": "hnuser50561508",
+      "created_at": "2026-11-19T15:38:12Z",
+      "created_at_i": 1795102692,
+      "num_comments": 222,
+      "objectID": "50561508",
+      "points": 257,
+      "story_id": 50561508,
+      "title": "Pete Warden on local AI, open models, voice interfaces, the future of hardware",
+      "updated_at": "2026-11-20T12:14:59Z",
+      "url": "https://thedataexchange.media/pete-warden-moonshine/",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50569890",
+        "front_page"
+      ],
+      "author": "hnuser50569890",
+      "created_at": "2026-11-20T03:45:45Z",
+      "created_at_i": 1795146345,
+      "num_comments": 12,
+      "objectID": "50569890",
+      "points": 238,
+      "story_id": 50569890,
+      "title": "PostgreSQL 19",
+      "updated_at": "2026-11-20T12:12:59Z",
+      "url": "https://www.postgresql.org/docs/release/19.0/",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50571189",
+        "front_page"
+      ],
+      "author": "hnuser50571189",
+      "created_at": "2026-11-20T07:13:21Z",
+      "created_at_i": 1795158801,
+      "num_comments": 239,
+      "objectID": "50571189",
+      "points": 232,
+      "story_id": 50571189,
+      "title": "\"I can tell you wrote this yourself\"",
+      "updated_at": "2026-11-20T12:14:59Z",
+      "url": "https://em-online.bearblog.dev/i-can-tell-you-wrote-this-yourself/",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50569998",
+        "front_page"
+      ],
+      "author": "hnuser50569998",
+      "created_at": "2026-11-20T04:02:39Z",
+      "created_at_i": 1795147359,
+      "num_comments": 26,
+      "objectID": "50569998",
+      "points": 174,
+      "story_id": 50569998,
+      "title": "FFmpeg 9.1 'Gauss'",
+      "updated_at": "2026-11-20T12:14:59Z",
+      "url": "https://ffmpeg.org/download.html#release_9.1",
+      "story_text": null
+    },
+    {
+      "_tags": [
+        "story",
+        "story_50567209",
+        "front_page"
+      ],
+      "author": "hnuser50567209",
+      "created_at": "2026-11-19T22:13:40Z",
+      "created_at_i": 1795126420,
+      "num_comments": 118,
+      "objectID": "50567209",
+      "points": 160,
+      "story_id": 50567209,
+      "title": "Synology Security Advisory",
+      "updated_at": "2026-11-20T12:11:15Z",
+      "url": "https://www.synology.com/en-uk/security/advisory/Synology_SA_26_21",
+      "story_text": null
+    }
+  ],
+  "nbHits": 22,
+  "page": 0,
+  "nbPages": 1,
+  "hitsPerPage": 30,
+  "params": "tags=front_page&numericFilters=points%3E%3D50%2Cnum_comments%3E%3D0&hitsPerPage=30&advancedSyntax=true&analyticsTags=backend"
+}

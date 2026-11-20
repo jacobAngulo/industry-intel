@@ -1,0 +1,5 @@
+From: plain@example.com
+Subject: 
+Content-Type: text/plain; charset=utf-8
+
+Only a body, no Message-ID, no date, no subject.

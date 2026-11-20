@@ -1,0 +1,270 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/qRJ/KM0zR6/VQZ2BuEFN7RWlzpU</id>
+  <title>arXiv Query: search_query=(all:agent AND all:evaluation) AND (cat:cs.AI OR cat:cs.CL)&amp;id_list=&amp;start=0&amp;max_results=8</title>
+  <updated>2026-11-20T12:15:57Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=(all:agent+AND+all:evaluation)+AND+(cat:cs.AI+OR+cat:cs.CL)&amp;start=0&amp;max_results=8&amp;id_list=" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>8</opensearch:itemsPerPage>
+  <opensearch:totalResults>18071</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2611.26624v1</id>
+    <title>PlayCraft: Designing Engaging Games from Agent Play Experience</title>
+    <updated>2026-11-19T18:59:34Z</updated>
+    <link href="https://arxiv.org/abs/2611.26624v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2611.26624v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent AI agents can generate playable games, but these games are not necessarily engaging. Mastery is a key source of engagement, yet designing for it requires extensive human play and tuning. We propose PlayCraft, an automated framework that uses a vision-based agent to play games and draws on its detailed play experience to revise them for mastery. Starting from an initial game, PlayCraft alternates between playing and crafting. In the playing stage, a player agent watches the game screen, uses the controls, and pursues the game objective over repeated episodes while retaining memory. After each episode, it reports its progress, outcomes, decisions, and reflections. In the crafting stage, a crafter agent uses these reports to revise the game. It estimates player abilities, predicts performance at different proficiency levels, and compares those predictions with a target learning progression. It diagnoses the game and addresses the gaps by giving players meaningful opportunities to improve through better decisions and execution. We evaluate games in fresh runs with player agents across three intelligence settings, measuring learning gain and learning slope. Compared with the initial games, PlayCraft yields larger learning gains and steeper learning slopes in most games. It also outperforms the baselines on the macro-average of each metric at every intelligence setting.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-11-19T18:59:34Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Weihao Cheng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2611.26613v1</id>
+    <title>AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control</title>
+    <updated>2026-11-19T18:57:25Z</updated>
+    <link href="https://arxiv.org/abs/2611.26613v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2611.26613v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Frontier multimodal language agents such as GPT-6 Astra have demonstrated strong capabilities in controlling robots directly via low-level numerical actions without high-level primitives. However, existing benchmarks report only episode-level success rates, which show neither how these agents succeed nor where they fail. In this paper, we present a systematic action-level analysis of frontier agents on direct robot control across 12 manipulation benchmarks. We introduce AgentRoboCritic, an intent-grounded critique framework in which the policy agent states a local intent alongside each action, and a critic evaluates the action's outcome and failure mode against this intent. Our action-level analysis demonstrates the promising capabilities of frontier agents on direct robot control, including closed-loop recovery from local execution failures, reliable semantic grounding across diverse scenes, and strong zero-shot manipulation without task-specific adaptation. It also identifies their current limitations, including task-relevant physical execution bottlenecks such as grasping and alignment, and uneven recovery across failure modes. Finally, we validate our critic on a 400-action human-annotated benchmark and release a dataset of 12,844 annotated actions alongside a fine-tuned open-source critic, Muse-Glimmer-30B, whose failure-mode accuracy rises from 32.58% to 74.24%, enabling low-cost action-level analysis.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-11-19T18:57:25Z</published>
+    <arxiv:comment>28 pages. Project page: https://adu2021.github.io/blog/AgentRoboCritic/</arxiv:comment>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Yiyang Du</name>
+    </author>
+    <author>
+      <name>Yuxuan Kuang</name>
+    </author>
+    <author>
+      <name>Qitao Zhao</name>
+    </author>
+    <author>
+      <name>Yixuan Wang</name>
+    </author>
+    <author>
+      <name>Zhanqiu Guo</name>
+    </author>
+    <author>
+      <name>Yi Xu</name>
+    </author>
+    <author>
+      <name>Xin Li</name>
+    </author>
+    <author>
+      <name>Wenbin He</name>
+    </author>
+    <author>
+      <name>Liu Ren</name>
+    </author>
+    <author>
+      <name>Chenyan Xiong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2611.26510v1</id>
+    <title>AutoMaster: Autonomous Post-Training by Making the Same Model a Better Teacher</title>
+    <updated>2026-11-19T17:57:59Z</updated>
+    <link href="https://arxiv.org/abs/2611.26510v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2611.26510v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Task success alone does not specify which behaviors post-training should reinforce. Even successful teacher trajectories can contain unsupported assumptions, unproductive repetition, or superficial verification. We propose Skill-FT (Skill-Guided Fine-Tuning), which uses natural-language skills to suppress undesirable habits and elicit underrepresented effective behaviors during teacher rollouts, then fine-tunes a target model on the resulting trajectories. We introduce AutoMaster, an autonomous post-training system in which an LLM agent develops these interventions through trajectory analysis, skill design, data selection, and feedback from rollouts and target-model evaluation. Across Terminal, Search, and software engineering tasks with 4B and 9B target models, AutoMaster improves mean performance over Vanilla SFT on successful unguided teacher trajectories by 1.42-8.99 percentage points, with the teacher, task pool, training set size, and SFT recipe held fixed. Together with the ablations and trajectory analyses, these results suggest that behavioral shaping can make a fixed model a more effective teacher. We further find that retaining skill instructions during SFT yields higher mean performance than removing them across all six settings, despite their absence at evaluation and identical supervised outputs. These findings suggest that preserving skill context as part of a training demonstration can support better behavioral internalization.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-11-19T17:57:59Z</published>
+    <arxiv:comment>Website: https://aweai-team.github.io/AutoMaster/ Code: https://github.com/RUCAIBox/AutoMaster Models: https://huggingface.co/collections/RUC-AIBOX/automaster</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Guoxin Chen</name>
+    </author>
+    <author>
+      <name>Shuang Sun</name>
+    </author>
+    <author>
+      <name>Fanzhe Meng</name>
+    </author>
+    <author>
+      <name>Xinyu Tang</name>
+    </author>
+    <author>
+      <name>Ruihua Song</name>
+    </author>
+    <author>
+      <name>Wayne Xin Zhao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2611.26491v1</id>
+    <title>FLUID: Flexible, Evidence-Grounded Situated Task Guidance</title>
+    <updated>2026-11-19T17:45:07Z</updated>
+    <link href="https://arxiv.org/abs/2611.26491v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2611.26491v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Real-time task guidance is inherently flexible: when an agent guides a user through a task, multiple responses and timings can be appropriate, and sometimes the best action is to remain silent. Existing benchmarks often miss this flexibility by treating synthesized dialogues as fixed targets for what to say and when to say it. We introduce FLUID (Flexible, Evidence-Grounded Situated Task Guidance), a unified framework for modeling, evaluating, and enabling flexible interaction in multimodal task guidance. Using naturally occurring human-human guidance from WTaG and HoloAssist, FLUID grounds interventions in their supporting evidence, necessity, and timing flexibility, and uses this representation both to evaluate flexible guidance and to build a real-time agent for task guidance. Our agent achieves the strongest overall balance of response correctness, intervention precision, timely guidance, and response latency among evaluated systems, while still leaving room for improvement in avoiding speech overlap. Together, FLUID moves situated task guidance beyond rigid reference matching toward more natural and adaptive human-AI interaction. Project page: https://fluid-guidance.github.io.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-11-19T17:45:07Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yunqi Zhao</name>
+    </author>
+    <author>
+      <name>Run Peng</name>
+    </author>
+    <author>
+      <name>Ze Dong</name>
+    </author>
+    <author>
+      <name>Ryan Lu</name>
+    </author>
+    <author>
+      <name>Yinpei Dai</name>
+    </author>
+    <author>
+      <name>Joyce Chai</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2611.26444v1</id>
+    <title>Mind2Act World: A Diagnostic Benchmark for Embodied Mind, Physical Action, and Mind-Action Composition in Robotic Manipulation</title>
+    <updated>2026-11-19T17:15:38Z</updated>
+    <link href="https://arxiv.org/abs/2611.26444v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2611.26444v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Embodied intelligence aims to let robots perform complex physical tasks with human-like adaptability and reliability, which requires three complementary capabilities: history-based cognitive reasoning, precise and timely physical execution, and the composition of reasoning and execution through environmental feedback. Yet existing benchmarks either evaluate reasoning and execution within the same tasks or assess them separately without their composition, so they reveal little about whether a failure comes from reasoning, execution, or their composition. We introduce Mind2Act World, a diagnostic benchmark of 30 simulated manipulation tasks from five real-world application domains. Each task has three difficulty levels and two scene settings (Clean and Random), yielding 180 configurations. The tasks form three views: Mind tests decisions based on past observations, Act tests precise and timely execution, and Mind2Act combines both in closed-loop tasks where action outcomes guide later decisions. Comparing the three views shows whether a system lacks a capability or fails to compose capabilities it already has. A diagnosis harness further attributes the failed episodes of three representative systems to Mind, Act, or their composition and summarizes each system in a profile card. Our evaluation of multimodal agents, vision-language-action models (VLAs), and world-action models (WAMs) shows that competence in a single view does not carry over to Mind2Act tasks. Even the strongest agent succeeds in 52.7% of Mind and 39.0% of Act episodes but in only 12.0% of Mind2Act episodes. The strongest agent retains task state but struggles with sustained contact, whereas end-to-end policies execute practiced motions but retain little task state. These findings point to composing reasoning and execution through environmental feedback as the main open problem.</summary>
+    <category term="cs.RO" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2026-11-19T17:15:38Z</published>
+    <arxiv:primary_category term="cs.RO"/>
+    <author>
+      <name>Yuzhi Huang</name>
+    </author>
+    <author>
+      <name>Jie Wu</name>
+    </author>
+    <author>
+      <name>Fanding Huang</name>
+    </author>
+    <author>
+      <name>Junchao Lin</name>
+    </author>
+    <author>
+      <name>Weichen Zhang</name>
+    </author>
+    <author>
+      <name>Ziyi Xiong</name>
+    </author>
+    <author>
+      <name>Yang Li</name>
+    </author>
+    <author>
+      <name>Zhengwei Xie</name>
+    </author>
+    <author>
+      <name>Zhimin Wang</name>
+    </author>
+    <author>
+      <name>Zhen Liu</name>
+    </author>
+    <author>
+      <name>Jiazhen Huang</name>
+    </author>
+    <author>
+      <name>Yuzheng Zhang</name>
+    </author>
+    <author>
+      <name>Yuche Liu</name>
+    </author>
+    <author>
+      <name>Hongyi Yang</name>
+    </author>
+    <author>
+      <name>Chen Tang</name>
+    </author>
+    <author>
+      <name>Shixiang Tang</name>
+    </author>
+    <author>
+      <name>Hakan Aktas</name>
+    </author>
+    <author>
+      <name>Adam Wu</name>
+    </author>
+    <author>
+      <name>Duo Wu</name>
+    </author>
+    <author>
+      <name>Kangye Ji</name>
+    </author>
+    <author>
+      <name>Shuzhao Xie</name>
+    </author>
+    <author>
+      <name>Huanan Liu</name>
+    </author>
+    <author>
+      <name>Weijue Bu</name>
+    </author>
+    <author>
+      <name>Chenxin Li</name>
+    </author>
+    <author>
+      <name>Xinyuan Wang</name>
+    </author>
+    <author>
+      <name>Tianyi Bai</name>
+    </author>
+    <author>
+      <name>Yinan Mao</name>
+    </author>
+    <author>
+      <name>Jiawei Wang</name>
+    </author>
+    <author>
+      <name>Minglei Li</name>
+    </author>
+    <author>
+      <name>Heng Yu</name>
+    </author>
+    <author>
+      <name>Ehsan Adeli</name>
+    </author>
+    <author>
+      <name>Minchen Li</name>
+    </author>
+    <author>
+      <name>Yong-Lu Li</name>
+    </author>
+    <author>
+      <name>Cengiz Öztireli</name>
+    </author>
+    <author>
+      <name>Huazhe Xu</name>
+    </author>
+    <author>
+      <name>Chao Yu</name>
+    </author>
+    <author>
+      <name>Jing Zhang</name>
+    </author>
+    <author>
+      <name>Shanghang Zhang</name>
+    </author>
+    <author>
+      <name>Weitao Zhou</name>
+    </author>
+    <author>
+      <name>Wenwu Zhu</name>
+    </author>
+    <author>
+      <name>Cheng Chi</name>
+    </author>
+    <author>
+      <name>Jingyan Jiang</name>
+    </author>
+    <author>
+      <name>Zhi Wang</name>
+    </author>
+  </entry>
+</feed>

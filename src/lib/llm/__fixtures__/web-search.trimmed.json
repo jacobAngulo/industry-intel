@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "title": "Key Changes",
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+      "content": "> ## Documentation Index\n> \n> Fetch the complete documentation index at: https://modelcontextprotocol.io/llms.txt\n> Use this file to discover all available pages before exploring further.\n\n# Key Changes\n\nThis document lists changes made to the Model Context Protocol (MCP) specification since\nthe previous revision, 2025-11-25.\n\n## Major changes\n\n1. Remove protocol-level sessions and the `Mcp-Sessio …[trimmed]"
+    },
+    {
+      "title": "The 2026-07-28 Specification | Model Context Protocol Blog",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      "content": "The 2026-07-28 Specification | Model Context Protocol Blog\n\n# The 2026-07-28 Specification\n\nThe 2026-07-28 Model Context Protocol specification is out, bringing a stateless protocol core, Multi Round-Trip Requests, header-based routing, cacheable list results, authorization hardening, a formal extensions framework, and updated Tier 1 SDKs.\n\nJul 28, 2026 12 min read\n\n- David Soria Parra Lead Mainta …[trimmed]"
+    },
+    {
+      "title": "A More Predictable Release Cycle for MCP | Model Context Protocol Blog",
+      "url": "https://blog.modelcontextprotocol.io/posts/mcp-release-cycle/",
+      "content": "A More Predictable Release Cycle for MCP | Model Context Protocol Blog\n\n# A More Predictable Release Cycle for MCP\n\nWe're changing how we plan MCP releases. Luca Chang will join Den Delimarsky and David Soria Parra as a release manager for the next specification cycle.\n\nNov 11, 2026 6 min read\n\n- Den Delimarsky Lead Maintainer\n- David Soria Parra Lead Maintainer\n\nOn this page\n\nWe’ve spent a lot of …[trimmed]"
+    }
+  ]
+}

@@ -1,0 +1,615 @@
+{
+  "users": [
+    {
+      "id": 1379858,
+      "username": "user1379858"
+    },
+    {
+      "id": 1363797,
+      "username": "user1363797"
+    },
+    {
+      "id": 1099843,
+      "username": "user1099843"
+    },
+    {
+      "id": 35230,
+      "username": "user35230"
+    },
+    {
+      "id": 1230704,
+      "username": "user1230704"
+    },
+    {
+      "id": 269430,
+      "username": "user269430"
+    },
+    {
+      "id": 78611,
+      "username": "user78611"
+    },
+    {
+      "id": 1355887,
+      "username": "user1355887"
+    },
+    {
+      "id": 1371783,
+      "username": "user1371783"
+    },
+    {
+      "id": 1374828,
+      "username": "user1374828"
+    },
+    {
+      "id": 1375453,
+      "username": "user1375453"
+    },
+    {
+      "id": 1355187,
+      "username": "user1355187"
+    },
+    {
+      "id": 1367424,
+      "username": "user1367424"
+    },
+    {
+      "id": 1375732,
+      "username": "user1375732"
+    },
+    {
+      "id": 1370212,
+      "username": "user1370212"
+    },
+    {
+      "id": 1371595,
+      "username": "user1371595"
+    },
+    {
+      "id": 1378670,
+      "username": "user1378670"
+    },
+    {
+      "id": 1347676,
+      "username": "user1347676"
+    },
+    {
+      "id": 1347284,
+      "username": "user1347284"
+    },
+    {
+      "id": 1363894,
+      "username": "user1363894"
+    },
+    {
+      "id": 1374185,
+      "username": "user1374185"
+    },
+    {
+      "id": 1348349,
+      "username": "user1348349"
+    },
+    {
+      "id": 1362881,
+      "username": "user1362881"
+    },
+    {
+      "id": 1361088,
+      "username": "user1361088"
+    },
+    {
+      "id": 1363059,
+      "username": "user1363059"
+    },
+    {
+      "id": 17132,
+      "username": "user17132"
+    },
+    {
+      "id": 1079,
+      "username": "user1079"
+    },
+    {
+      "id": 1104510,
+      "username": "user1104510"
+    },
+    {
+      "id": 1362850,
+      "username": "user1362850"
+    },
+    {
+      "id": 1362733,
+      "username": "user1362733"
+    },
+    {
+      "id": 1362891,
+      "username": "user1362891"
+    },
+    {
+      "id": 1362146,
+      "username": "user1362146"
+    },
+    {
+      "id": 1345223,
+      "username": "user1345223"
+    },
+    {
+      "id": 632319,
+      "username": "user632319"
+    },
+    {
+      "id": 1371734,
+      "username": "user1371734"
+    },
+    {
+      "id": 1360410,
+      "username": "user1360410"
+    },
+    {
+      "id": 1362958,
+      "username": "user1362958"
+    },
+    {
+      "id": 1361424,
+      "username": "user1361424"
+    },
+    {
+      "id": 72385,
+      "username": "user72385"
+    },
+    {
+      "id": 1373335,
+      "username": "user1373335"
+    },
+    {
+      "id": 1279556,
+      "username": "user1279556"
+    },
+    {
+      "id": 464733,
+      "username": "user464733"
+    },
+    {
+      "id": 1362911,
+      "username": "user1362911"
+    },
+    {
+      "id": -1,
+      "username": "user-1"
+    },
+    {
+      "id": 40833,
+      "username": "user40833"
+    },
+    {
+      "id": 1353216,
+      "username": "user1353216"
+    },
+    {
+      "id": 444125,
+      "username": "user444125"
+    },
+    {
+      "id": 1362910,
+      "username": "user1362910"
+    },
+    {
+      "id": 1350727,
+      "username": "user1350727"
+    },
+    {
+      "id": 1362968,
+      "username": "user1362968"
+    },
+    {
+      "id": 1350492,
+      "username": "user1350492"
+    },
+    {
+      "id": 1351235,
+      "username": "user1351235"
+    },
+    {
+      "id": 1349897,
+      "username": "user1349897"
+    },
+    {
+      "id": 1372758,
+      "username": "user1372758"
+    },
+    {
+      "id": 1348239,
+      "username": "user1348239"
+    },
+    {
+      "id": 1311471,
+      "username": "user1311471"
+    }
+  ],
+  "topic_list": {
+    "per_page": 30,
+    "topics": [
+      {
+        "fancy_title": "Codex plugin for Visual Studio Community of Professional (cont&hellip;)",
+        "id": 1417548,
+        "title": "Codex plugin for Visual Studio Community of Professional (cont...)",
+        "slug": "codex-plugin-for-visual-studio-community-of-professional-cont",
+        "posts_count": 1,
+        "reply_count": 0,
+        "highest_post_number": 1,
+        "created_at": "2026-11-17T18:53:26.375Z",
+        "last_posted_at": "2026-11-17T18:53:26.439Z",
+        "bumped": true,
+        "bumped_at": "2026-11-17T18:53:26.439Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "visible": true,
+        "closed": false,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "tags": [
+          {
+            "id": 6,
+            "name": "codex",
+            "slug": "codex"
+          }
+        ],
+        "views": 22,
+        "like_count": 0,
+        "has_summary": false,
+        "last_poster_username": "user",
+        "category_id": 39,
+        "op_like_count": 0,
+        "pinned_globally": false,
+        "featured_link": null,
+        "ai_topic_gist": "A user requests an update on Codex integration with Visual Studio Community and Professional, seeking ChatGPT connectivity and data sharing comparable to VS Code to avoid repeatedly switching windows.",
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": "latest single",
+            "description": "Original Poster, Most Recent Poster",
+            "user_id": 1379858,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "Codex keeps writing timeouts that outlive the caller",
+        "id": 1417249,
+        "title": "Codex keeps writing timeouts that outlive the caller",
+        "slug": "codex-keeps-writing-timeouts-that-outlive-the-caller",
+        "posts_count": 1,
+        "reply_count": 0,
+        "highest_post_number": 1,
+        "created_at": "2026-11-17T01:51:26.634Z",
+        "last_posted_at": "2026-11-17T01:51:26.722Z",
+        "bumped": true,
+        "bumped_at": "2026-11-17T01:51:26.722Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "visible": true,
+        "closed": false,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "tags": [
+          {
+            "id": 6,
+            "name": "codex",
+            "slug": "codex"
+          },
+          {
+            "id": 1238,
+            "name": "code-review",
+            "slug": "code-review"
+          }
+        ],
+        "views": 29,
+        "like_count": 0,
+        "has_summary": false,
+        "last_poster_username": "user",
+        "category_id": 39,
+        "op_like_count": 0,
+        "pinned_globally": false,
+        "featured_link": null,
+        "ai_topic_gist": "Service timeouts exceeding caller deadlines can cause overlapping retries and duplicate charges; progressively shorter downstream deadlines and consistent units prevent these bugs, while PRI checks surrounding code to flag timeout mismatches before merge.",
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": "latest single",
+            "description": "Original Poster, Most Recent Poster",
+            "user_id": 1363797,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "Side-conversation lifecycle extensions",
+        "id": 1416293,
+        "title": "Side-conversation lifecycle extensions",
+        "slug": "side-conversation-lifecycle-extensions",
+        "posts_count": 4,
+        "reply_count": 1,
+        "highest_post_number": 4,
+        "created_at": "2026-11-14T14:30:06.706Z",
+        "last_posted_at": "2026-11-17T21:03:13.629Z",
+        "bumped": true,
+        "bumped_at": "2026-11-17T21:03:13.629Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "visible": true,
+        "closed": true,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "tags": [],
+        "views": 71,
+        "like_count": 3,
+        "has_summary": false,
+        "last_poster_username": "user",
+        "category_id": 39,
+        "op_like_count": 2,
+        "pinned_globally": false,
+        "featured_link": null,
+        "ai_topic_gist": "OpenAI Support says CLI documentation covers reopening saved side chats, partially addressing persistence requests, but does not confirm merging into parent conversations; merge, fork, and quick-switching requests will be shared, with no timeline provided.",
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": null,
+            "description": "Original Poster",
+            "user_id": 1099843,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 35230,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Recent Poster",
+            "user_id": 1230704,
+            "primary_group_id": null,
+            "flair_group_id": 45
+          },
+          {
+            "extras": "latest",
+            "description": "Most Recent Poster",
+            "user_id": 269430,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "Let&rsquo;s extend the codex rate limit ourself with a little trick",
+        "id": 1411709,
+        "title": "Let's extend the codex rate limit ourself with a little trick",
+        "slug": "lets-extend-the-codex-rate-limit-ourself-with-a-little-trick",
+        "posts_count": 4,
+        "reply_count": 1,
+        "highest_post_number": 4,
+        "created_at": "2026-11-01T18:20:13.597Z",
+        "last_posted_at": "2026-11-05T17:55:27.301Z",
+        "bumped": true,
+        "bumped_at": "2026-11-05T17:55:27.301Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "visible": true,
+        "closed": false,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "tags": [
+          {
+            "id": 6,
+            "name": "codex",
+            "slug": "codex"
+          },
+          {
+            "id": 914,
+            "name": "mcp",
+            "slug": "mcp"
+          }
+        ],
+        "views": 212,
+        "like_count": 6,
+        "has_summary": false,
+        "last_poster_username": "user",
+        "category_id": 39,
+        "op_like_count": 6,
+        "pinned_globally": false,
+        "featured_link": null,
+        "ai_topic_gist": "An open-source MCP model router aims to reduce Codex usage, but participants question its capability scores and task categories; its creator acknowledges the project is unfinished and suggests adjusting scores and adding feedback mechanisms.",
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": "latest",
+            "description": "Original Poster, Most Recent Poster",
+            "user_id": 78611,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Recent Poster",
+            "user_id": 1355887,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "Pro subscriber constantly getting “Selected model is at capacity” for the past two weeks",
+        "id": 1410344,
+        "title": "Pro subscriber constantly getting “Selected model is at capacity” for the past two weeks",
+        "slug": "pro-subscriber-constantly-getting-selected-model-is-at-capacity-for-the-past-two-weeks",
+        "posts_count": 20,
+        "reply_count": 8,
+        "highest_post_number": 20,
+        "created_at": "2026-10-28T03:17:39.394Z",
+        "last_posted_at": "2026-11-13T09:08:22.501Z",
+        "bumped": true,
+        "bumped_at": "2026-11-13T09:08:22.501Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "visible": true,
+        "closed": false,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "tags": [
+          {
+            "id": 16,
+            "name": "chatgpt",
+            "slug": "chatgpt"
+          }
+        ],
+        "views": 536,
+        "like_count": 4,
+        "has_summary": false,
+        "last_poster_username": "user",
+        "category_id": 39,
+        "op_like_count": 1,
+        "pinned_globally": false,
+        "featured_link": null,
+        "ai_topic_gist": "Paying users report persistent capacity errors, delayed Codex responses, and perceived quality declines; OpenAI support says it is investigating, but has provided no resolution timeline, while some users report partial restoration of access.",
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": null,
+            "description": "Original Poster",
+            "user_id": 1371783,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 1374828,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 1375453,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Recent Poster",
+            "user_id": 269430,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": "latest",
+            "description": "Most Recent Poster",
+            "user_id": 1355187,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "Schedule prompts for Codex CLI after usage limits reset",
+        "id": 1409418,
+        "title": "Schedule prompts for Codex CLI after usage limits reset",
+        "slug": "schedule-prompts-for-codex-cli-after-usage-limits-reset",
+        "posts_count": 4,
+        "reply_count": 0,
+        "highest_post_number": 4,
+        "created_at": "2026-10-24T17:29:28.534Z",
+        "last_posted_at": "2026-11-17T18:32:02.064Z",
+        "bumped": true,
+        "bumped_at": "2026-11-17T18:32:02.064Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "visible": true,
+        "closed": true,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "tags": [
+          {
+            "id": 940,
+            "name": "codex-cli",
+            "slug": "codex-cli"
+          }
+        ],
+        "views": 416,
+        "like_count": 2,
+        "has_summary": false,
+        "last_poster_username": "user",
+        "category_id": 39,
+        "op_like_count": 0,
+        "pinned_globally": false,
+        "featured_link": null,
+        "ai_topic_gist": "OpenAI Support will share a request to automatically queue a resume prompt for unfinished Codex CLI tasks when usage limits reset, enabling unattended overnight work, but has provided no implementation timeline.",
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": null,
+            "description": "Original Poster",
+            "user_id": 1367424,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 1375732,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 35230,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Recent Poster",
+            "user_id": 1230704,
+            "primary_group_id": null,
+            "flair_group_id": 45
+          },
+          {
+            "extras": "latest",
+            "description": "Most Recent Poster",
+            "user_id": 269430,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      }
+    ]
+  }
+}

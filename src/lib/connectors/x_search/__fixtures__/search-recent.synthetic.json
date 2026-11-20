@@ -1,0 +1,145 @@
+{
+  "data": [
+    {
+      "id": "1990000000000000301",
+      "text": "We moved our coding agent evals to a fixed task set. Pass rate went from 41% to 58% after the prompt fix. Write-up: https://t.co/EvAlS00301",
+      "created_at": "2026-11-19T18:00:00.000Z",
+      "author_id": "1600000000000000001",
+      "lang": "en",
+      "edit_history_tweet_ids": [
+        "1990000000000000301"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 115,
+            "end": 138,
+            "url": "https://t.co/EvAlS00301",
+            "expanded_url": "https://blog.example.org/agent-evals",
+            "display_url": "blog.example.org/agent-evals"
+          }
+        ]
+      },
+      "public_metrics": {
+        "retweet_count": 40,
+        "reply_count": 12,
+        "like_count": 320,
+        "quote_count": 6,
+        "bookmark_count": 90,
+        "impression_count": 41000
+      }
+    },
+    {
+      "id": "1990000000000000305",
+      "text": "coding agent eval tip: run each task three times",
+      "created_at": "2026-11-20T01:00:00.000Z",
+      "author_id": "1600000000000000002",
+      "lang": "en",
+      "edit_history_tweet_ids": [
+        "1990000000000000305"
+      ],
+      "public_metrics": {
+        "retweet_count": 3,
+        "reply_count": 1,
+        "like_count": 55,
+        "quote_count": 0,
+        "bookmark_count": 4,
+        "impression_count": 5000
+      }
+    },
+    {
+      "id": "1990000000000000302",
+      "text": "Hot take on coding agent evals",
+      "created_at": "2026-11-19T19:00:00.000Z",
+      "author_id": "1600000000000000003",
+      "lang": "en",
+      "edit_history_tweet_ids": [
+        "1990000000000000302"
+      ],
+      "public_metrics": {
+        "retweet_count": 0,
+        "reply_count": 0,
+        "like_count": 4,
+        "quote_count": 0,
+        "bookmark_count": 0,
+        "impression_count": 200
+      }
+    },
+    {
+      "id": "1990000000000000303",
+      "text": "New benchmark for coding agent evals with 500 real repository tasks https://t.co/BeNcH00303",
+      "created_at": "2026-11-19T20:00:00.000Z",
+      "author_id": "1600000000000000001",
+      "lang": "en",
+      "edit_history_tweet_ids": [
+        "1990000000000000303"
+      ],
+      "entities": {
+        "urls": [
+          {
+            "start": 68,
+            "end": 91,
+            "url": "https://t.co/BeNcH00303",
+            "expanded_url": "https://arxiv.org/abs/2611.00001",
+            "display_url": "arxiv.org/abs/2611.00001"
+          }
+        ]
+      },
+      "public_metrics": {
+        "retweet_count": 80,
+        "reply_count": 20,
+        "like_count": 900,
+        "quote_count": 15,
+        "bookmark_count": 300,
+        "impression_count": 120000
+      }
+    },
+    {
+      "id": "1990000000000000304",
+      "text": "Our coding agent evals dashboard is live",
+      "created_at": "2026-11-19T22:00:00.000Z",
+      "author_id": "1600000000000000004",
+      "lang": "en",
+      "edit_history_tweet_ids": [
+        "1990000000000000304"
+      ],
+      "public_metrics": {
+        "retweet_count": 5,
+        "reply_count": 2,
+        "like_count": 60,
+        "quote_count": 1,
+        "bookmark_count": 2,
+        "impression_count": 9000
+      }
+    }
+  ],
+  "includes": {
+    "users": [
+      {
+        "id": "1600000000000000001",
+        "name": "Eval Lab",
+        "username": "eval_lab"
+      },
+      {
+        "id": "1600000000000000002",
+        "name": "Tips Account",
+        "username": "tips_acct"
+      },
+      {
+        "id": "1600000000000000003",
+        "name": "Takes",
+        "username": "takes_acct"
+      },
+      {
+        "id": "1600000000000000004",
+        "name": "Dash",
+        "username": "dash_acct"
+      }
+    ]
+  },
+  "meta": {
+    "result_count": 5,
+    "newest_id": "1990000000000000305",
+    "oldest_id": "1990000000000000301"
+  }
+}

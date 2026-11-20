@@ -1,0 +1,38 @@
+{
+  "meta": {
+    "count": 1,
+    "db_response_time_ms": 21,
+    "page": 1,
+    "per_page": 5,
+    "groups_count": null,
+    "x_query": {
+      "oql": "get institutions where text has (Allen Institute for AI)",
+      "x_new_oql": "get institutions where text has (Allen Institute for AI)",
+      "oqo": {
+        "get_rows": "institutions",
+        "filter_rows": [
+          {
+            "column_id": "text.search",
+            "value": "Allen Institute for AI",
+            "operator": "has"
+          }
+        ]
+      },
+      "url": "/institutions?filter=text.search:Allen Institute for AI&per_page=5",
+      "order": "best matches first",
+      "order_default": true
+    },
+    "cost_usd": 0.001
+  },
+  "results": [
+    {
+      "id": "https://openalex.org/I4210156221",
+      "display_name": "Allen Institute for Artificial Intelligence",
+      "country_code": "US",
+      "type": "nonprofit",
+      "works_count": 2410,
+      "homepage_url": "https://allenai.org/"
+    }
+  ],
+  "group_by": []
+}

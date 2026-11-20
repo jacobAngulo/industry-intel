@@ -1,0 +1,47 @@
+{
+  "data": {
+    "repository": {
+      "hasDiscussionsEnabled": true,
+      "discussions": {
+        "nodes": [
+          {
+            "id": "D_kwDOSynthetic0003",
+            "number": 103,
+            "title": "Proposal: a hook that runs before each tool call",
+            "url": "https://github.com/example-org/example-repo/discussions/103",
+            "createdAt": "2026-11-19T15:00:00Z",
+            "bodyText": "A hook before each tool call would let teams block risky commands. Design notes: https://example.com/design/hooks",
+            "author": { "login": "example-user-a" },
+            "category": { "name": "Ideas", "slug": "ideas" },
+            "comments": { "totalCount": 12 },
+            "upvoteCount": 40
+          },
+          {
+            "id": "D_kwDOSynthetic0002",
+            "number": 102,
+            "title": "Version 3.0 is out: what changed for plugin authors",
+            "url": "https://github.com/example-org/example-repo/discussions/102",
+            "createdAt": "2026-11-18T09:30:00Z",
+            "bodyText": "The plugin API moved to a new manifest format. Old manifests keep working until 4.0.",
+            "author": { "login": "example-maintainer" },
+            "category": { "name": "Announcements", "slug": "announcements" },
+            "comments": { "totalCount": 3 },
+            "upvoteCount": 25
+          },
+          {
+            "id": "D_kwDOSynthetic0001",
+            "number": 101,
+            "title": "How do I set the proxy?",
+            "url": "https://github.com/example-org/example-repo/discussions/101",
+            "createdAt": "2026-11-17T08:00:00Z",
+            "bodyText": "I cannot find the proxy setting.",
+            "author": null,
+            "category": { "name": "Q&A", "slug": "q-a" },
+            "comments": { "totalCount": 1 },
+            "upvoteCount": 0
+          }
+        ]
+      }
+    }
+  }
+}

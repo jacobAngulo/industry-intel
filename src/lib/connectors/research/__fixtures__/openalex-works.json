@@ -1,0 +1,1470 @@
+{
+ "meta": {
+  "count": 2039,
+  "page": 1,
+  "per_page": 10
+ },
+ "results": [
+  {
+   "id": "https://openalex.org/W7131857336",
+   "doi": "https://doi.org/10.21203/rs.3.rs-8931286/v1",
+   "display_name": "Partial recovery of meter-scale surface weather",
+   "publication_date": "2026-11-12",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Sherrie Wang"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Jonathan Giezendanner"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Qidong Yang"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Ruizhe Huang"
+     }
+    }
+   ],
+   "abstract_inverted_index": {
+    "Abstract": [
+     0
+    ],
+    "Near-surface": [
+     1
+    ],
+    "weather": [
+     2,
+     31
+    ],
+    "varies": [
+     3
+    ],
+    "over": [
+     4
+    ],
+    "tens": [
+     5
+    ],
+    "to": [
+     6,
+     68
+    ],
+    "hundreds": [
+     7
+    ],
+    "of": [
+     8,
+     87
+    ],
+    "meters,": [
+     9
+    ],
+    "yet": [
+     10
+    ],
+    "remains": [
+     11
+    ],
+    "unresolved": [
+     12
+    ],
+    "in": [
+     13,
+     58
+    ],
+    "analyses": [
+     14
+    ],
+    "and": [
+     15,
+     36,
+     44,
+     60
+    ],
+    "forecasts.": [
+     16
+    ],
+    "We": [
+     17
+    ],
+    "test": [
+     18
+    ],
+    "whether": [
+     19
+    ],
+    "this": [
+     20
+    ],
+    "variation": [
+     21
+    ],
+    "can": [
+     22
+    ],
+    "be": [
+     23
+    ],
+    "inferred": [
+     24
+    ],
+    "without": [
+     25
+    ],
+    "resolving": [
+     26
+    ],
+    "atmospheric": [
+     27,
+     38
+    ],
+    "dynamics.": [
+     28
+    ],
+    "Combining": [
+     29
+    ],
+    "sparse": [
+     30
+    ],
+    "stations,": [
+     32
+    ],
+    "high-resolution": [
+     33
+    ],
+    "Earth": [
+     34
+    ],
+    "observation,": [
+     35
+    ],
+    "coarse": [
+     37
+    ],
+    "dynamics,": [
+     39
+    ],
+    "we": [
+     40,
+     77
+    ],
+    "infer": [
+     41
+    ],
+    "temperature,": [
+     42
+    ],
+    "dewpoint,": [
+     43
+    ],
+    "wind": [
+     45
+    ],
+    "at": [
+     46
+    ],
+    "30-m": [
+     47
+    ],
+    "resolution": [
+     48
+    ],
+    "across": [
+     49
+    ],
+    "the": [
+     50,
+     69
+    ],
+    "contiguous": [
+     51
+    ],
+    "United": [
+     52
+    ],
+    "States.": [
+     53
+    ],
+    "Against": [
+     54
+    ],
+    "measurements": [
+     55
+    ],
+    "held": [
+     56
+    ],
+    "out": [
+     57
+    ],
+    "space": [
+     59
+    ],
+    "time,": [
+     61
+    ],
+    "estimates": [
+     62
+    ],
+    "reduce": [
+     63
+    ],
+    "error": [
+     64
+    ],
+    "by": [
+     65
+    ],
+    "11-28%": [
+     66
+    ],
+    "relative": [
+     67
+    ],
+    "strongest": [
+     70
+    ],
+    "baseline.": [
+     71
+    ],
+    "Within": [
+     72
+    ],
+    "held-out": [
+     73
+    ],
+    "0.25°": [
+     74
+    ],
+    "grid": [
+     75
+    ],
+    "cells,": [
+     76
+    ],
+    "recover": [
+     78
+    ],
+    "more": [
+     79
+    ],
+    "spatial": [
+     80
+    ],
+    "variance": [
+     81
+    ],
+    "than": [
+     82
+    ],
+    "baselines,": [
+     83
+    ],
+    "explaining": [
+     84
+    ],
+    "nearly": [
+     85
+    ],
+    "half": [
+     86
+    ],
+    "temperature": [
+     88
+    ],
+    "variability": [
+     89
+    ]
+   },
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.21203/rs.3.rs-8931286/v1",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Research Square"
+    }
+   },
+   "ids": {
+    "openalex": "https://openalex.org/W7131857336",
+    "doi": "https://doi.org/10.21203/rs.3.rs-8931286/v1"
+   },
+   "type": "preprint",
+   "best_oa_location": {
+    "landing_page_url": "https://arxiv.org/abs/2602.23146",
+    "pdf_url": "https://arxiv.org/pdf/2602.23146"
+   }
+  },
+  {
+   "id": "https://openalex.org/W7163995211",
+   "doi": "https://doi.org/10.1029/2026jh001571",
+   "display_name": "Disentangling the Effects of Sea Surface Temperature and CO 2 in Global Machine Learned Weather‐Climate Emulators",
+   "publication_date": "2026-11-12",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Spencer Koncius Clark"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Troy Arcomano"
+     }
+    },
+    {
+     "author": {
+      "display_name": "James Duncan"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Brian Henn"
+     }
+    }
+   ],
+   "abstract_inverted_index": {
+    "Abstract": [
+     0
+    ],
+    "While": [
+     1
+    ],
+    "previous": [
+     2
+    ],
+    "versions": [
+     3
+    ],
+    "of": [
+     4,
+     27,
+     65,
+     88
+    ],
+    "the": [
+     5,
+     33,
+     66,
+     82
+    ],
+    "Ai2": [
+     6
+    ],
+    "Climate": [
+     7
+    ],
+    "Emulator": [
+     8
+    ],
+    "(ACE)": [
+     9
+    ],
+    "have": [
+     10
+    ],
+    "been": [
+     11
+    ],
+    "trained": [
+     12
+    ],
+    "with": [
+     13,
+     55
+    ],
+    "CO": [
+     14,
+     47,
+     56,
+     89
+    ],
+    "2": [
+     15,
+     48,
+     57
+    ],
+    "as": [
+     16
+    ],
+    "a": [
+     17,
+     24
+    ],
+    "forcing,": [
+     18
+    ],
+    "they": [
+     19
+    ],
+    "are": [
+     20
+    ],
+    "only": [
+     21
+    ],
+    "accurate": [
+     22
+    ],
+    "within": [
+     23
+    ],
+    "narrow": [
+     25
+    ],
+    "range": [
+     26
+    ],
+    "scenarios,": [
+     28
+    ],
+    "for": [
+     29
+    ],
+    "example,": [
+     30
+    ],
+    "climate": [
+     31,
+     72
+    ],
+    "over": [
+     32
+    ],
+    "last": [
+     34
+    ],
+    "80": [
+     35
+    ],
+    "years": [
+     36
+    ],
+    "forced": [
+     37,
+     73
+    ],
+    "by": [
+     38,
+     74,
+     78
+    ],
+    "observed": [
+     39
+    ],
+    "sea": [
+     40,
+     44
+    ],
+    "surface": [
+     41
+    ],
+    "temperature": [
+     42
+    ],
+    "(SST),": [
+     43
+    ],
+    "ice,": [
+     45
+    ],
+    "and": [
+     46
+    ],
+    "(AMIP),": [
+     49
+    ],
+    "or": [
+     50,
+     52,
+     81
+    ],
+    "equilibrium": [
+     51
+    ],
+    "near‐equilibrium": [
+     53
+    ],
+    "climates": [
+     54
+    ],
+    "concentrations": [
+     58
+    ],
+    "ranging": [
+     59
+    ],
+    "from": [
+     60
+    ],
+    "1×": [
+     61
+    ],
+    "to": [
+     62,
+     70,
+     84
+    ],
+    "4×": [
+     63
+    ],
+    "that": [
+     64
+    ],
+    "present": [
+     67
+    ],
+    "day.": [
+     68
+    ],
+    "Attempting": [
+     69
+    ],
+    "simulate": [
+     71
+    ],
+    "AMIP": [
+     75
+    ],
+    "SST": [
+     76
+    ],
+    "perturbed": [
+     77
+    ],
+    "+4": [
+     79
+    ],
+    "K,": [
+     80
+    ],
+    "response": [
+     83
+    ],
+    "an": [
+     85
+    ],
+    "abrupt": [
+     86
+    ],
+    "quadrupling": [
+     87
+    ]
+   },
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.1029/2026jh001571",
+    "pdf_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1029/2026JH001571",
+    "source": {
+     "display_name": "Journal of Geophysical Research Machine Learning and Computation"
+    }
+   },
+   "ids": {
+    "openalex": "https://openalex.org/W7163995211",
+    "doi": "https://doi.org/10.1029/2026jh001571"
+   },
+   "type": "article",
+   "best_oa_location": {
+    "landing_page_url": "https://doi.org/10.1029/2026jh001571",
+    "pdf_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1029/2026JH001571"
+   }
+  },
+  {
+   "id": "https://openalex.org/W7225753641",
+   "doi": "https://doi.org/10.48550/arxiv.2611.11995",
+   "display_name": "Infrathon: Benchmarking Language Agents for Real-World, Long-Horizon AI Infra Optimization",
+   "publication_date": "2026-11-09",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Zhengyu Hu"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Zheyuan Xiao"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Yike Wang"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Hamish Ivison"
+     }
+    }
+   ],
+   "abstract_inverted_index": {
+    "In": [
+     0
+    ],
+    "this": [
+     1
+    ],
+    "work,": [
+     2
+    ],
+    "we": [
+     3
+    ],
+    "study": [
+     4
+    ],
+    "whether": [
+     5
+    ],
+    "frontier": [
+     6
+    ],
+    "agents": [
+     7
+    ],
+    "can": [
+     8,
+     79
+    ],
+    "continually": [
+     9
+    ],
+    "improve": [
+     10
+    ],
+    "real-world": [
+     11
+    ],
+    "AI": [
+     12,
+     25
+    ],
+    "infrastructure": [
+     13,
+     26
+    ],
+    "over": [
+     14,
+     43
+    ],
+    "long": [
+     15
+    ],
+    "horizons.": [
+     16
+    ],
+    "We": [
+     17,
+     32
+    ],
+    "introduce": [
+     18
+    ],
+    "Infrathon,": [
+     19
+    ],
+    "a": [
+     20
+    ],
+    "benchmark": [
+     21
+    ],
+    "of": [
+     22,
+     59,
+     70
+    ],
+    "diverse,": [
+     23
+    ],
+    "long-horizon": [
+     24
+    ],
+    "optimization": [
+     27,
+     82
+    ],
+    "tasks": [
+     28
+    ],
+    "across": [
+     29,
+     36
+    ],
+    "different": [
+     30
+    ],
+    "levels.": [
+     31
+    ],
+    "evaluate": [
+     33
+    ],
+    "six": [
+     34
+    ],
+    "models": [
+     35
+    ],
+    "150": [
+     37,
+     61
+    ],
+    "runs": [
+     38,
+     62
+    ],
+    "with": [
+     39,
+     53
+    ],
+    "24-hour": [
+     40
+    ],
+    "budgets,": [
+     41
+    ],
+    "totaling": [
+     42
+    ],
+    "10,000": [
+     44
+    ],
+    "GPU-hours.": [
+     45
+    ],
+    "Our": [
+     46
+    ],
+    "results": [
+     47
+    ],
+    "show": [
+     48
+    ],
+    "that": [
+     49,
+     76
+    ],
+    "model": [
+     50,
+     88
+    ],
+    "rankings": [
+     51
+    ],
+    "vary": [
+     52
+    ],
+    "the": [
+     54,
+     60,
+     67
+    ],
+    "evaluation": [
+     55
+    ],
+    "horizon,": [
+     56
+    ],
+    "while": [
+     57
+    ],
+    "135": [
+     58
+    ],
+    "achieve": [
+     63
+    ],
+    "further": [
+     64
+    ],
+    "improvements": [
+     65
+    ],
+    "during": [
+     66
+    ],
+    "second": [
+     68
+    ],
+    "half": [
+     69
+    ],
+    "their": [
+     71
+    ],
+    "budgets.": [
+     72
+    ],
+    "These": [
+     73
+    ],
+    "findings": [
+     74
+    ],
+    "indicate": [
+     75
+    ],
+    "shorter": [
+     77
+    ],
+    "evaluations": [
+     78
+    ],
+    "overlook": [
+     80
+    ],
+    "both": [
+     81
+    ],
+    "gains": [
+     83
+    ],
+    "and": [
+     84
+    ],
+    "changes": [
+     85
+    ],
+    "in": [
+     86
+    ],
+    "relative": [
+     87
+    ],
+    "performance.": [
+     89
+    ]
+   },
+   "primary_location": {
+    "landing_page_url": "https://arxiv.org/abs/2611.11995",
+    "pdf_url": "https://arxiv.org/pdf/2611.11995",
+    "source": {
+     "display_name": "arXiv (Cornell University)"
+    }
+   },
+   "ids": {
+    "openalex": "https://openalex.org/W7225753641",
+    "doi": "https://doi.org/10.48550/arxiv.2611.11995"
+   },
+   "type": "preprint",
+   "best_oa_location": {
+    "landing_page_url": "https://arxiv.org/abs/2611.11995",
+    "pdf_url": "https://arxiv.org/pdf/2611.11995"
+   }
+  },
+  {
+   "id": "https://openalex.org/W7225453876",
+   "doi": "https://doi.org/10.5281/zenodo.24038044",
+   "display_name": "The Authorization Imperative: Why statistical alignment cannot close the Authorization Gap, and why a non-writable, fail-closed gate can",
+   "publication_date": "2026-11-07",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "David P Reichwein"
+     }
+    }
+   ],
+   "abstract_inverted_index": {
+    "Autonomous": [
+     0
+    ],
+    "AI": [
+     1
+    ],
+    "systems": [
+     2
+    ],
+    "are": [
+     3
+    ],
+    "moving": [
+     4
+    ],
+    "from": [
+     5
+    ],
+    "generating": [
+     6
+    ],
+    "text": [
+     7
+    ],
+    "to": [
+     8,
+     39
+    ],
+    "executing": [
+     9
+    ],
+    "actions": [
+     10
+    ],
+    "in": [
+     11,
+     59
+    ],
+    "physical,": [
+     12
+    ],
+    "digital,": [
+     13
+    ],
+    "and": [
+     14,
+     20
+    ],
+    "financial": [
+     15
+    ],
+    "domains.": [
+     16
+    ],
+    "Training,": [
+     17
+    ],
+    "test-time": [
+     18
+    ],
+    "search,": [
+     19
+    ],
+    "moderation": [
+     21
+    ],
+    "can": [
+     22
+    ],
+    "improve": [
+     23
+    ],
+    "proposal": [
+     24
+    ],
+    "quality,": [
+     25
+    ],
+    "but": [
+     26
+    ],
+    "none": [
+     27
+    ],
+    "of": [
+     28,
+     87
+    ],
+    "them,": [
+     29
+    ],
+    "by": [
+     30
+    ],
+    "itself,": [
+     31
+    ],
+    "establishes": [
+     32
+    ],
+    "whether": [
+     33
+    ],
+    "a": [
+     34,
+     79,
+     84
+    ],
+    "proposed": [
+     35
+    ],
+    "action": [
+     36
+    ],
+    "is": [
+     37
+    ],
+    "authorized": [
+     38
+    ],
+    "execute.": [
+     40
+    ],
+    "This": [
+     41
+    ],
+    "paper": [
+     42
+    ],
+    "calls": [
+     43
+    ],
+    "that": [
+     44
+    ],
+    "missing": [
+     45
+    ],
+    "function": [
+     46
+    ],
+    "the": [
+     47,
+     74
+    ],
+    "Authorization": [
+     48
+    ],
+    "Gap.": [
+     49
+    ],
+    "We": [
+     50
+    ],
+    "make": [
+     51
+    ],
+    "two": [
+     52
+    ],
+    "contributions.": [
+     53
+    ],
+    "First,": [
+     54
+    ],
+    "an": [
+     55
+    ],
+    "illustrative": [
+     56
+    ],
+    "quadratic": [
+     57
+    ],
+    "model": [
+     58
+    ],
+    "which,": [
+     60
+    ],
+    "at": [
+     61
+    ],
+    "any": [
+     62
+    ],
+    "finite": [
+     63
+    ],
+    "boundary": [
+     64,
+     70,
+     75
+    ],
+    "stiffness,": [
+     65
+    ],
+    "every": [
+     66
+    ],
+    "positive": [
+     67,
+     80
+    ],
+    "conflict": [
+     68
+    ],
+    "produces": [
+     69
+    ],
+    "movement,": [
+     71
+    ],
+    "while": [
+     72
+    ],
+    "making": [
+     73
+    ],
+    "immutable": [
+     76
+    ],
+    "still": [
+     77
+    ],
+    "leaves": [
+     78
+    ],
+    "residual": [
+     81
+    ],
+    "violation.": [
+     82
+    ],
+    "Second,": [
+     83
+    ],
+    "general": [
+     85
+    ],
+    "account": [
+     86
+    ],
+    "execution": [
+     88
+    ],
+    "authorization": [
+     89
+    ]
+   },
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.5281/zenodo.24038044",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Zenodo (CERN European Organization for Nuclear Research)"
+    }
+   },
+   "ids": {
+    "openalex": "https://openalex.org/W7225453876",
+    "doi": "https://doi.org/10.5281/zenodo.24038044"
+   },
+   "type": "article",
+   "best_oa_location": {
+    "landing_page_url": "https://doi.org/10.5281/zenodo.24038044",
+    "pdf_url": null
+   }
+  },
+  {
+   "id": "https://openalex.org/W7225335510",
+   "doi": "https://doi.org/10.5194/egusphere-2026-6708",
+   "display_name": "How Much Lossy Compression of Training Data Can An Atmosphere Emulator Tolerate?",
+   "publication_date": "2026-11-05",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Finn O'neill Rebassoo"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Peter Caldwell"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Peter Lindström"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Allison H. Baker"
+     }
+    }
+   ],
+   "abstract_inverted_index": {
+    "Abstract.": [
+     0
+    ],
+    "Training": [
+     1
+    ],
+    "machine": [
+     2
+    ],
+    "learning": [
+     3
+    ],
+    "(ML)": [
+     4
+    ],
+    "emulators": [
+     5
+    ],
+    "on": [
+     6
+    ],
+    "km-scale": [
+     7
+    ],
+    "Earth": [
+     8
+    ],
+    "system": [
+     9
+    ],
+    "models": [
+     10
+    ],
+    "(ESMs)": [
+     11
+    ],
+    "would": [
+     12
+    ],
+    "require": [
+     13
+    ],
+    "more": [
+     14
+    ],
+    "data": [
+     15,
+     22
+    ],
+    "than": [
+     16
+    ],
+    "is": [
+     17,
+     24,
+     60,
+     85
+    ],
+    "practical": [
+     18
+    ],
+    "to": [
+     19,
+     28
+    ],
+    "store.": [
+     20
+    ],
+    "Lossy": [
+     21
+    ],
+    "compression": [
+     23,
+     59
+    ],
+    "a": [
+     25
+    ],
+    "natural": [
+     26
+    ],
+    "solution": [
+     27
+    ],
+    "this": [
+     29,
+     51
+    ],
+    "problem,": [
+     30
+    ],
+    "but": [
+     31
+    ],
+    "adoption": [
+     32
+    ],
+    "by": [
+     33
+    ],
+    "the": [
+     34,
+     43,
+     67,
+     77
+    ],
+    "ESM": [
+     35
+    ],
+    "community": [
+     36
+    ],
+    "has": [
+     37
+    ],
+    "been": [
+     38
+    ],
+    "slow,": [
+     39
+    ],
+    "partly": [
+     40
+    ],
+    "because": [
+     41
+    ],
+    "of": [
+     42,
+     45,
+     57,
+     66
+    ],
+    "fear": [
+     44
+    ],
+    "negatively": [
+     46
+    ],
+    "impacting": [
+     47
+    ],
+    "scientific": [
+     48
+    ],
+    "conclusions.": [
+     49
+    ],
+    "In": [
+     50
+    ],
+    "study,": [
+     52
+    ],
+    "we": [
+     53
+    ],
+    "demonstrate": [
+     54
+    ],
+    "what": [
+     55
+    ],
+    "level": [
+     56
+    ],
+    "lossy": [
+     58
+    ],
+    "acceptable": [
+     61
+    ],
+    "for": [
+     62
+    ],
+    "an": [
+     63
+    ],
+    "ML-based": [
+     64
+    ],
+    "emulator": [
+     65
+    ],
+    "E3SMv3": [
+     68
+    ],
+    "atmospheric": [
+     69
+    ],
+    "model": [
+     70
+    ],
+    "at": [
+     71
+    ],
+    "1°": [
+     72
+    ],
+    "resolution.": [
+     73
+    ],
+    "We": [
+     74
+    ],
+    "specifically": [
+     75
+    ],
+    "use": [
+     76
+    ],
+    "ZFP": [
+     78
+    ],
+    "compressor,": [
+     79
+    ],
+    "which": [
+     80
+    ],
+    "provides": [
+     81
+    ],
+    "state-of-the-art": [
+     82
+    ],
+    "performance": [
+     83
+    ],
+    "and": [
+     84
+    ],
+    "integrated": [
+     86
+    ],
+    "into": [
+     87
+    ],
+    "NetCDF4.": [
+     88
+    ],
+    "Thus,": [
+     89
+    ]
+   },
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.5194/egusphere-2026-6708",
+    "pdf_url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-6708/egusphere-2026-6708.pdf",
+    "source": null
+   },
+   "ids": {
+    "openalex": "https://openalex.org/W7225335510",
+    "doi": "https://doi.org/10.5194/egusphere-2026-6708"
+   },
+   "type": "preprint",
+   "best_oa_location": {
+    "landing_page_url": "https://doi.org/10.5194/egusphere-2026-6708",
+    "pdf_url": "https://egusphere.copernicus.org/preprints/2026/egusphere-2026-6708/egusphere-2026-6708.pdf"
+   }
+  },
+  {
+   "id": "https://openalex.org/W7225424798",
+   "doi": "https://doi.org/10.48550/arxiv.2611.07323",
+   "display_name": "Rethinking Data Selection: The Importance of Coverage over Difficulty in LLM Fine-Tuning",
+   "publication_date": "2026-11-05",
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Lalchand Pandia"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Kanishka Misra"
+     }
+    },
+    {
+     "author": {
+      "display_name": "Allyson Ettinger"
+     }
+    }
+   ],
+   "abstract_inverted_index": null,
+   "primary_location": {
+    "landing_page_url": "https://arxiv.org/abs/2611.07323",
+    "pdf_url": "https://arxiv.org/pdf/2611.07323",
+    "source": {
+     "display_name": "arXiv (Cornell University)"
+    }
+   },
+   "ids": {
+    "openalex": "https://openalex.org/W7225424798",
+    "doi": "https://doi.org/10.48550/arxiv.2611.07323"
+   },
+   "type": "preprint",
+   "best_oa_location": {
+    "landing_page_url": "https://arxiv.org/abs/2611.07323",
+    "pdf_url": "https://arxiv.org/pdf/2611.07323"
+   }
+  }
+ ]
+}

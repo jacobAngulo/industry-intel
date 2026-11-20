@@ -52,7 +52,8 @@ const id = () => integer("id").primaryKey({ autoIncrement: true });
 
 /**
  * Keys: team_profile (TeamProfile), brief_defaults (BriefFormat),
- * default_exclusions (string[]), feed_defaults (FeedDefaults), seeded_at (number).
+ * default_exclusions (string[]), feed_defaults (FeedDefaults), seeded_at (number),
+ * api_keys ({ OLLAMA_API_KEY?, X_BEARER_TOKEN? }: saved API keys, see env.ts).
  */
 export const settings = sqliteTable("settings", {
   key: text("key").primaryKey(),

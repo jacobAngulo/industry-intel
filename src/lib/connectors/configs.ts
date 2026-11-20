@@ -332,7 +332,7 @@ export function credentialNeeds(type: SourceType, env: Env, config?: unknown): C
     case "x_search":
       return env.has("X_BEARER_TOKEN")
         ? null
-        : { code: "x_token", message: "Needs an X API token. Add X_BEARER_TOKEN to the .env file and start the app again." };
+        : { code: "x_token", message: "Needs an X API token. Save the X bearer token in Settings → API keys (or set X_BEARER_TOKEN in .env)." };
     case "newsletter": {
       const variant = (config as { variant?: unknown } | undefined)?.variant;
       const mailboxReady = env.has("IMAP_HOST") && env.has("IMAP_USER") && env.has("IMAP_PASSWORD");
@@ -346,7 +346,7 @@ export function credentialNeeds(type: SourceType, env: Env, config?: unknown): C
     case "web_search":
       return env.has("OLLAMA_API_KEY")
         ? null
-        : { code: "model_key", message: "Needs the model key. Add OLLAMA_API_KEY to the .env file and start the app again." };
+        : { code: "model_key", message: "Needs the model key. Save the Ollama API key in Settings → API keys (or set OLLAMA_API_KEY in .env)." };
     default:
       return null;
   }

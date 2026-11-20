@@ -3,33 +3,42 @@ import type { Metadata } from "next";
 import { getActor } from "@/app/_lib/identity";
 import { ArchivedFeeds, YourNameForm } from "@/components/settings/ArchivedFeeds";
 import { DefaultsForm } from "@/components/settings/DefaultsForm";
+import { KeysForm, type KeyRowData } from "@/components/settings/KeysForm";
 import { supportedTimeZones, timeZoneOptions } from "@/components/settings/helpers";
 import { RejudgeProgressLine } from "@/components/settings/RejudgeProgressLine";
 import { SettingsSection } from "@/components/settings/SettingsSection";
 import { TeamProfileForm } from "@/components/settings/TeamProfileForm";
 import { TopicsManager } from "@/components/settings/TopicsManager";
 import { PageContainer, PageHeader } from "@/components/ui";
-import { getDefaults, getTeamProfile, listFeeds, listTopics, rejudgeProgress } from "@/lib/services";
+import { getDefaults, getKeyStatuses, getTeamProfile, listFeeds, listTopics, rejudgeProgress } from "@/lib/services";
 
 export const metadata: Metadata = { title: "Shared settings" };
+
+const KEY_HINTS: Record<KeyRowData["name"], string> = {
+  OLLAMA_API_KEY: "The model judges and analyses stories, and runs the web search sources. Get a key at ollama.com.",
+  X_BEARER_TOKEN: "X user and X keyword sources read posts with it (paid X API quota).",
+};
 
 const SECTIONS = [
   { id: "shared-feed-profile", label: "Shared feed profile" },
   { id: "topics", label: "Topics" },
   { id: "defaults", label: "Defaults" },
+  { id: "api-keys", label: "API keys" },
   { id: "archived-feeds", label: "Archived feeds" },
   { id: "your-name-section", label: "Your name" },
 ];
 
-/** §4.9 Shared settings: shared feed profile, topics, defaults, archived feeds, your name. */
+/** §4.9 Shared settings: shared feed profile, topics, defaults, API keys, archived feeds, your name. */
 export default async function SharedSettingsPage() {
-  const [profile, topics, defaults, feeds, actor] = await Promise.all([
+  const [profile, topics, defaults, feeds, actor, keyStatuses] = await Promise.all([
     getTeamProfile(),
     listTopics({ includeArchived: true }),
     getDefaults(),
     listFeeds({ includeArchived: true }),
     getActor(),
+    getKeyStatuses(),
   ]);
+  const keys: KeyRowData[] = keyStatuses.map((k) => ({ ...k, hint: KEY_HINTS[k.name] }));
   const active = feeds.filter((f) => !f.archived);
   const archived = feeds.filter((f) => f.archived);
   const progress = await Promise.all(active.map(async (f) => ({ feed: f, progress: await rejudgeProgress(f.id) })));
@@ -89,6 +98,14 @@ export default async function SharedSettingsPage() {
             timeZones={timeZoneOptions(defaults.feedDefaults.digest.timeZone, supportedTimeZones())}
             name={actor.name}
           />
+        </SettingsSection>
+
+        <SettingsSection
+          id="api-keys"
+          title="API keys"
+          description="A key saved here replaces the same variable in .env, and the app uses it at the next call: no restart. The page never shows a saved key."
+        >
+          <KeysForm keys={keys} name={actor.name} />
         </SettingsSection>
 
         <SettingsSection

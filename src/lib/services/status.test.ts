@@ -166,7 +166,7 @@ describe("getBanners", () => {
 
     getSqlite().prepare("DELETE FROM worker_state WHERE key = 'heartbeat'").run();
     expect((await getBanners()).find((b) => b.kind === "no_model_key")?.message).toBe(
-      "The model key is missing. Add OLLAMA_API_KEY to the .env file and start the app again. The worker still checks the sources; items wait for the model.",
+      "The model key is missing. Save the Ollama API key in Settings → API keys (or set OLLAMA_API_KEY in .env). The worker still checks the sources; items wait for the model.",
     );
     vi.stubEnv("OLLAMA_API_KEY", "web-has-one");
     expect(kinds(await getBanners())).not.toContain("no_model_key");

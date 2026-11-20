@@ -121,7 +121,7 @@ export function xToken(ctx: ConnectorContext): string {
   if (!token) {
     throw new ConnectorError(
       "needs_credentials",
-      "Needs an X API token. Add X_BEARER_TOKEN to the .env file and start the app again.",
+      "Needs an X API token. Save the X bearer token in Settings → API keys (or set X_BEARER_TOKEN in .env).",
     );
   }
   return token;
@@ -211,7 +211,7 @@ export function mapXError(res: HttpResponse, what: string): ConnectorError {
     case 401:
       return new ConnectorError(
         "needs_credentials",
-        "The X API refused the token (401). Check X_BEARER_TOKEN in the .env file and start the app again.",
+        "The X API refused the token (401). Check the X bearer token in Settings → API keys (or X_BEARER_TOKEN in .env).",
       );
     case 403:
       return new ConnectorError(

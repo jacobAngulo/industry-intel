@@ -5,6 +5,7 @@
 // display name, validates its input with zod, calls one service, and
 // revalidates the pages. The feed settings import the shared ones from here.
 import { revalidatePath } from "next/cache";
+import { z } from "zod";
 
 import { ok, parseInput, withActor } from "@/app/_lib/action-helpers";
 import { rejudgeEstimates } from "@/components/settings/estimates";
@@ -23,6 +24,10 @@ import {
   archiveTopic,
   createTopic,
   deleteFeed,
+  removeStoredKey,
+  saveStoredKey,
+  storedKeyNameSchema,
+  storedKeyValueSchema,
   requestRejudge,
   restoreFeed,
   serviceFailure,
@@ -166,5 +171,38 @@ export async function deleteFeedAction(input: unknown): Promise<ActionResult<nul
     }
     revalidateAll();
     return ok(null, "The feed is deleted.");
+  });
+}
+
+const saveKeyInput = z.object({ name: storedKeyNameSchema, value: storedKeyValueSchema });
+const removeKeyInput = z.object({ name: storedKeyNameSchema });
+
+/** Saves one API key (write-only: the page never gets a key back). */
+export async function saveKeyAction(input: unknown): Promise<ActionResult<null>> {
+  return withActor({ needsName: true }, async (actor) => {
+    const parsed = parseInput(saveKeyInput, input);
+    if (!parsed.ok) return parsed;
+    try {
+      await saveStoredKey(parsed.data, actor);
+    } catch (error) {
+      return serviceFailure(error);
+    }
+    revalidateAll();
+    return ok(null, "The key is saved. The app uses it at the next call.");
+  });
+}
+
+/** Removes one saved API key. The app then uses the value in .env, when there is one. */
+export async function removeKeyAction(input: unknown): Promise<ActionResult<null>> {
+  return withActor({ needsName: true }, async (actor) => {
+    const parsed = parseInput(removeKeyInput, input);
+    if (!parsed.ok) return parsed;
+    try {
+      await removeStoredKey(parsed.data, actor);
+    } catch (error) {
+      return serviceFailure(error);
+    }
+    revalidateAll();
+    return ok(null, "The saved key is removed.");
   });
 }

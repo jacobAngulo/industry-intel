@@ -36,7 +36,7 @@ export const WEB_SEARCH_MAX_SEEN_URLS = 1000;
 export const WEB_SEARCH_PREVIEW_NOTE =
   "These are the current results. The first check stores them as a baseline and does not judge them; later checks show only new results.";
 
-const NEEDS_KEY_MESSAGE = "Needs the model key. The web search uses OLLAMA_API_KEY: add it to the .env file and start the app again.";
+const NEEDS_KEY_MESSAGE = "Needs the model key. The web search uses the Ollama API key: save it in Settings → API keys (or set OLLAMA_API_KEY in .env).";
 
 function looksLikeUrlOrAddress(entry: string): boolean {
   return (
@@ -106,7 +106,7 @@ export function mapSearchError(error: unknown): ConnectorError {
     switch (error.kind) {
       case "no_key":
       case "auth":
-        return new ConnectorError("needs_credentials", "The web search refused the model key. Check OLLAMA_API_KEY in the .env file.", { cause: error });
+        return new ConnectorError("needs_credentials", "The web search refused the model key. Check the Ollama API key in Settings → API keys (or OLLAMA_API_KEY in .env).", { cause: error });
       case "budget":
         return new ConnectorError("budget", "The daily limit of web searches is used (WEB_SEARCH_MAX_PER_DAY). The next check runs after midnight (UTC).", { cause: error });
       case "payment":

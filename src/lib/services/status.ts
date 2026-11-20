@@ -157,7 +157,7 @@ function modelBanners(beat: WorkerHeartbeat | null, now: number, timeZone: strin
         kind: "no_model_key",
         tone: "warning",
         message:
-          "The model key is missing. Add OLLAMA_API_KEY to the .env file and start the app again. The worker still checks the sources; items wait for the model.",
+          "The model key is missing. Save the Ollama API key in Settings → API keys (or set OLLAMA_API_KEY in .env). The worker still checks the sources; items wait for the model.",
       },
     ];
   }

@@ -49,7 +49,9 @@ function main(): void {
 
   const deps = getDeps();
   const env = deps.env;
-  const flags = { hasModelKey: hasModelKey(env), hasXToken: hasXToken(env), hasMailbox: hasMailbox(env) };
+  // Read at each heartbeat: a key saved on the settings page applies with no restart.
+  const envFlags = () => ({ hasModelKey: hasModelKey(env), hasXToken: hasXToken(env), hasMailbox: hasMailbox(env) });
+  const flags = envFlags();
   console.log(
     `[worker] started: pid ${process.pid}, node ${process.version}, database ${resolveDatabasePath()}, ` +
       `model key: ${yesNo(flags.hasModelKey)}, X token: ${yesNo(flags.hasXToken)}, mailbox: ${yesNo(flags.hasMailbox)}`,
@@ -71,7 +73,7 @@ function main(): void {
     },
     deps,
     now: nowMs,
-    heartbeat: (now) => renewLease(leaseId, { at: now, ...flags }),
+    heartbeat: (now) => renewLease(leaseId, { at: now, ...envFlags() }),
     onLeaseLost: () => {
       console.error("[worker] Another worker took the lease. This worker stops.");
       void shutdown("lease lost", 1);

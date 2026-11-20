@@ -505,6 +505,7 @@ export const SETTINGS_KEYS = [
   "default_exclusions",
   "feed_defaults",
   "seeded_at",
+  "api_keys",
 ] as const;
 export type SettingsKey = (typeof SETTINGS_KEYS)[number];
 

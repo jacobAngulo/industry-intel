@@ -3,7 +3,8 @@
 import type { UsageMeter } from "@/lib/connectors/types";
 import { getEnv, type Env } from "@/lib/env";
 import { createSafeHttp } from "@/lib/http";
-import { getLlm, getWebSearch } from "@/lib/llm";
+import { getLlm } from "@/lib/llm";
+import { OllamaWebSearch } from "@/lib/llm/web-search";
 import { createMailReader } from "@/lib/mail";
 import type { PipelineDeps } from "@/lib/pipeline";
 import { nowMs } from "@/lib/time";
@@ -20,12 +21,16 @@ function buildDeps(): Deps {
   const env = getEnv();
   const http = createSafeHttp();
   const usage = createUsageMeter(env);
+  const webSearch = new OllamaWebSearch({ http, usage, env });
   return {
     env,
     http,
     usage,
     llm: getLlm({ http, usage, env }),
-    search: getWebSearch({ http, usage, env }),
+    // A getter: the key can be saved on the settings page after the start (null with no key, §11.5).
+    get search() {
+      return env.ollamaApiKey === undefined ? null : webSearch;
+    },
     mail: createMailReader(env),
     now: nowMs,
   };

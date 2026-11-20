@@ -23,6 +23,7 @@ export * from "./feedback";
 export * from "./analyses";
 export * from "./digests";
 export * from "./settings";
+export * from "./keys";
 export * from "./rejudge";
 export * from "./status";
 export * from "./activity";

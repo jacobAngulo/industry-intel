@@ -235,7 +235,7 @@ export class OllamaLlm implements LlmProvider {
 
   async json<T>(req: LlmJsonRequest<T>): Promise<LlmJsonResult<T>> {
     const key = this.#env.ollamaApiKey;
-    if (key === undefined) throw new LlmError("no_key", "The model key is missing. Add OLLAMA_API_KEY to the .env file.");
+    if (key === undefined) throw new LlmError("no_key", "The model key is missing. Save the Ollama API key in Settings → API keys (or set OLLAMA_API_KEY in .env).");
     if (req.signal?.aborted) throw new LlmError("timeout", "The model call was stopped before it started.");
 
     const started = performance.now();

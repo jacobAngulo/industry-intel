@@ -5,6 +5,13 @@
 // - Never print a value. The getters are on the prototype, so
 //   `console.log(env)` and `JSON.stringify(env)` show no value.
 // - `has(name)` says only yes / no (for the status page).
+//
+// Saved API keys: the keys of STORED_KEY_NAMES can also be saved on the
+// settings page (settings row `api_keys`). A saved key wins over the same
+// variable in .env. getEnv() reads the row at each call, through the
+// connection that the process opened already (it never opens the database),
+// so a change applies in the web and worker processes with no restart.
+import { openSqliteOrNull } from "@/lib/db/open-handle";
 import { resolveDatabasePathFrom } from "@/lib/db/path";
 
 export const ENV_NAMES = [
@@ -30,6 +37,41 @@ export const ENV_NAMES = [
   "PORT",
 ] as const;
 export type EnvName = (typeof ENV_NAMES)[number];
+
+/** The variables that a person can save on the settings page (§4.9 "API keys"). */
+export const STORED_KEY_NAMES = ["OLLAMA_API_KEY", "X_BEARER_TOKEN"] as const satisfies readonly EnvName[];
+export type StoredKeyName = (typeof STORED_KEY_NAMES)[number];
+
+/** The settings row that holds the saved keys: JSON `{ [name]: value }`. */
+export const STORED_KEYS_SETTING = "api_keys";
+
+const STORED_KEYS_SQL = `SELECT value FROM settings WHERE key = '${STORED_KEYS_SETTING}'`;
+
+/** The saved keys, read from the open database of this process ({} with no open database). Never print the result. */
+export function readStoredKeys(): Partial<Record<StoredKeyName, string>> {
+  const sqlite = openSqliteOrNull();
+  if (!sqlite) return {};
+  let raw: unknown;
+  try {
+    raw = (sqlite.prepare(STORED_KEYS_SQL).get() as { value: string } | undefined)?.value;
+  } catch {
+    return {};
+  }
+  if (typeof raw !== "string") return {};
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return {};
+  }
+  if (!parsed || typeof parsed !== "object") return {};
+  const out: Partial<Record<StoredKeyName, string>> = {};
+  for (const name of STORED_KEY_NAMES) {
+    const value = (parsed as Record<string, unknown>)[name];
+    if (typeof value === "string" && value.trim() !== "") out[name] = value.trim();
+  }
+  return out;
+}
 
 /** Defaults of §11.4 and §20. */
 export const ENV_DEFAULTS = {
@@ -164,9 +206,15 @@ class LazyEnv implements Env {
   }
 }
 
-const processEnv: Env = new LazyEnv(() => process.env);
+const processEnv: Env = new LazyEnv(() => {
+  const stored = readStoredKeys();
+  return Object.keys(stored).length === 0 ? process.env : { ...process.env, ...stored };
+});
 
-/** The environment of this process. Each getter reads process.env at the time of the call. */
+/**
+ * The environment of this process. Each getter reads process.env (and the
+ * saved API keys) at the time of the call.
+ */
 export function getEnv(): Env {
   return processEnv;
 }

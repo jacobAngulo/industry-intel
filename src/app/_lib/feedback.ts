@@ -1,4 +1,4 @@
-// The relay from the in-app feedback dialog to the Ticket Board intake API
+// The relay from the in-app feedback panel to the Ticket Board intake API
 // (/projects/ticket-board/docs/intake-integration.md). Server only. The
 // browser never sees the Ticket Board address or the bearer token: it calls the
 // Server Action submitFeedback, which calls this module.
@@ -24,7 +24,7 @@ export const feedbackSchema = z.object({
     .transform((value) => (value ? value : null)),
   /** A random id from the browser: a retry of the same submission does not make a second ticket. */
   submissionId: z.string().trim().min(8).max(200),
-  /** The page where the person opened the dialog. */
+  /** The page where the person opened the panel. */
   pageUrl: z.string().trim().max(2000).optional(),
   pageTitle: z.string().trim().max(300).optional(),
 });
@@ -48,7 +48,7 @@ const DEFAULT_PROJECT_SLUG = "industry-intel";
 /** Sends one submission to the Ticket Board intake API of the project. Never throws. */
 export async function relayFeedback(
   input: FeedbackInput,
-  requester: { name: string; userId: string },
+  requester: { name: string; email: string | null; userId: string },
   env: RelayEnv = process.env as RelayEnv,
   fetchImpl: typeof fetch = fetch,
 ): Promise<RelayResult> {
@@ -63,7 +63,7 @@ export async function relayFeedback(
     description: input.description,
     requester: {
       name: requester.name,
-      contact: null,
+      contact: requester.email,
       external_id: requester.userId,
     },
     source: {

@@ -76,19 +76,16 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           {children}
         </main>
         <footer className="mt-16 border-t border-border">
-          <div className="mx-auto flex max-w-[1120px] flex-wrap items-center gap-x-2 gap-y-1 px-4 py-5 text-sm text-muted sm:px-6">
+          <div className="mx-auto flex max-w-[1120px] flex-wrap items-center gap-x-2 gap-y-1 px-4 pt-5 pb-20 text-sm text-muted sm:px-6">
             <span>Industry Intel</span>
             {shell ? (
-              <>
-                <Link href="/activity" className="text-muted underline hover:text-fg">
-                  Recent changes
-                </Link>
-                <span aria-hidden="true">·</span>
-                <FeedbackButton />
-              </>
+              <Link href="/activity" className="text-muted underline hover:text-fg">
+                Recent changes
+              </Link>
             ) : null}
           </div>
         </footer>
+        {shell ? <FeedbackButton /> : null}
       </body>
     </html>
   );

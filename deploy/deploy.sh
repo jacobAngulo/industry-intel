@@ -6,10 +6,10 @@ cd "$(dirname "$0")/.."
 
 SLUG=industry-intel
 PORT=8070
-HEALTH="http://127.0.0.1:${PORT}/industry-intel/api/health"
+HEALTH="http://127.0.0.1:${PORT}/api/health"
 
 npm ci --no-audit --no-fund
-BASE_PATH=/industry-intel npm run build
+npm run build
 
 install -m 0644 deploy/${SLUG}.service /etc/systemd/system/${SLUG}.service
 systemctl daemon-reload

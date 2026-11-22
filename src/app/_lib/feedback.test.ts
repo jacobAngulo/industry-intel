@@ -31,7 +31,7 @@ describe("feedbackSchema", () => {
 });
 
 describe("relayFeedback", () => {
-  const requester = { name: "Ada", clientId: "client-1" };
+  const requester = { name: "Ada", userId: "client-1" };
 
   it("answers not_configured without a token and sends nothing", async () => {
     const calls: { url: string; init: RequestInit }[] = [];

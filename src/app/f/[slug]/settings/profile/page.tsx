@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { getActor } from "@/app/_lib/identity";
+import { requireUser } from "@/app/_lib/identity";
 import { FeedProfileForm } from "@/components/settings/FeedProfileForm";
 import { GroupHeader } from "@/components/settings/GroupHeader";
 import { RejudgeProgressLine } from "@/components/settings/RejudgeProgressLine";
@@ -20,7 +20,7 @@ export default async function FeedProfileSettingsPage({ params }: PageProps<"/f/
   const { slug } = await params;
   const feed = await getFeedBySlug(slug);
   if (!feed || feed.archived) notFound();
-  const [profile, actor, progress] = await Promise.all([getTeamProfile(), getActor(), rejudgeProgress(feed.id)]);
+  const [profile, , progress] = await Promise.all([getTeamProfile(), requireUser(), rejudgeProgress(feed.id)]);
   const progressOpen = progress?.status === "queued" || progress?.status === "running";
 
   return (
@@ -38,7 +38,6 @@ export default async function FeedProfileSettingsPage({ params }: PageProps<"/f/
         <FeedProfileForm
           feedId={feed.id}
           initial={{ name: feed.name, purpose: feed.purpose, projectContext: feed.projectContext }}
-          name={actor.name}
         />
       </SettingsSection>
       <SettingsSection
@@ -52,7 +51,7 @@ export default async function FeedProfileSettingsPage({ params }: PageProps<"/f/
           </>
         }
       >
-        <TeamProfileForm profile={profile} name={actor.name} />
+        <TeamProfileForm profile={profile} />
       </SettingsSection>
       {progress && !progressOpen ? (
         <div className="border-t border-border pt-4">

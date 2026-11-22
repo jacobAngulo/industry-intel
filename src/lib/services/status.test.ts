@@ -294,7 +294,7 @@ describe("retryFailedItems", () => {
     makeItem({ sourceId: source.id, judgeStatus: "failed" });
     const skipped = makeItem({ sourceId: source.id, judgeStatus: "skipped", skipReason: "too_old" });
 
-    expect(await retryFailedItems({ name: "Dana", clientId: "c1" })).toBe(2);
+    expect(await retryFailedItems({ name: "Dana", userId: "c1" })).toBe(2);
     const row = getSqlite()
       .prepare("SELECT judge_status AS s, judge_attempts AS a, judge_error AS e, next_judge_at AS n FROM items WHERE id = ?")
       .get(failed.id);
@@ -302,11 +302,7 @@ describe("retryFailedItems", () => {
     expect((getSqlite().prepare("SELECT judge_status AS s FROM items WHERE id = ?").get(skipped.id) as { s: string }).s).toBe("skipped");
     const activity = getSqlite().prepare("SELECT actor, action FROM activity").all();
     expect(activity).toEqual([{ actor: "Dana", action: "retry_failed_items" }]);
-    expect(await retryFailedItems({ name: "Dana", clientId: "c1" })).toBe(0);
+    expect(await retryFailedItems({ name: "Dana", userId: "c1" })).toBe(0);
   });
 
-  it("needs a display name", async () => {
-    await expect(retryFailedItems({ name: "", clientId: "c1" })).rejects.toMatchObject({ code: "needs_name" });
-    await expect(retryFailedItems({ name: "Someone", clientId: "c1" })).rejects.toMatchObject({ code: "needs_name" });
-  });
 });

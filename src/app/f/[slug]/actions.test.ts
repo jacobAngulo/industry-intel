@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { ServiceError } from "@/lib/services";
 
 const revalidatePath = vi.fn();
-const requireActor = vi.fn();
+const getUser = vi.fn();
 const getFeedBySlug = vi.fn();
 const vote = vi.fn();
 const requestAnalysis = vi.fn();
@@ -12,7 +12,7 @@ const listSuggestions = vi.fn();
 const createFromWizard = vi.fn();
 
 vi.mock("next/cache", () => ({ revalidatePath: (...args: unknown[]) => revalidatePath(...args) }));
-vi.mock("@/app/_lib/identity", () => ({ requireActor: (needsName: boolean) => requireActor(needsName) }));
+vi.mock("@/app/_lib/identity", () => ({ getUser: () => getUser() }));
 vi.mock("@/lib/services", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/services")>()),
   getFeedBySlug: (...args: unknown[]) => getFeedBySlug(...args),
@@ -29,10 +29,10 @@ const feed = { id: 1, slug: "agentic-development", archived: false };
 const votes = { useful: 1, too_basic: 0, off_topic: 0, already_knew: 0 };
 
 beforeEach(() => {
-  for (const fn of [revalidatePath, requireActor, getFeedBySlug, vote, requestAnalysis, flagNoisy, listSuggestions, createFromWizard]) {
+  for (const fn of [revalidatePath, getUser, getFeedBySlug, vote, requestAnalysis, flagNoisy, listSuggestions, createFromWizard]) {
     fn.mockReset();
   }
-  requireActor.mockResolvedValue({ name: "Ana", clientId: "c1" });
+  getUser.mockResolvedValue({ id: "c1", name: "Ana" });
   getFeedBySlug.mockResolvedValue(feed);
 });
 
@@ -41,8 +41,7 @@ describe("voteAction", () => {
     vote.mockResolvedValue({ votes, myVote: "useful" });
     const result = await voteAction({ feedSlug: "agentic-development", storyId: 3, reason: "useful", from: "list" });
     expect(result).toEqual({ ok: true, data: { votes, myVote: "useful" } });
-    expect(requireActor).toHaveBeenCalledWith(false);
-    expect(vote).toHaveBeenCalledWith(1, 3, "useful", { name: "Ana", clientId: "c1" });
+    expect(vote).toHaveBeenCalledWith(1, 3, "useful", { name: "Ana", userId: "c1" });
     expect(revalidatePath).not.toHaveBeenCalled();
   });
 
@@ -74,11 +73,11 @@ describe("voteAction", () => {
 });
 
 describe("actions that need a name", () => {
-  it("answers needs_name with no display name", async () => {
-    requireActor.mockResolvedValue(null);
-    expect(await requestAnalysisAction({ feedSlug: "a", storyId: 1 })).toMatchObject({ ok: false, code: "needs_name" });
-    expect(await flagSourceAction({ feedSlug: "a", storyId: 1, sourceId: 2 })).toMatchObject({ ok: false, code: "needs_name" });
-    expect(await addSuggestionAction({ feedSlug: "a", name: "X" })).toMatchObject({ ok: false, code: "needs_name" });
+  it("answers unauthenticated with no session", async () => {
+    getUser.mockResolvedValue(null);
+    expect(await requestAnalysisAction({ feedSlug: "a", storyId: 1 })).toMatchObject({ ok: false, code: "unauthenticated" });
+    expect(await flagSourceAction({ feedSlug: "a", storyId: 1, sourceId: 2 })).toMatchObject({ ok: false, code: "unauthenticated" });
+    expect(await addSuggestionAction({ feedSlug: "a", name: "X" })).toMatchObject({ ok: false, code: "unauthenticated" });
     expect(requestAnalysis).not.toHaveBeenCalled();
     expect(flagNoisy).not.toHaveBeenCalled();
     expect(createFromWizard).not.toHaveBeenCalled();
@@ -97,7 +96,7 @@ describe("actions that need a name", () => {
     flagNoisy.mockResolvedValue(undefined);
     const result = await flagSourceAction({ feedSlug: "agentic-development", storyId: 4, sourceId: 2, note: " loud " });
     expect(result.ok).toBe(true);
-    expect(flagNoisy).toHaveBeenCalledWith(2, "loud", { name: "Ana", clientId: "c1" });
+    expect(flagNoisy).toHaveBeenCalledWith(2, "loud", { name: "Ana", userId: "c1" });
   });
 });
 
@@ -129,7 +128,7 @@ describe("addSuggestionAction", () => {
           owner: "Ana",
         },
       },
-      { name: "Ana", clientId: "c1" },
+      { name: "Ana", userId: "c1" },
     );
     expect(revalidatePath).toHaveBeenCalledWith("/f/agentic-development");
   });

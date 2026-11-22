@@ -1,11 +1,13 @@
 import { redirect } from "next/navigation";
 
+import { requireUser } from "@/app/_lib/identity";
 import { EmptyState, LinkButton, PageContainer } from "@/components/ui";
 import { listFeeds } from "@/lib/services";
 
 // `/` (specification §3): redirect to the first active feed. With no feed, a
 // page with the action "Create the first feed".
 export default async function HomePage() {
+  await requireUser();
   const feeds = await listFeeds();
   const first = feeds
     .filter((f) => !f.archived)

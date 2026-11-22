@@ -46,7 +46,7 @@ function storyPath(slug: string, storyId: number): string {
 }
 
 /**
- * Sets, changes, or removes the vote of this browser (no name needed).
+ * Sets, changes, or removes the vote of this person.
  * From the story page the page is revalidated (the judgement can change).
  * From the feed lists nothing is revalidated: the buttons show the result,
  * and a card hidden by the vote keeps its line "Hidden for you. Undo" until
@@ -59,7 +59,7 @@ export async function voteAction(
   const parsed = parseInput(voteInputSchema, input);
   if (!parsed.ok) return parsed;
   const { feedSlug, storyId, reason, from } = parsed.data;
-  return withActor({ needsName: false }, async (actor) => {
+  return withActor(async (actor) => {
     const feed = await activeFeed(feedSlug);
     if (!feed) return fail(FEED_GONE, "not_found");
     try {
@@ -72,12 +72,12 @@ export async function voteAction(
   });
 }
 
-/** Queues the deeper analysis ("Write the deeper analysis", "Write again", "Try again"). Needs a name. */
+/** Queues the deeper analysis ("Write the deeper analysis", "Write again", "Try again"). */
 export async function requestAnalysisAction(input: AnalysisInput): Promise<ActionResult<{ status: string }>> {
   const parsed = parseInput(analysisInputSchema, input);
   if (!parsed.ok) return parsed;
   const { feedSlug, storyId } = parsed.data;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const feed = await activeFeed(feedSlug);
     if (!feed) return fail(FEED_GONE, "not_found");
     try {
@@ -91,12 +91,12 @@ export async function requestAnalysisAction(input: AnalysisInput): Promise<Actio
   });
 }
 
-/** "Flag source as noisy" with an optional note. Needs a name. */
+/** "Flag source as noisy" with an optional note. */
 export async function flagSourceAction(input: FlagSourceInput): Promise<ActionResult<null>> {
   const parsed = parseInput(flagSourceInputSchema, input);
   if (!parsed.ok) return parsed;
   const { feedSlug, storyId, sourceId, note } = parsed.data;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     try {
       await flagNoisy(sourceId, note, actor);
     } catch (error) {
@@ -120,7 +120,7 @@ export async function addSuggestionAction(
   const parsed = parseInput(addSuggestionInputSchema, input);
   if (!parsed.ok) return parsed;
   const { feedSlug, name } = parsed.data;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const feed = await activeFeed(feedSlug);
     if (!feed) return fail(FEED_GONE, "not_found");
     const suggestion = (await listSuggestions(feed.slug)).find((s) => s.name === name);

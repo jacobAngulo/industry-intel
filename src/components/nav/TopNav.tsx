@@ -6,14 +6,14 @@ import { SiteLinks } from "./SiteLinks";
 export interface TopNavProps {
   /** Active feeds in `position` order. */
   feeds: FeedTab[];
-  /** The display name of this browser, or null. */
-  name: string | null;
+  /** The name of the signed-in person. */
+  name: string;
 }
 
 /**
  * The top navigation of every page (§3): the product name, the feed tabs,
- * "+ New feed", and on the right Sources, Settings, Status, and the display
- * name. Wide screens: one row. Phone width: the name and a menu on the first
+ * "+ New feed", and on the right Sources, Settings, Status, and the signed-in
+ * person. Wide screens: one row. Phone width: the name and a menu on the first
  * row, the feed tabs (scrolling sideways) on the second row.
  */
 export function TopNav({ feeds, name }: TopNavProps) {

@@ -16,13 +16,11 @@ export function StoryItems({
   feedSlug,
   storyId,
   now,
-  name,
 }: {
   items: StoryItemRow[];
   feedSlug: string;
   storyId: number;
   now: number;
-  name: string | null;
 }) {
   if (items.length === 0) {
     return <p className="text-muted">The items of this story are gone (their source was deleted).</p>;
@@ -69,7 +67,7 @@ export function StoryItems({
               storyId={storyId}
               sourceId={item.sourceId}
               sourceName={item.sourceName}
-              name={name}
+             
             />
           </li>
         );

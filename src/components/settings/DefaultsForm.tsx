@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import { saveDefaultsAction } from "@/app/settings/actions";
-import { useNameGate } from "@/components/NameGate";
 import { Field, Input, Select, fieldDescribedBy } from "@/components/ui";
 import {
   SUMMARY_LENGTHS,
@@ -46,15 +45,13 @@ export interface DefaultsFormProps {
   initial: Defaults;
   /** IANA zones, the current default first. */
   timeZones: string[];
-  name: string | null;
 }
 
 /**
  * §4.9 Defaults: the brief format defaults (every feed that follows the shared
  * default), the default exclusions of a new feed, and the values that a new feed starts from.
  */
-export function DefaultsForm({ initial, timeZones, name }: DefaultsFormProps) {
-  const { ensureName, dialog } = useNameGate(name);
+export function DefaultsForm({ initial, timeZones }: DefaultsFormProps) {
   const [saved, setSaved] = useState<Defaults>(initial);
   const [brief, setBrief] = useState<BriefFormat>(initial.briefDefaults);
   const [exclusions, setExclusions] = useState<string[]>(initial.defaultExclusions);
@@ -66,9 +63,9 @@ export function DefaultsForm({ initial, timeZones, name }: DefaultsFormProps) {
   const [alerts, setAlerts] = useState<AlertDraft>(alertsToDraft(fd.alerts));
 
   const saves: Record<Section, SaveHandle<unknown, null>> = {
-    brief: useSave(saveDefaultsAction, ensureName),
-    exclusions: useSave(saveDefaultsAction, ensureName),
-    feed: useSave(saveDefaultsAction, ensureName),
+    brief: useSave(saveDefaultsAction),
+    exclusions: useSave(saveDefaultsAction),
+    feed: useSave(saveDefaultsAction),
   };
 
   const submit = (section: Section, patch: Partial<Defaults>) => {
@@ -262,7 +259,6 @@ export function DefaultsForm({ initial, timeZones, name }: DefaultsFormProps) {
         </fieldset>
         <SaveRow pending={saves.feed.pending} savedAt={saves.feed.savedAt} error={saves.feed.failure?.message} />
       </form>
-      {dialog}
     </div>
   );
 }

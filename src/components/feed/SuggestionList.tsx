@@ -3,7 +3,6 @@
 import { useState, useTransition } from "react";
 
 import { addSuggestionAction } from "@/app/f/[slug]/actions";
-import { useNameGate } from "@/components/NameGate";
 import { Button, SourceTypeIcon } from "@/components/ui";
 import { SOURCE_TYPE_LABELS, type SourceType } from "@/lib/types";
 
@@ -15,18 +14,15 @@ export interface SuggestionRow {
 
 /**
  * The starter suggestions of §12 for this feed, each with "Add" (the empty
- * state "no sources"). Adding needs a display name: the name dialog opens first.
+ * state "no sources").
  */
 export function SuggestionList({
   feedSlug,
   suggestions,
-  name,
 }: {
   feedSlug: string;
   suggestions: SuggestionRow[];
-  name: string | null;
 }) {
-  const { ensureName, dialog } = useNameGate(name);
   const [pendingName, setPendingName] = useState<string | null>(null);
   const [added, setAdded] = useState<string[]>([]);
   const [message, setMessage] = useState<{ tone: "ok" | "error"; text: string } | null>(null);
@@ -35,7 +31,6 @@ export function SuggestionList({
   const add = async (suggestion: SuggestionRow) => {
     if (pendingName) return;
     setMessage(null);
-    if (!(await ensureName())) return;
     setPendingName(suggestion.name);
     startTransition(async () => {
       try {
@@ -98,7 +93,6 @@ export function SuggestionList({
       >
         {message?.text}
       </p>
-      {dialog}
     </div>
   );
 }

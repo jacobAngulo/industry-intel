@@ -7,7 +7,7 @@ import { checkNowAction, setPausedAction } from "@/app/sources/actions";
 import { Button } from "@/components/ui";
 
 import { DeleteSourceButton } from "./DeleteSourceButton";
-import { useGatedAction } from "./use-gated-action";
+import { useAction } from "./use-action";
 
 export interface SourceHeaderActionsProps {
   sourceId: number;
@@ -17,7 +17,6 @@ export interface SourceHeaderActionsProps {
   /** All items of the source and the stories that only it has (for the delete dialog). */
   itemCount: number;
   soleStoryCount: number;
-  name: string | null;
 }
 
 /** Check now, Pause / Resume, and Delete (§4.6). */
@@ -28,12 +27,11 @@ export function SourceHeaderActions({
   checkRequested,
   itemCount,
   soleStoryCount,
-  name,
 }: SourceHeaderActionsProps) {
   const router = useRouter();
   const [message, setMessage] = useState<{ text: string; error: boolean } | null>(null);
-  const check = useGatedAction(name);
-  const pause = useGatedAction(name);
+  const check = useAction();
+  const pause = useAction();
 
   return (
     <div className="flex flex-col items-start gap-2 sm:items-end">
@@ -74,7 +72,7 @@ export function SourceHeaderActions({
         <DeleteSourceButton
           sourceId={sourceId}
           sourceName={sourceName}
-          name={name}
+         
           itemCount={itemCount}
           soleStoryCount={soleStoryCount}
           redirectTo="/sources"
@@ -83,8 +81,6 @@ export function SourceHeaderActions({
       <p role="status" aria-live="polite" className={message?.error ? "text-sm text-alert" : "text-sm text-muted"}>
         {message?.text ?? ""}
       </p>
-      {check.dialog}
-      {pause.dialog}
     </div>
   );
 }

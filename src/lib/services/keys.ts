@@ -10,7 +10,7 @@ import { STORED_KEY_NAMES, STORED_KEYS_SETTING, readStoredKeys, type StoredKeyNa
 import { clearLlmPause } from "@/lib/pipeline/jobs";
 
 import { inImmediate, writeSetting } from "./_manage-db";
-import { parseOrThrow, requireName } from "./_manage-errors";
+import { parseOrThrow } from "./_manage-errors";
 import { logActivity } from "./activity";
 import type { Actor } from "./types";
 
@@ -90,13 +90,11 @@ function writeKey(name: StoredKeyName, value: string | null, actor: Actor): void
 }
 
 export async function saveStoredKey(input: { name: StoredKeyName; value: string }, actor: Actor): Promise<void> {
-  requireName(actor);
   const data = parseOrThrow(z.object({ name: storedKeyNameSchema, value: storedKeyValueSchema }), input);
   writeKey(data.name, data.value, actor);
 }
 
 export async function removeStoredKey(input: { name: StoredKeyName }, actor: Actor): Promise<void> {
-  requireName(actor);
   const data = parseOrThrow(z.object({ name: storedKeyNameSchema }), input);
   writeKey(data.name, null, actor);
 }

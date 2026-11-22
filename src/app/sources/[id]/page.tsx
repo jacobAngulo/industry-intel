@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
-import { getActor } from "@/app/_lib/identity";
+import { requireUser } from "@/app/_lib/identity";
 import { AutoRefresh } from "@/components/AutoRefresh";
 import { FeedLinkRow } from "@/components/sources/FeedLinkRow";
 import { FlagsPanel } from "@/components/sources/FlagsPanel";
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function SourcePage({ params }: { params: Params }) {
   const id = parseId((await params).id);
   if (id === null) notFound();
-  const [source, actor] = await Promise.all([getSource(id), getActor()]);
+  const [source] = await Promise.all([getSource(id), requireUser()]);
   if (!source) notFound();
   const now = nowMs();
   const waiting = source.checkRequested || source.status === "waiting";
@@ -90,7 +90,6 @@ export default async function SourcePage({ params }: { params: Params }) {
             checkRequested={source.checkRequested}
             itemCount={source.itemCount}
             soleStoryCount={source.soleStoryCount}
-            name={actor.name}
           />
         }
       />
@@ -144,7 +143,6 @@ export default async function SourcePage({ params }: { params: Params }) {
             sourceId={source.id}
             initial={{ name: source.name, why: source.why, owner: source.owner, checkIntervalMinutes: source.checkIntervalMinutes }}
             typeDefaultInterval={SOURCE_TYPE_DEFAULTS[source.type].intervalMinutes}
-            name={actor.name}
           />
         </Section>
 
@@ -158,7 +156,6 @@ export default async function SourcePage({ params }: { params: Params }) {
             type={source.type}
             config={source.config}
             identityFields={IDENTITY_FIELDS[source.type]}
-            name={actor.name}
           />
         </Section>
 
@@ -170,7 +167,7 @@ export default async function SourcePage({ params }: { params: Params }) {
           ) : (
             <div className="flex flex-col divide-y divide-border">
               {source.feedLinks.map((link) => (
-                <FeedLinkRow key={link.feedId} sourceId={source.id} feed={link} name={actor.name} />
+                <FeedLinkRow key={link.feedId} sourceId={source.id} feed={link} />
               ))}
             </div>
           )}
@@ -187,7 +184,7 @@ export default async function SourcePage({ params }: { params: Params }) {
         <Section title="Noisy flags" id="flags" description="Anyone can flag a source as noisy. The owner can then narrow its filters or pause it.">
           <Flags flags={source.flags} now={now} />
           <div className="mt-4">
-            <FlagsPanel sourceId={source.id} openFlags={source.openFlags} name={actor.name} />
+            <FlagsPanel sourceId={source.id} openFlags={source.openFlags} />
           </div>
         </Section>
 

@@ -6,23 +6,22 @@ import { useId, useState } from "react";
 import { flagNoisyAction, resolveFlagsAction } from "@/app/sources/actions";
 import { Banner, Button, Field, Input, fieldDescribedBy } from "@/components/ui";
 
-import { useGatedAction } from "./use-gated-action";
+import { useAction } from "./use-action";
 
 export interface FlagsPanelProps {
   sourceId: number;
   openFlags: number;
-  name: string | null;
 }
 
 /** "Flag as noisy" (optional note) and "Resolve flags" (§4.6). */
-export function FlagsPanel({ sourceId, openFlags, name }: FlagsPanelProps) {
+export function FlagsPanel({ sourceId, openFlags }: FlagsPanelProps) {
   const id = useId();
   const router = useRouter();
   const [note, setNote] = useState("");
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const flag = useGatedAction(name);
-  const resolve = useGatedAction(name);
+  const flag = useAction();
+  const resolve = useAction();
 
   const done = (text: string) => {
     setError(null);
@@ -97,8 +96,6 @@ export function FlagsPanel({ sourceId, openFlags, name }: FlagsPanelProps) {
           <Banner tone="alert">{error}</Banner>
         </div>
       ) : null}
-      {flag.dialog}
-      {resolve.dialog}
     </div>
   );
 }

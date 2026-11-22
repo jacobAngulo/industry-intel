@@ -844,6 +844,16 @@ const sourceDef = (key: SourceKey) => SOURCES.find((source) => source.key === ke
 const feedDef = (key: FeedKey) => FEEDS.find((feed) => feed.key === key)!;
 let usedRealRank = false;
 
+/** The demo account that votes as number `n`. */
+function demoUser(n: number): string {
+  const id = `demo-user-${n}`;
+  db.insert(schema.users)
+    .values({ id, email: `${id}@example.com`, name: ["Dana", "Sam", "Priya", "Lee"][(n - 1) % 4]!, createdAt: now, lastSignInAt: now })
+    .onConflictDoNothing()
+    .run();
+  return id;
+}
+
 sqlite
   .transaction(() => {
     // Settings (the same keys as the seed of the first run).
@@ -1174,8 +1184,7 @@ sqlite
                 feedId,
                 storyId: storyRow.id,
                 reason,
-                clientId: `demo-client-${voter}`,
-                createdBy: ["Dana", "Sam", "Priya", "Someone"][(voter - 1) % 4]!,
+                userId: demoUser(voter),
                 createdAt: judgedAt + voter * HOUR,
               })
               .run();

@@ -199,16 +199,6 @@ export interface CreateStep {
   queuedStories: number;
 }
 
-/**
- * The owner to send at "Add source" (§4.7: the owner is prefilled with the
- * display name). When the person did not edit the Owner field and it is
- * empty, the name that the name gate saved just before is the owner.
- */
-export function ownerForCreate(owner: string, touched: boolean, name: string | null): string {
-  if (!touched && !owner.trim() && name) return name;
-  return owner;
-}
-
 /** The stored model check of the preview step. */
 export interface QualifyState {
   key: string;

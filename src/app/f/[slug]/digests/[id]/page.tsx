@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+import { requireUser } from "@/app/_lib/identity";
 import { cache } from "react";
 
 import { formatPeriod } from "@/components/feed/digest-format";
@@ -26,6 +28,7 @@ export async function generateMetadata({ params }: PageProps<"/f/[slug]/digests/
 
 /** One digest (§4.4): a snapshot of the top stories of one period, as compact briefs in rank order. */
 export default async function DigestPage({ params }: PageProps<"/f/[slug]/digests/[id]">) {
+  await requireUser();
   const { slug, id } = await params;
   const loaded = await loadDigest(slug, id);
   if (!loaded) notFound();

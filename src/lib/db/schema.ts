@@ -47,6 +47,43 @@ import type {
 const id = () => integer("id").primaryKey({ autoIncrement: true });
 
 // ---------------------------------------------------------------------------
+// People and access (specification §15)
+// Ops Console reads both tables (deploy/manifest.toml, [product_ops]), so the
+// SQL names `user` and `access_request` are a contract.
+
+/** One Google account. `id` is the Google subject: it stays the same when the email changes. */
+export const users = sqliteTable("user", {
+  id: text("id").primaryKey(),
+  email: text("email").notNull(),
+  name: text("name").notNull(),
+  image: text("image"),
+  createdAt: integer("created_at").notNull(),
+  lastSignInAt: integer("last_sign_in_at").notNull(),
+});
+
+/** One row for each account that asked for access. A new request after a denial updates the row. */
+export const accessRequests = sqliteTable(
+  "access_request",
+  {
+    id: text("id").primaryKey(),
+    userId: text("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    email: text("email").notNull(),
+    note: text("note"),
+    status: text("status", { enum: ["pending", "approved", "denied"] }).notNull().default("pending"),
+    decidedAt: integer("decided_at"),
+    // Free text: the operator who decides has no row in `user`.
+    decidedBy: text("decided_by"),
+    createdAt: integer("created_at").notNull(),
+  },
+  (t) => [
+    uniqueIndex("access_request_user_unique").on(t.userId),
+    index("access_request_status_idx").on(t.status, t.createdAt),
+  ],
+);
+
+// ---------------------------------------------------------------------------
 // Shared settings and topics
 // ---------------------------------------------------------------------------
 
@@ -343,12 +380,13 @@ export const feedback = sqliteTable(
       .notNull()
       .references(() => stories.id, { onDelete: "cascade" }),
     reason: text("reason").$type<FeedbackReason>().notNull(),
-    clientId: text("client_id").notNull(),
-    createdBy: text("created_by").notNull().default(""),
+    userId: text("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
     createdAt: integer("created_at").notNull(),
   },
   (t) => [
-    uniqueIndex("feedback_feed_story_client_unique").on(t.feedId, t.storyId, t.clientId),
+    uniqueIndex("feedback_feed_story_user_unique").on(t.feedId, t.storyId, t.userId),
     index("feedback_story_idx").on(t.storyId),
     index("feedback_feed_created_idx").on(t.feedId, t.createdAt),
   ],

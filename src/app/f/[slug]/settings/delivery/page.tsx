@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getActor } from "@/app/_lib/identity";
+import { requireUser } from "@/app/_lib/identity";
 import { DeliveryForm } from "@/components/settings/DeliveryForm";
 import { GroupHeader } from "@/components/settings/GroupHeader";
 import { supportedTimeZones, timeZoneOptions } from "@/components/settings/helpers";
@@ -17,7 +17,7 @@ export default async function FeedDeliverySettingsPage({ params }: PageProps<"/f
   const { slug } = await params;
   const feed = await getFeedBySlug(slug);
   if (!feed || feed.archived) notFound();
-  const [defaults, actor] = await Promise.all([getDefaults(), getActor()]);
+  const [defaults] = await Promise.all([getDefaults(), requireUser()]);
 
   return (
     <section aria-labelledby="settings-group-title" className="flex flex-col gap-8">
@@ -31,7 +31,6 @@ export default async function FeedDeliverySettingsPage({ params }: PageProps<"/f
         initial={{ briefFormat: feed.briefFormat, digest: feed.digest, quietHours: feed.quietHours, alerts: feed.alerts }}
         briefDefaults={defaults.briefDefaults}
         timeZones={timeZoneOptions(feed.digest.timeZone, supportedTimeZones())}
-        name={actor.name}
       />
     </section>
   );

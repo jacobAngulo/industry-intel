@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-import { NameGate } from "@/components/NameGate";
 import {
   Button,
   ChipToggle,
@@ -120,27 +119,5 @@ export function FormStatusDemo() {
       </SubmitButton>
       {result ? <p className="text-sm text-muted sm:self-center">{result}</p> : null}
     </form>
-  );
-}
-
-export function NameGateDemo({ name }: { name: string | null }) {
-  const [ran, setRan] = useState(0);
-  return (
-    <div className="flex flex-col gap-3">
-      <p className="text-sm text-muted">
-        Current name: {name ?? "not set"}. With no name, the button opens the name dialog first (the save is real: it sets
-        the cookie ii_name), then the action runs.
-      </p>
-      <NameGate name={name}>
-        <Button variant="primary" icon="flag" onClick={() => setRan((n) => n + 1)}>
-          Flag source as noisy
-        </Button>
-      </NameGate>
-      {ran > 0 ? (
-        <p role="status" className="text-sm text-success">
-          The wrapped action ran {ran} {ran === 1 ? "time" : "times"} (sample: nothing is stored).
-        </p>
-      ) : null}
-    </div>
   );
 }

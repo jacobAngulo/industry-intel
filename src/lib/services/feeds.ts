@@ -20,7 +20,7 @@ import {
   requireFeed,
   uniqueSlug,
 } from "./_manage-db";
-import { notFound, parseOrThrow, requireName, ServiceError } from "./_manage-errors";
+import { notFound, parseOrThrow, ServiceError } from "./_manage-errors";
 import { toSourceRows } from "./_manage-source-rows";
 import { logActivity } from "./activity";
 import type { Actor, FeedDeliveryPatch, FeedDetail, FeedInterestsPatch, FeedSummary, SourceRow } from "./types";
@@ -152,7 +152,6 @@ const createFeedSchema = z.object({ name: nameSchema, purpose: oneLineSchema });
 
 /** A new feed starts from the shared feed_defaults and default_exclusions (§4.9, §12). */
 export async function createFeed(input: { name: string; purpose: string }, actor: Actor): Promise<FeedDetail> {
-  requireName(actor);
   const data = parseOrThrow(createFeedSchema, input);
   const id = inImmediate(() => {
     if (countRows("feeds") >= LIMITS.maxFeeds) {
@@ -198,7 +197,6 @@ export async function updateFeedProfile(
   input: { name: string; purpose: string; projectContext: string },
   actor: Actor,
 ): Promise<void> {
-  requireName(actor);
   const data = parseOrThrow(profileSchema, input);
   inImmediate(() => {
     requireFeed(feedId);
@@ -256,7 +254,6 @@ const sameJson = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON
  * changes nothing writes nothing.
  */
 export async function updateFeedInterests(feedId: number, input: FeedInterestsPatch, actor: Actor): Promise<void> {
-  requireName(actor);
   const data = parseOrThrow(interestsSchema, input);
   inImmediate(() => {
     const feed = requireFeed(feedId);
@@ -345,7 +342,6 @@ const deliverySchema = z
  * the last 30 days is recomputed.
  */
 export async function updateFeedDelivery(feedId: number, input: FeedDeliveryPatch, actor: Actor): Promise<void> {
-  requireName(actor);
   const data = parseOrThrow(deliverySchema, input);
   inImmediate(() => {
     const feed = requireFeed(feedId);
@@ -375,7 +371,6 @@ export async function updateFeedDelivery(feedId: number, input: FeedDeliveryPatc
 }
 
 export async function archiveFeed(feedId: number, actor: Actor): Promise<void> {
-  requireName(actor);
   inImmediate(() => {
     const feed = requireFeed(feedId);
     if (feed.archivedAt !== null) return;
@@ -385,7 +380,6 @@ export async function archiveFeed(feedId: number, actor: Actor): Promise<void> {
 }
 
 export async function restoreFeed(feedId: number, actor: Actor): Promise<void> {
-  requireName(actor);
   inImmediate(() => {
     const feed = requireFeed(feedId);
     if (feed.archivedAt === null) return;
@@ -396,7 +390,6 @@ export async function restoreFeed(feedId: number, actor: Actor): Promise<void> {
 
 /** Only an archived feed can be deleted (§4.9). Its rows go by cascade. */
 export async function deleteFeed(feedId: number, actor: Actor): Promise<void> {
-  requireName(actor);
   inImmediate(() => {
     const feed = requireFeed(feedId);
     if (feed.archivedAt === null) {
@@ -429,7 +422,6 @@ export async function setFeedSource(
   input: { included: boolean; priority?: Priority; follow?: string; ignore?: string },
   actor: Actor,
 ): Promise<{ queuedStories: number }> {
-  requireName(actor);
   const data = parseOrThrow(feedSourceSchema, input);
   return inImmediate(() => {
     const feed = requireFeed(feedId);

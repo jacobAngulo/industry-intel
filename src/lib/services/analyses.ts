@@ -9,7 +9,7 @@
 import { getSqlite } from "@/lib/db/client";
 import { nowMs } from "@/lib/time";
 
-import { ServiceError, hasJudgement, loadFeedFacts, readAnalysisView, requireName } from "./_read-shared";
+import { ServiceError, hasJudgement, loadFeedFacts, readAnalysisView } from "./_read-shared";
 import type { Actor, AnalysisView } from "./types";
 
 // No activity row: the activity log holds changes to sources, feeds, and
@@ -39,9 +39,9 @@ function queueAnalysis(feedId: number, storyId: number, requestedBy: string, now
     .run(requestedBy, now, now, row.id);
 }
 
-/** Queues the analysis of a story in a feed and returns its view. Needs a display name. */
+/** Queues the analysis of a story in a feed and returns its view. */
 export async function requestAnalysis(feedId: number, storyId: number, actor: Actor): Promise<AnalysisView> {
-  const name = requireName(actor);
+  const name = actor.name;
   const feed = loadFeedFacts(feedId);
   if (!feed) throw new ServiceError("not_found", "This feed does not exist.");
 

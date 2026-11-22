@@ -3,7 +3,6 @@ import { describe, expect, it } from "vitest";
 import {
   bestCandidate,
   canReuseQualify,
-  ownerForCreate,
   combinedSourceName,
   commonTypes,
   entriesFromParam,
@@ -145,18 +144,6 @@ describe("combinedSourceName", () => {
     expect(combinedSourceName(["@a"])).toBe("@a");
     expect(combinedSourceName(["@a", "@b"])).toBe("@a, @b");
     expect(combinedSourceName(Array.from({ length: 40 }, (_, i) => `@user${i}`))).toHaveLength(118);
-  });
-});
-
-describe("ownerForCreate", () => {
-  it("uses the name that the gate saved when the person did not edit the owner field", () => {
-    expect(ownerForCreate("", false, "Dana")).toBe("Dana");
-    expect(ownerForCreate("  ", false, "Dana")).toBe("Dana");
-  });
-  it("keeps what the person typed or cleared", () => {
-    expect(ownerForCreate("Ana", false, "Dana")).toBe("Ana");
-    expect(ownerForCreate("", true, "Dana")).toBe("");
-    expect(ownerForCreate("", false, null)).toBe("");
   });
 });
 

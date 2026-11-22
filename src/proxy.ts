@@ -1,40 +1,36 @@
-// The request interceptor of Next.js 16 (the old name was middleware.ts).
-// Identity (specification §15): each browser gets the cookie `ii_client`, a
-// random UUID. It is not security: there is no login.
+// The request interceptor of Next.js 16 (the old name was middleware.ts): one
+// access check in front of everything (specification §15). Server Actions check
+// again (withActor), because a matcher does not protect them by itself.
 import { NextResponse, type NextRequest } from "next/server";
 
-import {
-  CLIENT_COOKIE,
-  CLIENT_HEADER,
-  COOKIE_MAX_AGE_SECONDS,
-  isValidClientId,
-} from "@/app/_lib/identity-constants";
+import { decideAccess } from "@/app/_lib/access-gate";
+import { isAuthConfigured, sessionUserId } from "@/app/_lib/session";
+import { getAccount } from "@/lib/services/users";
 
-export function proxy(request: NextRequest) {
-  const existing = request.cookies.get(CLIENT_COOKIE)?.value;
-  const clientId = isValidClientId(existing) ? existing : crypto.randomUUID();
-
-  // Always overwrite the header, so that a browser cannot send its own value.
-  const headers = new Headers(request.headers);
-  headers.set(CLIENT_HEADER, clientId);
-  const response = NextResponse.next({ request: { headers } });
-
-  if (clientId !== existing) {
-    response.cookies.set({
-      name: CLIENT_COOKIE,
-      value: clientId,
-      httpOnly: true,
-      sameSite: "lax",
-      path: "/",
-      maxAge: COOKIE_MAX_AGE_SECONDS,
-      secure: request.nextUrl.protocol === "https:",
-    });
+export async function proxy(request: NextRequest): Promise<NextResponse> {
+  const { pathname, search } = request.nextUrl;
+  const configured = isAuthConfigured();
+  const userId = configured ? await sessionUserId(request.headers) : null;
+  const decision = decideAccess({
+    path: pathname,
+    search,
+    method: request.method,
+    configured,
+    access: userId ? (getAccount(userId)?.access ?? null) : null,
+  });
+  switch (decision.kind) {
+    case "allow":
+      return NextResponse.next();
+    case "redirect":
+      return NextResponse.redirect(new URL(decision.to, request.url));
+    case "deny":
+      return new NextResponse(decision.status === 503 ? "Sign-in is not configured." : "Sign in to continue.", {
+        status: decision.status,
+      });
   }
-  return response;
 }
 
 export const config = {
-  // Pages and Server Actions. Not the static files, the image optimizer, the
-  // icons, or the API routes (they need no identity).
-  matcher: ["/((?!_next/static|_next/image|api/|favicon.ico|icon|apple-icon|robots.txt|sitemap.xml).*)"],
+  // Everything but the build output. A new path is closed until it is in the public list.
+  matcher: ["/((?!_next/static/|_next/image$|favicon\\.ico$).*)"],
 };

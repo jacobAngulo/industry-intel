@@ -6,7 +6,7 @@
 // ServiceError. Any other error is a bug or an infrastructure failure.
 import type { z } from "zod";
 
-import type { ActionResult, Actor } from "./types";
+import type { ActionResult } from "./types";
 
 export type ServiceErrorCode = NonNullable<Extract<ActionResult, { ok: false }>["code"]>;
 
@@ -62,17 +62,4 @@ export function parseOrThrow<S extends z.ZodType>(schema: S, value: unknown, pre
 
 export function notFound(what: string): ServiceError {
   return new ServiceError("not_found", `${what} does not exist.`);
-}
-
-const ANONYMOUS_NAME = "someone";
-
-/**
- * Every change except a vote needs a display name (§15). The Server Action
- * checks it first; this check keeps the services safe for other callers.
- */
-export function requireName(actor: Actor): void {
-  const name = typeof actor?.name === "string" ? actor.name.trim() : "";
-  if (!name || name.toLowerCase() === ANONYMOUS_NAME) {
-    throw new ServiceError("needs_name", "Set your name first. Your name shows next to the things that you add or change.");
-  }
 }

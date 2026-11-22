@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 
-import { NameDialog } from "@/components/NameGate";
+import { signOutAction } from "@/app/_lib/auth-actions";
 import { Icon, cn, pathMatches } from "@/components/ui";
 
 const LINKS = [
@@ -14,53 +14,30 @@ const LINKS = [
 ] as const;
 
 export interface SiteLinksProps {
-  /** The display name from the server, or null. */
-  name: string | null;
+  /** The name of the signed-in person. */
+  name: string;
   className?: string;
 }
 
-/** The button that shows the display name, or "Set your name". It opens the name dialog. */
-export function NameButton({ name, wide = false }: { name: string | null; wide?: boolean }) {
-  const router = useRouter();
-  const [open, setOpen] = useState(false);
+/** The name of the signed-in person, and the sign-out button. */
+export function UserMenu({ name, wide = false }: { name: string; wide?: boolean }) {
   return (
-    <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className={cn(
-          "inline-flex min-h-10 items-center gap-1.5 rounded-control text-sm hover:bg-surface-2",
-          wide ? "w-full justify-start px-3" : "max-w-[14rem] px-2",
-          name ? "text-fg" : "font-medium text-accent",
-        )}
-      >
-        <Icon name="user" size={15} className="text-muted" />
-        {name ? (
-          <>
-            <span className="sr-only">Your name: </span>
-            <span className="truncate">{name}</span>
-            <span className="sr-only"> (change)</span>
-          </>
-        ) : (
-          "Set your name"
-        )}
+    <form action={signOutAction} className={cn("flex items-center gap-1 text-sm", wide && "justify-between px-3")}>
+      <span className="inline-flex min-w-0 max-w-[10rem] items-center gap-1.5 px-1 text-fg">
+        <Icon name="user" size={15} className="shrink-0 text-muted" />
+        <span className="sr-only">Signed in as </span>
+        <span className="truncate">{name}</span>
+      </span>
+      <button type="submit" className="min-h-10 rounded-control px-2 text-muted hover:bg-surface-2 hover:text-fg">
+        Sign out
       </button>
-      <NameDialog
-        open={open}
-        currentName={name}
-        onSaved={() => {
-          setOpen(false);
-          router.refresh();
-        }}
-        onCancel={() => setOpen(false)}
-      />
-    </>
+    </form>
   );
 }
 
 /**
  * The right side of the top navigation: Sources, Settings, Status, and the
- * display name. At phone width the links fold into a "Menu" (native <details>).
+ * signed-in person. At phone width the links fold into a "Menu" (native <details>).
  */
 export function SiteLinks({ name, className }: SiteLinksProps) {
   const pathname = usePathname() ?? "";
@@ -95,7 +72,7 @@ export function SiteLinks({ name, className }: SiteLinksProps) {
       <nav aria-label="Site" className="hidden items-center gap-1 lg:flex">
         {LINKS.map((l) => link(l.href, l.label, false))}
         <span aria-hidden="true" className="mx-1 h-5 w-px bg-border" />
-        <NameButton name={name} />
+        <UserMenu name={name} />
       </nav>
 
       {/* Phone and tablet: a menu. */}
@@ -118,7 +95,7 @@ export function SiteLinks({ name, className }: SiteLinksProps) {
             {LINKS.map((l) => link(l.href, l.label, true))}
           </nav>
           <div className="mt-1 border-t border-border pt-2">
-            <NameButton name={name} wide />
+            <UserMenu name={name} wide />
           </div>
         </div>
       </details>

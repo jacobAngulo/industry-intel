@@ -32,7 +32,7 @@ import {
 } from "./feeds";
 
 const NOW = 1_800_000_000_000;
-const actor = { name: "Dana", clientId: "c1" };
+const actor = { name: "Dana", userId: "c1" };
 
 let t: InstalledTestDb;
 beforeEach(() => {
@@ -186,12 +186,10 @@ describe("createFeed", () => {
     ]);
   });
 
-  it("validates the input and needs a display name", async () => {
+  it("validates the input", async () => {
     const error = await expectCode(createFeed({ name: "  ", purpose: "" }, actor), "validation");
     expect(error.fieldErrors).toHaveProperty("name");
     await expectCode(createFeed({ name: "A", purpose: "x".repeat(301) }, actor), "validation");
-    await expectCode(createFeed({ name: "A", purpose: "" }, { name: "Someone", clientId: "c" }), "needs_name");
-    await expectCode(createFeed({ name: "A", purpose: "" }, { name: " ", clientId: "c" }), "needs_name");
     expect(t.db.select().from(feeds).all()).toEqual([]);
   });
 

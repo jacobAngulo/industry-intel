@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { z } from "zod";
 
-import type { Actor } from "@/lib/services/types";
+import type { Account } from "@/lib/services/users";
 
-const requireActor = vi.fn<(needsName: boolean) => Promise<Actor | null>>();
-vi.mock("./identity", () => ({ requireActor: (needsName: boolean) => requireActor(needsName) }));
+const getUser = vi.fn<() => Promise<Account | null>>();
+vi.mock("./identity", () => ({ getUser: () => getUser() }));
 
-const { fail, formToObject, isNeedsName, ok, parseForm, parseInput, withActor, zodFieldErrors, VALIDATION_MESSAGE } =
+const { fail, formToObject, ok, parseForm, parseInput, withActor, withAdmin, zodFieldErrors, VALIDATION_MESSAGE } =
   await import("./action-helpers");
 
 describe("ok / fail", () => {
@@ -25,12 +25,6 @@ describe("ok / fail", () => {
       code: "validation",
       fieldErrors: { name: "Too long" },
     });
-  });
-
-  it("isNeedsName detects the needs_name code only", () => {
-    expect(isNeedsName(fail("x", "needs_name"))).toBe(true);
-    expect(isNeedsName(fail("x", "validation"))).toBe(false);
-    expect(isNeedsName(ok(1))).toBe(false);
   });
 });
 
@@ -99,29 +93,30 @@ describe("parseInput / parseForm", () => {
   });
 });
 
-describe("withActor", () => {
-  beforeEach(() => requireActor.mockReset());
+const sam: Account = { id: "g1", email: "sam@example.com", name: "Sam", access: "approved", isAdmin: false };
 
-  it("returns needs_name and does not run fn when a name is needed and absent", async () => {
-    requireActor.mockResolvedValue(null);
+describe("withActor / withAdmin", () => {
+  beforeEach(() => getUser.mockReset());
+
+  it("refuses without a signed-in person and does not run fn", async () => {
+    getUser.mockResolvedValue(null);
     const fn = vi.fn(async () => ok(1));
-    const result = await withActor({ needsName: true }, fn);
-    expect(result.ok).toBe(false);
-    if (!result.ok) expect(result.code).toBe("needs_name");
+    expect(await withActor(fn)).toMatchObject({ ok: false, code: "unauthenticated" });
+    expect(await withAdmin(fn)).toMatchObject({ ok: false, code: "unauthenticated" });
     expect(fn).not.toHaveBeenCalled();
-    expect(requireActor).toHaveBeenCalledWith(true);
   });
 
   it("passes the actor to fn and returns its result", async () => {
-    requireActor.mockResolvedValue({ name: "Sam", clientId: "c1" });
-    const result = await withActor({ needsName: true }, (actor) => ok(actor.name));
-    expect(result).toEqual({ ok: true, data: "Sam" });
+    getUser.mockResolvedValue(sam);
+    expect(await withActor((actor) => ok(actor))).toEqual({ ok: true, data: { userId: "g1", name: "Sam" } });
   });
 
-  it("asks for an anonymous actor when no name is needed (votes)", async () => {
-    requireActor.mockResolvedValue({ name: "Someone", clientId: "c1" });
-    const result = await withActor({ needsName: false }, async (actor) => ok(actor));
-    expect(requireActor).toHaveBeenCalledWith(false);
-    expect(result).toEqual({ ok: true, data: { name: "Someone", clientId: "c1" } });
+  it("withAdmin refuses a person who is not an administrator", async () => {
+    getUser.mockResolvedValue(sam);
+    const fn = vi.fn(async () => ok(1));
+    expect(await withAdmin(fn)).toMatchObject({ ok: false, code: "forbidden" });
+    expect(fn).not.toHaveBeenCalled();
+    getUser.mockResolvedValue({ ...sam, isAdmin: true });
+    expect(await withAdmin(fn)).toEqual({ ok: true, data: 1 });
   });
 });

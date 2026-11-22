@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
 
-import { parseOrThrow, requireName, ServiceError, serviceFailure } from "./_manage-errors";
+import { parseOrThrow, ServiceError, serviceFailure } from "./_manage-errors";
 
 describe("the error pattern of the services", () => {
   it("parseOrThrow gives a validation error with the field errors", () => {
@@ -27,12 +27,5 @@ describe("the error pattern of the services", () => {
     });
     const bug = new Error("bug");
     expect(() => serviceFailure(bug)).toThrow(bug);
-  });
-
-  it("requireName refuses an empty name and the anonymous name", () => {
-    expect(() => requireName({ name: "Dana", clientId: "c" })).not.toThrow();
-    for (const name of ["", "  ", "Someone", "someone "]) {
-      expect(() => requireName({ name, clientId: "c" })).toThrow(ServiceError);
-    }
   });
 });

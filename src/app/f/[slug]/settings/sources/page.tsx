@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getActor } from "@/app/_lib/identity";
+import { requireUser } from "@/app/_lib/identity";
 import { FeedSourcesEditor, type FeedSourceItem } from "@/components/settings/FeedSourcesEditor";
 import { GroupHeader } from "@/components/settings/GroupHeader";
 import { LinkButton } from "@/components/ui";
@@ -17,7 +17,7 @@ export default async function FeedSourcesSettingsPage({ params }: PageProps<"/f/
   const { slug } = await params;
   const feed = await getFeedBySlug(slug);
   if (!feed || feed.archived) notFound();
-  const [rows, actor] = await Promise.all([listFeedSources(feed.id), getActor()]);
+  const [rows] = await Promise.all([listFeedSources(feed.id), requireUser()]);
   const items: FeedSourceItem[] = rows.map((row) => ({
     id: row.source.id,
     type: row.source.type,
@@ -42,7 +42,7 @@ export default async function FeedSourcesSettingsPage({ params }: PageProps<"/f/
           </LinkButton>
         }
       />
-      <FeedSourcesEditor feedId={feed.id} feedName={feed.name} items={items} name={actor.name} addHref={addHref} />
+      <FeedSourcesEditor feedId={feed.id} feedName={feed.name} items={items} addHref={addHref} />
     </section>
   );
 }

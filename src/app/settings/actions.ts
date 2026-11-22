@@ -2,12 +2,12 @@
 
 // Server Actions of the shared settings (specification §4.9) and the re-judge
 // request that every settings page offers (§4.8, §7.6). Each action checks the
-// display name, validates its input with zod, calls one service, and
+// session, validates its input with zod, calls one service, and
 // revalidates the pages. The feed settings import the shared ones from here.
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
-import { ok, parseInput, withActor } from "@/app/_lib/action-helpers";
+import { ok, parseInput, withActor, withAdmin } from "@/app/_lib/action-helpers";
 import { rejudgeEstimates } from "@/components/settings/estimates";
 import type { RejudgeEstimate } from "@/components/settings/helpers";
 import {
@@ -45,7 +45,7 @@ function revalidateAll(): void {
 
 /** Saves the shared feed profile. Returns the re-judge estimate of each active feed. */
 export async function saveTeamProfileAction(input: unknown): Promise<ActionResult<RejudgeEstimate[]>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const parsed = parseInput(teamProfileInput, input);
     if (!parsed.ok) return parsed;
     try {
@@ -60,7 +60,7 @@ export async function saveTeamProfileAction(input: unknown): Promise<ActionResul
 
 /** Asks for a re-judge of the last 7 days for each given feed (optionally one source only). */
 export async function requestRejudgeAction(input: unknown): Promise<ActionResult<{ requested: number }>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const parsed = parseInput(rejudgeInput, input);
     if (!parsed.ok) return parsed;
     const { feedIds, sourceId } = parsed.data;
@@ -88,7 +88,7 @@ const addTopicInput = topicInput.extend({ feedId: idSchema.optional() });
 export async function addTopicAction(
   input: unknown,
 ): Promise<ActionResult<{ topic: TopicRow; estimates: RejudgeEstimate[] }>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const parsed = parseInput(addTopicInput, input);
     if (!parsed.ok) return parsed;
     let topic: TopicRow;
@@ -104,7 +104,7 @@ export async function addTopicAction(
 }
 
 export async function updateTopicAction(input: unknown): Promise<ActionResult<null>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const parsed = parseInput(topicUpdateInput, input);
     if (!parsed.ok) return parsed;
     try {
@@ -118,7 +118,7 @@ export async function updateTopicAction(input: unknown): Promise<ActionResult<nu
 }
 
 export async function archiveTopicAction(input: unknown): Promise<ActionResult<null>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const parsed = parseInput(topicIdInput, input);
     if (!parsed.ok) return parsed;
     try {
@@ -132,7 +132,7 @@ export async function archiveTopicAction(input: unknown): Promise<ActionResult<n
 }
 
 export async function saveDefaultsAction(input: unknown): Promise<ActionResult<null>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const parsed = parseInput(defaultsInput, input);
     if (!parsed.ok) return parsed;
     try {
@@ -146,7 +146,7 @@ export async function saveDefaultsAction(input: unknown): Promise<ActionResult<n
 }
 
 export async function restoreFeedAction(input: unknown): Promise<ActionResult<null>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const parsed = parseInput(feedIdInput, input);
     if (!parsed.ok) return parsed;
     try {
@@ -161,7 +161,7 @@ export async function restoreFeedAction(input: unknown): Promise<ActionResult<nu
 
 /** Deletes an archived feed for ever (its judgements, digests, and alerts go too). */
 export async function deleteFeedAction(input: unknown): Promise<ActionResult<null>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withAdmin(async (actor) => {
     const parsed = parseInput(feedIdInput, input);
     if (!parsed.ok) return parsed;
     try {
@@ -179,7 +179,7 @@ const removeKeyInput = z.object({ name: storedKeyNameSchema });
 
 /** Saves one API key (write-only: the page never gets a key back). */
 export async function saveKeyAction(input: unknown): Promise<ActionResult<null>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withAdmin(async (actor) => {
     const parsed = parseInput(saveKeyInput, input);
     if (!parsed.ok) return parsed;
     try {
@@ -194,7 +194,7 @@ export async function saveKeyAction(input: unknown): Promise<ActionResult<null>>
 
 /** Removes one saved API key. The app then uses the value in .env, when there is one. */
 export async function removeKeyAction(input: unknown): Promise<ActionResult<null>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withAdmin(async (actor) => {
     const parsed = parseInput(removeKeyInput, input);
     if (!parsed.ok) return parsed;
     try {

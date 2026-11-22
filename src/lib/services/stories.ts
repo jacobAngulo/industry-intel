@@ -47,17 +47,17 @@ function asHiddenReason(value: string | null): HiddenReason | null {
   return value !== null && (HIDDEN_REASONS as readonly string[]).includes(value) ? (value as HiddenReason) : null;
 }
 
-function loadRankRows(feedId: number, clientId: string, since: number): RankRow[] {
+function loadRankRows(feedId: number, userId: string, since: number): RankRow[] {
   return getSqlite()
     .prepare(
       `SELECT j.story_id AS storyId, s.fresh_at AS freshAt, j.base_score AS baseScore,
               j.hidden_reason AS hiddenReason, j.topic_ids AS topicIds, f.reason AS myVote
          FROM judgements j
          JOIN stories s ON s.id = j.story_id
-         LEFT JOIN feedback f ON f.feed_id = j.feed_id AND f.story_id = j.story_id AND f.client_id = ?
+         LEFT JOIN feedback f ON f.feed_id = j.feed_id AND f.story_id = j.story_id AND f.user_id = ?
         WHERE j.feed_id = ? AND s.fresh_at >= ?`,
     )
-    .all(clientId, feedId, since) as RankRow[];
+    .all(userId, feedId, since) as RankRow[];
 }
 
 /** The id of an active topic, or null when no active topic has the slug. */
@@ -122,7 +122,7 @@ export async function listFeedStories(args: {
   sort: "top" | "new";
   topicSlug?: string;
   filtered: boolean;
-  clientId: string;
+  userId: string;
   /** Default 50. */
   limit?: number;
   now?: number;
@@ -131,7 +131,7 @@ export async function listFeedStories(args: {
   if (!feed) return { ...EMPTY_LIST };
   const now = args.now ?? nowMs();
   const halfLife = effectiveHalfLife(feed.halfLifeHours, args.window);
-  const rows = loadRankRows(feed.id, args.clientId, now - WINDOW_MS[args.window]);
+  const rows = loadRankRows(feed.id, args.userId, now - WINDOW_MS[args.window]);
 
   let visibleCount = 0;
   let filteredCount = 0;
@@ -192,15 +192,15 @@ function otherFeeds(feedId: number, storyId: number): StoryDetail["otherFeeds"] 
     .all(storyId, feedId) as StoryDetail["otherFeeds"];
 }
 
-function storySeed(feed: FeedFacts, storyId: number, clientId: string): CardSeed | null {
+function storySeed(feed: FeedFacts, storyId: number, userId: string): CardSeed | null {
   const row = getSqlite()
     .prepare(
       `SELECT j.hidden_reason AS hiddenReason, f.reason AS myVote
          FROM judgements j
-         LEFT JOIN feedback f ON f.feed_id = j.feed_id AND f.story_id = j.story_id AND f.client_id = ?
+         LEFT JOIN feedback f ON f.feed_id = j.feed_id AND f.story_id = j.story_id AND f.user_id = ?
         WHERE j.feed_id = ? AND j.story_id = ?`,
     )
-    .get(clientId, feed.id, storyId) as { hiddenReason: string | null; myVote: string | null } | undefined;
+    .get(userId, feed.id, storyId) as { hiddenReason: string | null; myVote: string | null } | undefined;
   if (!row) return null;
   const myVote = asFeedbackReason(row.myVote);
   const hidden: StoryHidden | null = effectiveHidden(asHiddenReason(row.hiddenReason), myVote);
@@ -212,10 +212,10 @@ function storySeed(feed: FeedFacts, storyId: number, clientId: string): CardSeed
  * returned also when the story is hidden. Null when the feed has no
  * judgement for the story.
  */
-export async function getStory(feedId: number, storyId: number, clientId: string): Promise<StoryDetail | null> {
+export async function getStory(feedId: number, storyId: number, userId: string): Promise<StoryDetail | null> {
   const feed = loadFeedFacts(feedId);
   if (!feed) return null;
-  const seed = storySeed(feed, storyId, clientId);
+  const seed = storySeed(feed, storyId, userId);
   if (!seed) return null;
   const now = nowMs();
   const [card] = buildCards(feed, [seed], {

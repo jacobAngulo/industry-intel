@@ -189,15 +189,13 @@ export interface AnalysisSectionProps {
   now: number;
   /** The banners of getBanners(feedId): the model banners explain a wait. */
   banners: AppBanner[];
-  /** The display name (for the name gate). */
-  name: string | null;
 }
 
 /** The analysis section of the story page (§4.2) in each state: none, queued / running, done, failed. */
-export function AnalysisSection({ analysis, feedSlug, storyId, now, banners, name }: AnalysisSectionProps) {
+export function AnalysisSection({ analysis, feedSlug, storyId, now, banners }: AnalysisSectionProps) {
   const waitReasons = banners.filter((b) => MODEL_BANNER_KINDS.includes(b.kind)).map((b) => b.message);
   const button = (label: string, variant: "primary" | "secondary" = "primary") => (
-    <AnalysisRequestButton feedSlug={feedSlug} storyId={storyId} name={name} label={label} variant={variant} />
+    <AnalysisRequestButton feedSlug={feedSlug} storyId={storyId} label={label} variant={variant} />
   );
 
   let body: ReactNode;

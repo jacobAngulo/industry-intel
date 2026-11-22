@@ -5,7 +5,7 @@ import type { z } from "zod";
 
 import type { ActionResult, Actor } from "@/lib/services/types";
 
-import { requireActor } from "./identity";
+import { getUser } from "./identity";
 
 type FailCode = NonNullable<Extract<ActionResult, { ok: false }>["code"]>;
 
@@ -20,14 +20,6 @@ export function fail(message: string, code?: FailCode, fieldErrors?: Record<stri
   if (code !== undefined) result.code = code;
   if (fieldErrors !== undefined && Object.keys(fieldErrors).length > 0) result.fieldErrors = fieldErrors;
   return result;
-}
-
-/** The message of the `needs_name` result. */
-export const NEEDS_NAME_MESSAGE = "Set your name first. Your name shows next to the things that you add or change.";
-
-/** True when an action result asks for a display name. */
-export function isNeedsName(result: ActionResult<unknown>): boolean {
-  return !result.ok && result.code === "needs_name";
 }
 
 /**
@@ -92,16 +84,25 @@ export function parseForm<S extends z.ZodType>(
   return parseInput(schema, formToObject(formData, opts));
 }
 
+const UNAUTHENTICATED_MESSAGE = "Your session has ended. Reload the page and sign in again.";
+const FORBIDDEN_MESSAGE = "Only an administrator can do this.";
+
+type ActorFn<T> = (actor: Actor) => Promise<ActionResult<T>> | ActionResult<T>;
+
 /**
- * Runs `fn` with the actor of the request. With `needsName` (every change
- * except a vote) and no display name, it returns `{ ok: false, code: "needs_name" }`
- * and does not call `fn`. Without `needsName` the name falls back to "Someone".
+ * Runs `fn` as the signed-in person. Every Server Action goes through this or
+ * `withAdmin`: the proxy does not protect an action by itself.
  */
-export async function withActor<T>(
-  opts: { needsName: boolean },
-  fn: (actor: Actor) => Promise<ActionResult<T>> | ActionResult<T>,
-): Promise<ActionResult<T>> {
-  const actor = await requireActor(opts.needsName);
-  if (!actor) return fail(NEEDS_NAME_MESSAGE, "needs_name");
-  return fn(actor);
+export async function withActor<T>(fn: ActorFn<T>): Promise<ActionResult<T>> {
+  const user = await getUser();
+  if (!user) return fail(UNAUTHENTICATED_MESSAGE, "unauthenticated");
+  return fn({ userId: user.id, name: user.name });
+}
+
+/** `withActor` for an administrator (ADMIN_EMAILS). */
+export async function withAdmin<T>(fn: ActorFn<T>): Promise<ActionResult<T>> {
+  const user = await getUser();
+  if (!user) return fail(UNAUTHENTICATED_MESSAGE, "unauthenticated");
+  if (!user.isAdmin) return fail(FORBIDDEN_MESSAGE, "forbidden");
+  return fn({ userId: user.id, name: user.name });
 }

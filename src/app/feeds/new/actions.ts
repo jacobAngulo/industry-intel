@@ -25,7 +25,7 @@ export async function createFeedAction(_previous: NewFeedState | null, formData:
   const values = { name: text(formData, "name", 500), purpose: text(formData, "purpose", 1000) };
   const parsed = parseForm(createFeedInputSchema, formData);
   if (!parsed.ok) return { result: parsed, values };
-  const result = await withActor<{ slug: string }>({ needsName: true }, async (actor) => {
+  const result = await withActor<{ slug: string }>(async (actor) => {
     try {
       const feed = await createFeed(parsed.data, actor);
       return { ok: true, data: { slug: feed.slug } };

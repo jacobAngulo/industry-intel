@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import { saveFeedProfileAction } from "@/app/f/[slug]/settings/actions";
-import { useNameGate } from "@/components/NameGate";
 import { Field, Input, Textarea, fieldDescribedBy } from "@/components/ui";
 
 import { errorFor, textChanged, type RejudgeEstimate } from "./helpers";
@@ -20,13 +19,11 @@ interface ProfileDraft {
 export interface FeedProfileFormProps {
   feedId: number;
   initial: ProfileDraft;
-  name: string | null;
 }
 
 /** "This feed": name, purpose (one line), context (§4.8 Feed Profile). Purpose and context are judge-time. */
-export function FeedProfileForm({ feedId, initial, name }: FeedProfileFormProps) {
-  const { ensureName, dialog } = useNameGate(name);
-  const save = useSave(saveFeedProfileAction, ensureName);
+export function FeedProfileForm({ feedId, initial }: FeedProfileFormProps) {
+  const save = useSave(saveFeedProfileAction);
   const [saved, setSaved] = useState<ProfileDraft>(initial);
   const [draft, setDraft] = useState<ProfileDraft>(initial);
   const [offer, setOffer] = useState<RejudgeEstimate[] | null>(null);
@@ -91,8 +88,7 @@ export function FeedProfileForm({ feedId, initial, name }: FeedProfileFormProps)
         </Field>
         <SaveRow pending={save.pending} savedAt={save.savedAt} error={save.failure?.message} />
       </form>
-      {offer ? <RejudgeOffer estimates={offer} ensureName={ensureName} onDismiss={() => setOffer(null)} /> : null}
-      {dialog}
+      {offer ? <RejudgeOffer estimates={offer} onDismiss={() => setOffer(null)} /> : null}
     </>
   );
 }

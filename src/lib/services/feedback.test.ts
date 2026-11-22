@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { getSqlite } from "@/lib/db/client";
 import { DAY_MS } from "@/lib/time";
 import type { FeedbackReason } from "@/lib/types";
-import { installTestDb, makeItem, makeSource, setNowForTests, type InstalledTestDb } from "@/test/helpers";
+import { installTestDb, makeItem, makeSource, setNowForTests, type InstalledTestDb, makeUser } from "@/test/helpers";
 
 import { NOW, feedWithSource, judgedStory } from "./_read-testkit";
 import { vote } from "./feedback";
@@ -16,7 +16,8 @@ beforeEach(() => {
 });
 afterEach(() => t.cleanup());
 
-const actor = (clientId: string, name = "Someone") => ({ name, clientId });
+/** A stored account as the actor. */
+const actor = (userId: string, name = "Dana") => ({ name, userId: makeUser(userId, name) });
 
 function judgementOf(feedId: number, storyId: number): { hiddenReason: string | null; baseScore: number } {
   return getSqlite()
@@ -24,19 +25,19 @@ function judgementOf(feedId: number, storyId: number): { hiddenReason: string | 
     .get(feedId, storyId) as { hiddenReason: string | null; baseScore: number };
 }
 
-function voteRows(feedId: number, storyId: number): Array<{ reason: string; clientId: string; createdBy: string }> {
+function voteRows(feedId: number, storyId: number): Array<{ reason: string; userId: string; createdBy: string }> {
   return getSqlite()
-    .prepare("SELECT reason, client_id AS clientId, created_by AS createdBy FROM feedback WHERE feed_id = ? AND story_id = ?")
-    .all(feedId, storyId) as Array<{ reason: string; clientId: string; createdBy: string }>;
+    .prepare("SELECT reason, user_id AS userId FROM feedback WHERE feed_id = ? AND story_id = ?")
+    .all(feedId, storyId) as Array<{ reason: string; userId: string; createdBy: string }>;
 }
 
-describe("vote: one vote for each browser (§4.3)", () => {
-  it("stores a vote without a real name and returns the counts and my vote", async () => {
+describe("vote: one vote for each person (§4.3)", () => {
+  it("stores a vote and returns the counts and my vote", async () => {
     const { feed, source } = feedWithSource();
     const { story } = judgedStory(feed.id, source.id);
     const result = await vote(feed.id, story.id, "useful", actor("c1"));
     expect(result).toEqual({ votes: { useful: 1, too_basic: 0, off_topic: 0, already_knew: 0 }, myVote: "useful" });
-    expect(voteRows(feed.id, story.id)).toEqual([{ reason: "useful", clientId: "c1", createdBy: "Someone" }]);
+    expect(voteRows(feed.id, story.id)).toEqual([{ reason: "useful", userId: "c1" }]);
   });
 
   it("removes the vote when the same reason comes again (toggle)", async () => {
@@ -55,7 +56,7 @@ describe("vote: one vote for each browser (§4.3)", () => {
     await vote(feed.id, story.id, "useful", actor("c1"));
     const result = await vote(feed.id, story.id, "too_basic", actor("c1", "Dana"));
     expect(result).toEqual({ votes: { useful: 0, too_basic: 1, off_topic: 0, already_knew: 0 }, myVote: "too_basic" });
-    expect(voteRows(feed.id, story.id)).toEqual([{ reason: "too_basic", clientId: "c1", createdBy: "Dana" }]);
+    expect(voteRows(feed.id, story.id)).toEqual([{ reason: "too_basic", userId: "c1" }]);
   });
 
   it("removes the vote with reason null, and null with no vote changes nothing", async () => {
@@ -84,12 +85,12 @@ describe("vote: one vote for each browser (§4.3)", () => {
     expect(voteRows(a.feed.id, story.id)).toHaveLength(1);
   });
 
-  it("refuses a story that has no judgement in the feed, an unknown reason, and an empty client id", async () => {
+  it("refuses a story that has no judgement in the feed, an unknown reason, and an unknown account", async () => {
     const { feed, source } = feedWithSource();
     const { story } = judgedStory(feed.id, source.id);
     await expect(vote(feed.id, 999, "useful", actor("c1"))).rejects.toMatchObject({ code: "not_found" });
     await expect(vote(feed.id, story.id, "loved_it" as FeedbackReason, actor("c1"))).rejects.toMatchObject({ code: "validation" });
-    await expect(vote(feed.id, story.id, "useful", actor("  "))).rejects.toMatchObject({ code: "validation" });
+    await expect(vote(feed.id, story.id, "useful", { userId: "nobody", name: "X" })).rejects.toMatchObject({ code: "SQLITE_CONSTRAINT_FOREIGNKEY" });
     expect(voteRows(feed.id, story.id)).toEqual([]);
   });
 });
@@ -98,8 +99,8 @@ describe("vote: the effect is immediate (§8.4)", () => {
   it("hides a story for everybody after 2 off-topic votes, and shows it again with more useful votes", async () => {
     const { feed, source } = feedWithSource();
     const { story } = judgedStory(feed.id, source.id, { judgement: { relevance: 80 } });
-    const visibleTo = async (clientId: string) =>
-      (await listFeedStories({ feedId: feed.id, window: "week", sort: "top", filtered: false, clientId, now: NOW })).stories.map(
+    const visibleTo = async (userId: string) =>
+      (await listFeedStories({ feedId: feed.id, window: "week", sort: "top", filtered: false, userId, now: NOW })).stories.map(
         (card) => card.storyId,
       );
 

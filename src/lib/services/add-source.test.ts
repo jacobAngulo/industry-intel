@@ -37,7 +37,7 @@ import type { PreviewItem, WizardCreate } from "./types";
 vi.mock("@/lib/pipeline", () => ({ judgeDraft: vi.fn() }));
 
 const NOW = 1_800_000_000_000;
-const actor = { name: "Dana", clientId: "c1" };
+const actor = { name: "Dana", userId: "c1" };
 
 let t: InstalledTestDb;
 let usage: FakeUsageMeter;
@@ -407,7 +407,6 @@ describe("createFromWizard", () => {
     await expectCode(createFromWizard(wizard([entry], { feedIds: [999] }), actor), "validation");
     await expectCode(createFromWizard(wizard([entry], { why: " " }), actor), "validation");
     await expectCode(createFromWizard(wizard(Array.from({ length: 11 }, () => entry)), actor), "validation");
-    await expectCode(createFromWizard(wizard([entry]), { name: "", clientId: "c" }), "needs_name");
     expect(t.db.select().from(sources).all()).toEqual([]);
   });
 

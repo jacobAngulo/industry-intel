@@ -48,7 +48,7 @@ const DEFAULT_PROJECT_SLUG = "industry-intel";
 /** Sends one submission to the Ticket Board intake API of the project. Never throws. */
 export async function relayFeedback(
   input: FeedbackInput,
-  requester: { name: string | null; clientId: string },
+  requester: { name: string; userId: string },
   env: RelayEnv = process.env as RelayEnv,
   fetchImpl: typeof fetch = fetch,
 ): Promise<RelayResult> {
@@ -64,7 +64,7 @@ export async function relayFeedback(
     requester: {
       name: requester.name,
       contact: null,
-      external_id: requester.clientId || null,
+      external_id: requester.userId,
     },
     source: {
       external_id: input.submissionId,

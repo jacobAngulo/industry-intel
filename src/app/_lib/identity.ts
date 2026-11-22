@@ -1,39 +1,30 @@
 // Identity of the person who makes a request (specification §15). Server only.
-// It only reads: the proxy (src/proxy.ts) writes `ii_client`, and the Server
-// Action setName writes `ii_name`.
-import { cookies, headers } from "next/headers";
+import { cache } from "react";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-import type { Actor } from "@/lib/services/types";
+import { getAccount, type Account } from "@/lib/services/users";
 
-import {
-  ANONYMOUS_NAME,
-  CLIENT_COOKIE,
-  CLIENT_HEADER,
-  NAME_COOKIE,
-  cleanDisplayName,
-  isValidClientId,
-} from "./identity-constants";
+import { ACCESS_PATH } from "./access-gate";
+import { isAuthConfigured, sessionUserId } from "./session";
 
-/** The display name (or null) and the browser id of the current request. Never writes. */
-export async function getActor(): Promise<{ name: string | null; clientId: string }> {
-  const [cookieStore, headerStore] = await Promise.all([cookies(), headers()]);
-  const fromCookie = cookieStore.get(CLIENT_COOKIE)?.value;
-  const fromHeader = headerStore.get(CLIENT_HEADER);
-  // The proxy sets the header on every request (from the cookie, or a new id
-  // on the first request). The cookie is the fallback for a path outside the proxy matcher.
-  const clientId = isValidClientId(fromHeader) ? fromHeader : isValidClientId(fromCookie) ? fromCookie : "";
-  const name = cleanDisplayName(cookieStore.get(NAME_COOKIE)?.value);
-  return { name, clientId };
+/** The signed-in account, with or without access, or null. */
+export const getSessionAccount = cache(async (): Promise<Account | null> => {
+  if (!isAuthConfigured()) return null;
+  const id = await sessionUserId(await headers());
+  return id ? getAccount(id) : null;
+});
+
+/** The account when it can use the app, or null. */
+export async function getUser(): Promise<Account | null> {
+  const account = await getSessionAccount();
+  return account?.access === "approved" ? account : null;
 }
 
-/**
- * The actor for a mutation. With `needsName` (every change except a vote) it
- * returns null when no display name is set; the caller answers `needs_name`.
- * Without it, a missing name becomes "Someone" (§18.1).
- */
-export async function requireActor(needsName: boolean): Promise<Actor | null> {
-  const { name, clientId } = await getActor();
-  if (name) return { name, clientId };
-  if (needsName) return null;
-  return { name: ANONYMOUS_NAME, clientId };
+/** For a page: the account, or a redirect to the sign-in or the access request. */
+export async function requireUser(): Promise<Account> {
+  const account = await getSessionAccount();
+  if (!account) redirect("/login");
+  if (account.access !== "approved") redirect(ACCESS_PATH);
+  return account;
 }

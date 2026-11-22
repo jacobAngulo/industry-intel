@@ -28,7 +28,7 @@ afterEach(() => t.cleanup());
 
 type ListArgs = Parameters<typeof listFeedStories>[0];
 const list = (feedId: number, args: Partial<ListArgs> = {}) =>
-  listFeedStories({ feedId, window: "week", sort: "top", filtered: false, clientId: "me", now: NOW, ...args });
+  listFeedStories({ feedId, window: "week", sort: "top", filtered: false, userId: "me", now: NOW, ...args });
 const ids = (result: Awaited<ReturnType<typeof listFeedStories>>) => result.stories.map((card) => card.storyId);
 
 function addAlert(feedId: number, storyId: number, visibleAt: number): number {
@@ -98,7 +98,7 @@ describe("listFeedStories: visibility (§8.1)", () => {
   it.each(["off_topic", "too_basic"] as const)("hides a story for the browser whose own vote is %s (my_vote)", async (reason) => {
     const { feed, source } = feedWithSource();
     const story = judgedStory(feed.id, source.id).story.id;
-    addVote({ feedId: feed.id, storyId: story, reason, clientId: "me" });
+    addVote({ feedId: feed.id, storyId: story, reason, userId: "me" });
 
     const mine = await list(feed.id);
     expect(ids(mine)).toEqual([]);
@@ -106,7 +106,7 @@ describe("listFeedStories: visibility (§8.1)", () => {
     const filtered = await list(feed.id, { filtered: true });
     expect(filtered.stories[0]).toMatchObject({ storyId: story, hidden: "my_vote", myVote: reason });
 
-    const theirs = await list(feed.id, { clientId: "someone-else" });
+    const theirs = await list(feed.id, { userId: "someone-else" });
     expect(ids(theirs)).toEqual([story]);
     expect(theirs.stories[0]?.myVote).toBeNull();
   });
@@ -114,7 +114,7 @@ describe("listFeedStories: visibility (§8.1)", () => {
   it.each(["useful", "already_knew"] as const)("does not hide a story for an own vote %s", async (reason) => {
     const { feed, source } = feedWithSource();
     const story = judgedStory(feed.id, source.id).story.id;
-    addVote({ feedId: feed.id, storyId: story, reason, clientId: "me" });
+    addVote({ feedId: feed.id, storyId: story, reason, userId: "me" });
     const result = await list(feed.id);
     expect(ids(result)).toEqual([story]);
     expect(result.stories[0]?.myVote).toBe(reason);
@@ -123,7 +123,7 @@ describe("listFeedStories: visibility (§8.1)", () => {
   it("keeps the stored hidden reason over my_vote", async () => {
     const { feed, source } = feedWithSource();
     const story = judgedStory(feed.id, source.id, { judgement: { hiddenReason: "exclusion" } }).story.id;
-    addVote({ feedId: feed.id, storyId: story, reason: "off_topic", clientId: "me" });
+    addVote({ feedId: feed.id, storyId: story, reason: "off_topic", userId: "me" });
     expect((await list(feed.id, { filtered: true })).stories[0]?.hidden).toBe("exclusion");
   });
 });
@@ -317,7 +317,7 @@ describe("listFeedStories: card fields", () => {
         rankParts: [{ key: "relevance", label: "Relevance", value: 82 }],
       },
     });
-    addVote({ feedId: feed.id, storyId: story.id, reason: "useful", clientId: "me" });
+    addVote({ feedId: feed.id, storyId: story.id, reason: "useful", userId: "me" });
     addVote({ feedId: feed.id, storyId: story.id, reason: "useful" });
     addVote({ feedId: feed.id, storyId: story.id, reason: "already_knew" });
     getSqlite()
@@ -360,7 +360,7 @@ describe("listFeedStories: alerts (§9.3)", () => {
     const alertId = addAlert(feed.id, story, NOW - HOUR_MS);
     expect((await list(feed.id)).stories[0]?.alert).toEqual({ id: alertId });
     // Dismissal is client-side only: another browser gets the same alert.
-    expect((await list(feed.id, { clientId: "another" })).stories[0]?.alert).toEqual({ id: alertId });
+    expect((await list(feed.id, { userId: "another" })).stories[0]?.alert).toEqual({ id: alertId });
   });
 
   it("does not show an alert whose visible_at is in the future (quiet hours) or older than 72 h", async () => {
@@ -390,7 +390,7 @@ describe("listFeedStories: alerts (§9.3)", () => {
     const mine = judgedStory(feed.id, source.id).story.id;
     addAlert(feed.id, hidden, NOW - HOUR_MS);
     addAlert(feed.id, mine, NOW - HOUR_MS);
-    addVote({ feedId: feed.id, storyId: mine, reason: "off_topic", clientId: "me" });
+    addVote({ feedId: feed.id, storyId: mine, reason: "off_topic", userId: "me" });
     const filtered = await list(feed.id, { filtered: true });
     expect(filtered.stories.map((card) => card.alert)).toEqual([null, null]);
   });
@@ -460,7 +460,7 @@ describe("getStory", () => {
   it("shows my_vote for the browser that voted it down", async () => {
     const { feed, source } = feedWithSource();
     const { story } = judgedStory(feed.id, source.id);
-    addVote({ feedId: feed.id, storyId: story.id, reason: "too_basic", clientId: "me" });
+    addVote({ feedId: feed.id, storyId: story.id, reason: "too_basic", userId: "me" });
     expect((await getStory(feed.id, story.id, "me"))?.card).toMatchObject({ hidden: "my_vote", myVote: "too_basic" });
     expect((await getStory(feed.id, story.id, "other"))?.card.hidden).toBeNull();
   });

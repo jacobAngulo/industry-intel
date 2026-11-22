@@ -41,13 +41,12 @@ import { FOLLOW_IGNORE_HELP } from "./FeedLinkRow";
 import { setFlash } from "./FlashMessage";
 import { formatInterval, intervalOptions, joinNames, plural } from "./labels";
 import { SourceConfigForm } from "./SourceConfigForm";
-import { useGatedAction } from "./use-gated-action";
+import { useAction } from "./use-action";
 import {
   MAX_ENTRIES,
   canReuseQualify,
   combinedSourceName,
   errorsAt,
-  ownerForCreate,
   planEntries,
   splitEntries,
   type PreviewStep,
@@ -79,7 +78,7 @@ export interface AddSourceWizardProps {
   preselectedFeedIds: number[];
   suggestions: WizardSuggestion[];
   identityFields: Record<SourceType, readonly string[]>;
-  displayName: string | null;
+  displayName: string;
 }
 
 interface Draft {
@@ -149,9 +148,8 @@ export function AddSourceWizard({
     ignore: "",
     priority: "normal",
     interval: 60,
-    owner: displayName ?? "",
+    owner: displayName,
   });
-  const [ownerTouched, setOwnerTouched] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [stepError, setStepError] = useState<string | null>(null);
   const [previewing, startPreview] = useTransition();
@@ -160,7 +158,7 @@ export function AddSourceWizard({
   const [qualify, setQualify] = useState<QualifyState | null>(null);
   const [qualifying, startQualify] = useTransition();
   // Step 4
-  const create = useGatedAction(displayName);
+  const create = useAction();
   const [createError, setCreateError] = useState<string | null>(null);
 
   // The focus moves to the heading of the new step (not on the first render).
@@ -352,12 +350,7 @@ export function AddSourceWizard({
   const addSources = () => {
     setCreateError(null);
     create.run(
-      (savedName) => {
-        // The name gate can save the name just before this call: it is the owner when the field was not edited.
-        const owner = ownerForCreate(common.owner, ownerTouched, savedName);
-        if (owner !== common.owner) setCommon((c) => ({ ...c, owner }));
-        return createSourcesAction({ entries: entriesForServer(drafts), common: toCommon({ ...common, owner }) });
-      },
+      () => createSourcesAction({ entries: entriesForServer(drafts), common: toCommon(common) }),
       (result) => {
         if (!result.ok) {
           setCreateError(result.message);
@@ -392,7 +385,6 @@ export function AddSourceWizard({
       <StepList step={step} />
       <StepHeading step={step} headingRef={headingRef} />
       {step === 1 ? renderStep1() : step === 2 ? renderStep2() : step === 3 ? renderStep3() : renderStep4()}
-      {create.dialog}
     </div>
   );
 
@@ -824,7 +816,6 @@ export function AddSourceWizard({
                 maxLength={120}
                 aria-describedby={fieldDescribedBy(`${id}-owner`, { hint: true })}
                 onChange={(e) => {
-                  setOwnerTouched(true);
                   setCommon((c) => ({ ...c, owner: e.target.value }));
                 }}
               />

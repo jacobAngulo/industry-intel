@@ -12,7 +12,7 @@ import {
   type WorkStatus,
 } from "@/lib/types";
 
-import type { Actor, AnalysisView } from "./types";
+import type { AnalysisView } from "./types";
 
 // ---------------------------------------------------------------------------
 // Errors
@@ -21,21 +21,7 @@ import type { Actor, AnalysisView } from "./types";
 // One error class for the whole services layer: serviceFailure() in a Server
 // Action recognizes it with instanceof, so a second class would show the error
 // page instead of `{ ok: false }`.
-import { ServiceError } from "./_manage-errors";
-
 export { ServiceError, type ServiceErrorCode } from "./_manage-errors";
-
-/**
- * Every change except a vote needs a display name (§15 NameGate). "Someone"
- * is the fallback name of a vote, not a name.
- */
-export function requireName(actor: Actor): string {
-  const name = actor.name.trim();
-  if (!name || name.toLowerCase() === "someone") {
-    throw new ServiceError("needs_name", "Set your name first. Your name shows next to the things that you add or change.");
-  }
-  return name.slice(0, 120);
-}
 
 // ---------------------------------------------------------------------------
 // JSON columns

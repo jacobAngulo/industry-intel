@@ -8,17 +8,16 @@ import { Banner, Button, Field, Input, SavedNote, Select, fieldDescribedBy } fro
 
 import { aboutPatch, type AboutValues } from "./about-patch";
 import { intervalOptions } from "./labels";
-import { useGatedAction } from "./use-gated-action";
+import { useAction } from "./use-action";
 
 export interface SourceAboutFormProps {
   sourceId: number;
   initial: { name: string; why: string; owner: string | null; checkIntervalMinutes: number };
   typeDefaultInterval: number;
-  name: string | null;
 }
 
 /** Name, why it matters, owner, and check interval of a source (§4.6). */
-export function SourceAboutForm({ sourceId, initial, typeDefaultInterval, name }: SourceAboutFormProps) {
+export function SourceAboutForm({ sourceId, initial, typeDefaultInterval }: SourceAboutFormProps) {
   const id = useId();
   const router = useRouter();
   const [values, setValues] = useState<AboutValues>({
@@ -32,7 +31,7 @@ export function SourceAboutForm({ sourceId, initial, typeDefaultInterval, name }
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState<string | null>(null);
   const [savedAt, setSavedAt] = useState<number | null>(null);
-  const { run, pending, dialog } = useGatedAction(name);
+  const { run, pending } = useAction();
 
   const set = (key: keyof AboutValues) => (e: { target: { value: string } }) =>
     setValues((v) => ({ ...v, [key]: e.target.value }));
@@ -143,7 +142,6 @@ export function SourceAboutForm({ sourceId, initial, typeDefaultInterval, name }
         <SavedNote at={savedAt} />
       </div>
     </form>
-    {dialog}
     </>
   );
 }

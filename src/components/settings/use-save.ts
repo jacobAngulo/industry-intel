@@ -12,7 +12,7 @@ export interface SaveFailure {
 }
 
 export interface SaveHandle<I, T> {
-  /** Asks for the display name when none is set, then calls the action. `onOk` gets the result data. */
+  /** Calls the action. `onOk` gets the result data. */
   run: (input: I, onOk?: (data: T) => void) => Promise<void>;
   pending: boolean;
   /** A counter that grows at each successful save (for <SavedNote at>). 0 = never saved. */
@@ -25,13 +25,12 @@ export interface SaveHandle<I, T> {
 }
 
 /**
- * The save pattern of one settings section: name gate, pending state, the
+ * The save pattern of one settings section: pending state, the
  * "Saved" counter, the message and field errors of a failure, and the focus
  * on the first invalid control after a failure.
  */
 export function useSave<I, T>(
   action: (input: I) => Promise<ActionResult<T>>,
-  ensureName: () => Promise<boolean>,
 ): SaveHandle<I, T> {
   const [pending, startTransition] = useTransition();
   const [savedAt, setSavedAt] = useState(0);
@@ -48,7 +47,6 @@ export function useSave<I, T>(
   const run = useCallback(
     async (input: I, onOk?: (data: T) => void) => {
       setFailure(null);
-      if (!(await ensureName())) return;
       startTransition(async () => {
         let result: ActionResult<T>;
         try {
@@ -64,7 +62,7 @@ export function useSave<I, T>(
         }
       });
     },
-    [action, ensureName],
+    [action],
   );
 
   return { run, pending, savedAt, failure, setFailure, formId };

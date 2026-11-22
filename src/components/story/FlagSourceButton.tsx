@@ -3,30 +3,26 @@
 import { useId, useState, useTransition } from "react";
 
 import { flagSourceAction } from "@/app/f/[slug]/actions";
-import { useNameGate } from "@/components/NameGate";
 import { Button, Dialog, Field, Icon, Textarea, fieldDescribedBy } from "@/components/ui";
 import { LIMITS } from "@/lib/types";
 
 /**
  * The text button "Flag source as noisy" of a story item (§4.2), with an
- * optional note in a small dialog. Needs a display name.
+ * optional note in a small dialog.
  */
 export function FlagSourceButton({
   feedSlug,
   storyId,
   sourceId,
   sourceName,
-  name,
 }: {
   feedSlug: string;
   storyId: number;
   sourceId: number;
   sourceName: string;
-  name: string | null;
 }) {
   const id = useId();
   const noteId = `${id}-note`;
-  const { ensureName, dialog } = useNameGate(name);
   const [open, setOpen] = useState(false);
   const [note, setNote] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +30,6 @@ export function FlagSourceButton({
   const [pending, startTransition] = useTransition();
 
   const start = async () => {
-    if (!(await ensureName())) return;
     setError(null);
     setOpen(true);
   };
@@ -116,7 +111,6 @@ export function FlagSourceButton({
           </div>
         </form>
       </Dialog>
-      {dialog}
     </>
   );
 }

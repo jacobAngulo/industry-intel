@@ -159,7 +159,7 @@ describe("feedback calibration", () => {
   it("lists up to 5 headlines for a reason that outnumbers 'useful', at most 2 from one browser", () => {
     const feed = makeFeed();
     const stories = Array.from({ length: 8 }, (_, i) => makeStory({ headline: `Basic story ${i}` }));
-    stories.forEach((story, i) => addVote({ feedId: feed.id, storyId: story.id, reason: "too_basic", clientId: i < 3 ? "same" : `c${i}`, createdAt: NOW - i * 1000 }));
+    stories.forEach((story, i) => addVote({ feedId: feed.id, storyId: story.id, reason: "too_basic", userId: i < 3 ? "same" : `c${i}`, createdAt: NOW - i * 1000 }));
     const contested = makeStory({ headline: "Contested" });
     addVote({ feedId: feed.id, storyId: contested.id, reason: "too_basic", createdAt: NOW });
     addVote({ feedId: feed.id, storyId: contested.id, reason: "useful", createdAt: NOW });

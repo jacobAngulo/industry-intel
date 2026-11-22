@@ -31,7 +31,7 @@ describe("feedbackSchema", () => {
 });
 
 describe("relayFeedback", () => {
-  const requester = { name: "Ada", userId: "client-1" };
+  const requester = { name: "Ada", email: "ada@example.com", userId: "client-1" };
 
   it("answers not_configured without a token and sends nothing", async () => {
     const calls: { url: string; init: RequestInit }[] = [];
@@ -54,7 +54,7 @@ describe("relayFeedback", () => {
     expect(headers.authorization).toBe("Bearer tbi_test");
     const body = JSON.parse(String(calls[0]?.init.body));
     expect(body.kind).toBe("bug");
-    expect(body.requester).toEqual({ name: "Ada", contact: null, external_id: "client-1" });
+    expect(body.requester).toEqual({ name: "Ada", contact: "ada@example.com", external_id: "client-1" });
     expect(body.source.external_id).toBe("sub-12345678");
   });
 

@@ -3,16 +3,14 @@
 import { useState } from "react";
 
 import { checkAllDueAction, retryFailedAction } from "@/app/status/actions";
-import { useNameGate } from "@/components/NameGate";
 import { Button } from "@/components/ui";
 
 import { useSave } from "./use-save";
 
 /** The two buttons of the status page (§4.10), each with its result message. */
-export function StatusActions({ name, failedItems }: { name: string | null; failedItems: number }) {
-  const { ensureName, dialog } = useNameGate(name);
-  const check = useSave(checkAllDueAction, ensureName);
-  const retry = useSave(retryFailedAction, ensureName);
+export function StatusActions({ failedItems }: { failedItems: number }) {
+  const check = useSave(checkAllDueAction);
+  const retry = useSave(retryFailedAction);
   const [checkText, setCheckText] = useState<string | null>(null);
   const [retryText, setRetryText] = useState<string | null>(null);
 
@@ -82,7 +80,6 @@ export function StatusActions({ name, failedItems }: { name: string | null; fail
           </p>
         ) : null}
       </div>
-      {dialog}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import { getActor } from "@/app/_lib/identity";
-import { ArchivedFeeds, YourNameForm } from "@/components/settings/ArchivedFeeds";
+import { requireUser } from "@/app/_lib/identity";
+import { ArchivedFeeds } from "@/components/settings/ArchivedFeeds";
 import { DefaultsForm } from "@/components/settings/DefaultsForm";
 import { KeysForm, type KeyRowData } from "@/components/settings/KeysForm";
 import { supportedTimeZones, timeZoneOptions } from "@/components/settings/helpers";
@@ -25,17 +25,16 @@ const SECTIONS = [
   { id: "defaults", label: "Defaults" },
   { id: "api-keys", label: "API keys" },
   { id: "archived-feeds", label: "Archived feeds" },
-  { id: "your-name-section", label: "Your name" },
 ];
 
-/** §4.9 Shared settings: shared feed profile, topics, defaults, API keys, archived feeds, your name. */
+/** §4.9 Shared settings: shared feed profile, topics, defaults, API keys, archived feeds. */
 export default async function SharedSettingsPage() {
   const [profile, topics, defaults, feeds, actor, keyStatuses] = await Promise.all([
     getTeamProfile(),
     listTopics({ includeArchived: true }),
     getDefaults(),
     listFeeds({ includeArchived: true }),
-    getActor(),
+    requireUser(),
     getKeyStatuses(),
   ]);
   const keys: KeyRowData[] = keyStatuses.map((k) => ({ ...k, hint: KEY_HINTS[k.name] }));
@@ -70,7 +69,7 @@ export default async function SharedSettingsPage() {
           title="Shared feed profile"
           description="Context that every feed uses. The model reads it for each new story, so a change applies to new stories in every feed."
         >
-          <TeamProfileForm profile={profile} name={actor.name} id="shared-team" />
+          <TeamProfileForm profile={profile} id="shared-team" />
           {running.length > 0 ? (
             <div className="mt-4 flex flex-col gap-1">
               {running.map((p) => (
@@ -88,7 +87,6 @@ export default async function SharedSettingsPage() {
           <TopicsManager
             topics={topics.filter((t) => !t.archived).map((t) => ({ id: t.id, name: t.name, description: t.description }))}
             archivedNames={topics.filter((t) => t.archived).map((t) => t.name)}
-            name={actor.name}
           />
         </SettingsSection>
 
@@ -96,7 +94,6 @@ export default async function SharedSettingsPage() {
           <DefaultsForm
             initial={defaults}
             timeZones={timeZoneOptions(defaults.feedDefaults.digest.timeZone, supportedTimeZones())}
-            name={actor.name}
           />
         </SettingsSection>
 
@@ -105,7 +102,7 @@ export default async function SharedSettingsPage() {
           title="API keys"
           description="A key saved here replaces the same variable in .env, and the app uses it at the next call: no restart. The page never shows a saved key."
         >
-          <KeysForm keys={keys} name={actor.name} />
+          {actor.isAdmin ? <KeysForm keys={keys} /> : <p className="text-sm text-muted">Only an administrator can change the keys.</p>}
         </SettingsSection>
 
         <SettingsSection
@@ -113,11 +110,7 @@ export default async function SharedSettingsPage() {
           title="Archived feeds"
           description="An archived feed is not in the tabs and gets no new judgements."
         >
-          <ArchivedFeeds feeds={archived.map((f) => ({ id: f.id, name: f.name, purpose: f.purpose }))} name={actor.name} />
-        </SettingsSection>
-
-        <SettingsSection id="your-name-section" title="Your name">
-          <YourNameForm name={actor.name} />
+          <ArchivedFeeds feeds={archived.map((f) => ({ id: f.id, name: f.name, purpose: f.purpose }))} canDelete={actor.isAdmin} />
         </SettingsSection>
       </div>
     </PageContainer>

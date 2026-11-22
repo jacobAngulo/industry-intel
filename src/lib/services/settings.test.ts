@@ -29,7 +29,7 @@ import {
 } from "./settings";
 
 const NOW = 1_800_000_000_000;
-const actor = { name: "Dana", clientId: "c1" };
+const actor = { name: "Dana", userId: "c1" };
 
 let t: InstalledTestDb;
 beforeEach(() => {
@@ -76,7 +76,6 @@ describe("shared feed profile", () => {
     expect(t.db.select().from(settings).get()).toMatchObject({ key: "team_profile", updatedBy: "Dana", updatedAt: NOW });
     expect(actions()).toEqual(["settings.team_profile"]);
     await expectCode(updateTeamProfile({ ...profile, constraints: "x".repeat(4001) }, actor), "validation");
-    await expectCode(updateTeamProfile(profile, { name: "Someone", clientId: "c" }), "needs_name");
   });
 });
 

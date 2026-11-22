@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-import { getActor } from "@/app/_lib/identity";
+import { requireUser } from "@/app/_lib/identity";
 import { AutoRefresh } from "@/components/AutoRefresh";
 import { Banners } from "@/components/Banners";
 import { TopNav } from "@/components/nav";
@@ -45,7 +45,7 @@ import type { AppBanner } from "@/lib/services/types";
 import { nowMs, HOUR_MS, MINUTE_MS, DAY_MS } from "@/lib/time";
 import { SOURCE_TYPES, SOURCE_TYPE_LABELS } from "@/lib/types";
 
-import { DialogDemo, FormStatusDemo, NameGateDemo, SavedDemo, ToggleDemo } from "./KitDemos";
+import { DialogDemo, FormStatusDemo, SavedDemo, ToggleDemo } from "./KitDemos";
 
 export const metadata: Metadata = {
   title: "UI kit",
@@ -109,7 +109,7 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
 
 export default async function KitPage() {
   const now = nowMs();
-  const actor = await getActor();
+  await requireUser();
 
   return (
     <PageContainer width="wide">
@@ -400,9 +400,6 @@ export default async function KitPage() {
           <Disclosure summary="Advanced options" variant="box" className="w-full max-w-lg">
             <p className="text-sm">Check interval, owner, and the identity fields.</p>
           </Disclosure>
-        </Row>
-        <Row label="Name gate">
-          <NameGateDemo name={actor.name} />
         </Row>
       </Section>
 

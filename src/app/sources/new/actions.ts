@@ -77,14 +77,16 @@ export async function resolveEntriesAction(input: {
   entries: string[];
   type?: SourceType | null;
 }): Promise<ActionResult<ResolvedEntry[]>> {
-  const parsed = parseInput(resolveInput, input);
-  if (!parsed.ok) return parsed;
-  try {
-    const entries = await resolveEntries(parsed.data.entries, parsed.data.type ?? undefined);
-    return ok(await markExisting(entries));
-  } catch (error) {
-    return serviceFailure(error);
-  }
+  return withActor(async () => {
+    const parsed = parseInput(resolveInput, input);
+    if (!parsed.ok) return parsed;
+    try {
+      const entries = await resolveEntries(parsed.data.entries, parsed.data.type ?? undefined);
+      return ok(await markExisting(entries));
+    } catch (error) {
+      return serviceFailure(error);
+    }
+  });
 }
 
 
@@ -93,30 +95,32 @@ export async function previewEntriesAction(input: {
   entries: Array<{ type: SourceType; name: string; url?: string; config: unknown }>;
   common: WizardCommon;
 }): Promise<ActionResult<PreviewStep>> {
-  const parsed = parseInput(previewInput, input);
-  if (!parsed.ok) return parsed;
-  const fieldErrors: Record<string, string> = {};
-  const configs = parsed.data.entries.map((entry, index) => {
-    try {
-      return parseConfig(entry.type, entry.config);
-    } catch (error) {
-      if (!(error instanceof z.ZodError)) throw error;
-      for (const [key, message] of Object.entries(zodFieldErrors(error))) {
-        const path = key === "_form" ? `entries.${index}.config` : `entries.${index}.config.${key}`;
-        if (!(path in fieldErrors)) fieldErrors[path] = message;
+  return withActor(async () => {
+    const parsed = parseInput(previewInput, input);
+    if (!parsed.ok) return parsed;
+    const fieldErrors: Record<string, string> = {};
+    const configs = parsed.data.entries.map((entry, index) => {
+      try {
+        return parseConfig(entry.type, entry.config);
+      } catch (error) {
+        if (!(error instanceof z.ZodError)) throw error;
+        for (const [key, message] of Object.entries(zodFieldErrors(error))) {
+          const path = key === "_form" ? `entries.${index}.config` : `entries.${index}.config.${key}`;
+          if (!(path in fieldErrors)) fieldErrors[path] = message;
+        }
+        return null;
       }
-      return null;
+    });
+    if (Object.keys(fieldErrors).length > 0) return fail(VALIDATION_MESSAGE, "validation", fieldErrors);
+    try {
+      const preview = await previewSource(
+        parsed.data.entries.map((entry, index) => ({ type: entry.type, name: entry.name, config: configs[index] })),
+      );
+      return ok({ configs, preview });
+    } catch (error) {
+      return serviceFailure(error);
     }
   });
-  if (Object.keys(fieldErrors).length > 0) return fail(VALIDATION_MESSAGE, "validation", fieldErrors);
-  try {
-    const preview = await previewSource(
-      parsed.data.entries.map((entry, index) => ({ type: entry.type, name: entry.name, config: configs[index] })),
-    );
-    return ok({ configs, preview });
-  } catch (error) {
-    return serviceFailure(error);
-  }
 }
 
 /** Step 3: would the recent items enter the selected feeds? */
@@ -130,13 +134,15 @@ export async function qualifyAction(input: {
   ignore: string;
   priority: Priority;
 }): Promise<ActionResult<QualifyResult>> {
-  const parsed = parseInput(qualifyInput, input);
-  if (!parsed.ok) return parsed;
-  try {
-    return ok(await qualifyPreview(parsed.data));
-  } catch (error) {
-    return serviceFailure(error);
-  }
+  return withActor(async () => {
+    const parsed = parseInput(qualifyInput, input);
+    if (!parsed.ok) return parsed;
+    try {
+      return ok(await qualifyPreview(parsed.data));
+    } catch (error) {
+      return serviceFailure(error);
+    }
+  });
 }
 
 
@@ -147,7 +153,7 @@ export async function createSourcesAction(input: {
 }): Promise<ActionResult<CreateStep>> {
   const parsed = parseInput(createInput, input);
   if (!parsed.ok) return parsed;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     try {
       const entries = parsed.data.entries.map((entry) => {
         const url = entry.url && /^https?:\/\//i.test(entry.url) ? entry.url : undefined;

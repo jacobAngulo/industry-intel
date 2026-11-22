@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import { removeKeyAction, saveKeyAction } from "@/app/settings/actions";
-import { useNameGate } from "@/components/NameGate";
 import { Badge, Button, Field, Input, fieldDescribedBy, formatAbsoluteUtc } from "@/components/ui";
 
 import { SaveRow } from "./SettingsSection";
@@ -21,14 +20,12 @@ export interface KeyRowData {
 }
 
 /** §4.9 API keys: write-only fields. A saved key wins over .env; Remove falls back to .env. */
-export function KeysForm({ keys, name }: { keys: KeyRowData[]; name: string | null }) {
-  const { ensureName, dialog } = useNameGate(name);
+export function KeysForm({ keys }: { keys: KeyRowData[] }) {
   return (
     <div className="flex max-w-xl flex-col gap-6">
       {keys.map((k) => (
-        <KeyRow key={k.name} data={k} ensureName={ensureName} />
+        <KeyRow key={k.name} data={k} />
       ))}
-      {dialog}
     </div>
   );
 }
@@ -39,9 +36,9 @@ function sourceBadge(data: KeyRowData) {
   return <Badge tone="warning">Missing</Badge>;
 }
 
-function KeyRow({ data, ensureName }: { data: KeyRowData; ensureName: () => Promise<boolean> }) {
-  const save = useSave(saveKeyAction, ensureName);
-  const remove = useSave(removeKeyAction, ensureName);
+function KeyRow({ data }: { data: KeyRowData }) {
+  const save = useSave(saveKeyAction);
+  const remove = useSave(removeKeyAction);
   const [value, setValue] = useState("");
   const id = `key-${data.name.toLowerCase()}`;
   const error = save.failure?.fieldErrors.value ?? null;

@@ -7,13 +7,11 @@ import { deleteSourceAction } from "@/app/sources/actions";
 import { Banner, Button, Dialog, type ButtonSize, type ButtonVariant } from "@/components/ui";
 
 import { setFlash } from "./FlashMessage";
-import { useGatedAction } from "./use-gated-action";
+import { useAction } from "./use-action";
 
 export interface DeleteSourceButtonProps {
   sourceId: number;
   sourceName: string;
-  /** The display name of this browser (null = not set). */
-  name: string | null;
   /** All items of the source, for the confirmation text (unknown when absent). */
   itemCount?: number;
   /** The stories that only this source has, for the confirmation text (unknown when absent). */
@@ -29,7 +27,6 @@ export interface DeleteSourceButtonProps {
 export function DeleteSourceButton({
   sourceId,
   sourceName,
-  name,
   itemCount,
   soleStoryCount,
   redirectTo,
@@ -40,7 +37,7 @@ export function DeleteSourceButton({
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { run, pending, dialog } = useGatedAction(name);
+  const { run, pending } = useAction();
 
   const confirm = () => {
     setError(null);
@@ -111,7 +108,6 @@ export function DeleteSourceButton({
           ) : null}
         </div>
       </Dialog>
-      {dialog}
     </>
   );
 }

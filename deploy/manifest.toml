@@ -18,18 +18,34 @@ host         = "127.0.0.1"
 port         = 8070
 
 [health]
-# The app is built with basePath=/industry-intel, so the prefix is part of
-# every path the process answers, API routes included. A stopped worker
-# reports `degraded`; an unreadable database reports `fail`.
-url       = "http://127.0.0.1:8070/industry-intel/api/health"
+# A stopped worker reports `degraded`; an unreadable database reports `fail`.
+url       = "http://127.0.0.1:8070/api/health"
 timeout_s = 5
 
-# The app has no login: everybody who can open it can read and change
-# everything. That is why it lives on the VPN-only admin plane and nowhere else.
 [[routes]]
-path        = "/industry-intel/"
-public      = false
-description = "VPN-only. No login by design; see README.md. Built with BASE_PATH=/industry-intel."
+path        = "/"
+origin      = "https://industry-intel.angulo-solutions.com"
+public      = true
+description = "Public hostname; Google sign-in and an approved access request required on every page."
+
+[google_auth]
+env_file           = ".env"
+client_id_key      = "AUTH_GOOGLE_ID"
+client_secret_key  = "AUTH_GOOGLE_SECRET"
+authorized_origins = ["https://industry-intel.angulo-solutions.com"]
+redirect_uris      = ["https://industry-intel.angulo-solutions.com/api/auth/callback/google"]
+login_path         = "/login"
+
+[product_ops]
+store = "application"
+
+[product_ops.admin_api]
+base_url  = "http://127.0.0.1:8070/api/admin"
+token_key = "ADMIN_API_TOKEN"
+
+[product_ops.access_requests]
+table         = "access_request"
+status_column = "status"
 
 [data]
 root = "/srv/data/industry-intel"
@@ -42,6 +58,42 @@ description = "Feeds, sources, items, stories, judgements, votes, digests, and w
 backup      = { enabled = true, keep = 7, dir = "/srv/data/industry-intel/backups" }
 
 # Logs go to journald only (journalctl -u industry-intel), so no [logs] block.
+
+[[config.keys]]
+name        = "AUTH_GOOGLE_ID"
+secret      = false
+required    = true
+description = "Google OAuth client ID; managed by Ops Console's Google Cloud control surface."
+
+[[config.keys]]
+name        = "AUTH_GOOGLE_SECRET"
+secret      = true
+required    = true
+description = "Google OAuth client secret; managed by Ops Console's Google Cloud control surface."
+
+[[config.keys]]
+name        = "AUTH_SECRET"
+secret      = true
+required    = true
+description = "Session signing key; generate with openssl rand -base64 32. Without it every page answers 503."
+
+[[config.keys]]
+name        = "AUTH_URL"
+secret      = false
+required    = true
+description = "Externally visible auth base, ending in /api/auth."
+
+[[config.keys]]
+name        = "ADMIN_API_TOKEN"
+secret      = true
+required    = true
+description = "Bearer token (32+ characters) of the loopback-only /api/admin surface that Ops Console calls."
+
+[[config.keys]]
+name        = "ADMIN_EMAILS"
+secret      = false
+required    = false
+description = "Comma-separated emails that can change API keys and delete feeds. Unset: nobody. It gives no access by itself."
 
 [[config.keys]]
 name        = "OLLAMA_API_KEY"

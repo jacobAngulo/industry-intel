@@ -13,7 +13,6 @@ export interface RejudgeOfferProps {
   estimates: RejudgeEstimate[];
   /** Limits the re-judge to the stories of one source (a change of Follow / Ignore). */
   sourceId?: number;
-  ensureName: () => Promise<boolean>;
   /** Hides the offer ("Not now"). */
   onDismiss: () => void;
 }
@@ -23,8 +22,8 @@ export interface RejudgeOfferProps {
  * "This applies to new stories. Re-judge the last 7 days? (about N model calls)".
  * The progress line of the page shows the request after the click.
  */
-export function RejudgeOffer({ estimates, sourceId, ensureName, onDismiss }: RejudgeOfferProps) {
-  const save = useSave(requestRejudgeAction, ensureName);
+export function RejudgeOffer({ estimates, sourceId, onDismiss }: RejudgeOfferProps) {
+  const save = useSave(requestRejudgeAction);
   const [requested, setRequested] = useState<number[]>([]);
   const total = estimates.reduce((sum, e) => sum + e.calls, 0);
   const open = estimates.filter((e) => e.calls > 0 && !requested.includes(e.feedId));

@@ -2,7 +2,7 @@
 
 Industry Intel is a private news site. Each feed has a profile that describes the work that it follows, and the site shows only the developments that can change that work. For each story it says what changed, why it matters to the feed, and what to do next. A deeper technical analysis with suggested actions is one click away.
 
-There is no login. Everybody who can open the site can read and change everything. A display name (asked one time) shows who added or changed what.
+You sign in with Google, then ask for access; the operator approves the request. An approved person can read and change everything, except that only an administrator (`ADMIN_EMAILS`) can change the API keys or delete a feed. Your Google name shows who added or changed what.
 
 ## What the app does
 
@@ -18,6 +18,7 @@ The full behavior is in [docs/specification.md](docs/specification.md).
 ## Requirements
 
 - Node.js 20.12 or later (tested with 20.20.0), and npm.
+- A Google OAuth client (see "Sign-in" in `.env.example`).
 - An Ollama cloud API key. The model judges each item and writes the analyses. Without the key, the worker still reads the sources, but no story shows.
 - Optional: an X API Bearer Token with credits, for X users and X keywords.
 
@@ -74,7 +75,7 @@ The web process and the worker share one SQLite file: `data/app.db`. The first s
 
 ## First steps in the app
 
-1. Click **Set your name** at the top right and enter your name.
+1. Sign in with Google and send an access request. Approve it in Ops Console, or with `POST /api/admin/access-requests/<id>/decision` and the bearer token `ADMIN_API_TOKEN` (body `{"decision":"approve"}`; `GET /api/admin/summary` lists the ids).
 2. Open **Settings** and fill in the shared feed profile: focus and requirements. In each feed, fill in the context on the Feed Profile tab. The judge reads the profiles for each item.
 3. Open a feed. If it has few sources, the page offers starter sources (GitHub releases of coding agents, vendor changelogs, engineering blogs). Click **Add** on the ones that you want.
 4. Open **Sources** and click **Add source** to add your own sources.
@@ -86,6 +87,9 @@ The worker checks new sources within a minute. The first stories show a few minu
 
 | Variable | Purpose | Default |
 |---|---|---|
+| `AUTH_GOOGLE_ID`, `AUTH_GOOGLE_SECRET`, `AUTH_SECRET`, `AUTH_URL` | Google sign-in. Necessary: without the first three every page answers 503. | — |
+| `ADMIN_API_TOKEN` | The bearer token of `/api/admin` (32+ characters). | closed |
+| `ADMIN_EMAILS` | Who can change the API keys and delete feeds. | nobody |
 | `OLLAMA_API_KEY` | The Ollama cloud key. Necessary. | — |
 | `X_BEARER_TOKEN` | The X API token. Optional. | — |
 | `X_MAX_POSTS_PER_DAY` | Hard stop for X post reads in one UTC day. | 300 |

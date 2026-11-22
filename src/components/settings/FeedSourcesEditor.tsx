@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useId, useOptimistic, useState, useTransition } from "react";
 
 import { setFeedSourceAction } from "@/app/f/[slug]/settings/actions";
-import { useNameGate } from "@/components/NameGate";
 import {
   Badge,
   ChipToggle,
@@ -52,13 +51,11 @@ export interface FeedSourcesEditorProps {
   feedId: number;
   feedName: string;
   items: FeedSourceItem[];
-  name: string | null;
   addHref: string;
 }
 
 /** The Sources group of the feed settings (§4.8): search, groups by type, one row per source. */
-export function FeedSourcesEditor({ feedId, feedName, items, name, addHref }: FeedSourcesEditorProps) {
-  const { ensureName, dialog } = useNameGate(name);
+export function FeedSourcesEditor({ feedId, feedName, items, addHref }: FeedSourcesEditorProps) {
   const searchId = useId();
   const [query, setQuery] = useState("");
   const [onlyIncluded, setOnlyIncluded] = useState(false);
@@ -77,7 +74,6 @@ export function FeedSourcesEditor({ feedId, feedName, items, name, addHref }: Fe
             </LinkButton>
           }
         />
-        {dialog}
       </>
     );
   }
@@ -136,14 +132,12 @@ export function FeedSourcesEditor({ feedId, feedName, items, name, addHref }: Fe
                   feedId={feedId}
                   item={row}
                   hidden={!visible.has(row.id)}
-                  ensureName={ensureName}
                 />
               ))}
             </ul>
           </section>
         );
       })}
-      {dialog}
     </div>
   );
 }
@@ -158,12 +152,10 @@ function FeedSourceRow({
   feedId,
   item,
   hidden,
-  ensureName,
 }: {
   feedId: number;
   item: FeedSourceItem;
   hidden: boolean;
-  ensureName: () => Promise<boolean>;
 }) {
   const id = `src-${item.id}`;
   const [included, setIncluded] = useState(item.included);
@@ -174,7 +166,7 @@ function FeedSourceRow({
   const [saved, setSaved] = useState<LinkDraft>({ priority: item.priority, follow: item.follow, ignore: item.ignore });
   const [draft, setDraft] = useState<LinkDraft>(saved);
   const [offer, setOffer] = useState<RejudgeEstimate[] | null>(null);
-  const save = useSave(setFeedSourceAction, ensureName);
+  const save = useSave(setFeedSourceAction);
   const badge = sourceStatusBadge(item.status);
   const errors = save.failure?.fieldErrors;
 
@@ -182,7 +174,6 @@ function FeedSourceRow({
     setToggleError(null);
     setQueued(null);
     setOffer(null);
-    if (!(await ensureName())) return;
     startToggle(async () => {
       setShownIncluded(next);
       try {
@@ -323,7 +314,7 @@ function FeedSourceRow({
         </form>
       ) : null}
       {offer ? (
-        <RejudgeOffer estimates={offer} sourceId={item.id} ensureName={ensureName} onDismiss={() => setOffer(null)} />
+        <RejudgeOffer estimates={offer} sourceId={item.id} onDismiss={() => setOffer(null)} />
       ) : null}
     </li>
   );

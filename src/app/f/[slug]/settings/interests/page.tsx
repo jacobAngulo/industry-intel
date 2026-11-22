@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { getActor } from "@/app/_lib/identity";
+import { requireUser } from "@/app/_lib/identity";
 import { GroupHeader } from "@/components/settings/GroupHeader";
 import { InterestsForm } from "@/components/settings/InterestsForm";
 import { getFeedBySlug, listTopics } from "@/lib/services";
@@ -17,7 +17,7 @@ export default async function FeedInterestsSettingsPage({ params }: PageProps<"/
   const { slug } = await params;
   const feed = await getFeedBySlug(slug);
   if (!feed || feed.archived) notFound();
-  const [topics, actor] = await Promise.all([listTopics(), getActor()]);
+  const [topics] = await Promise.all([listTopics(), requireUser()]);
   const topicPriorities: Record<string, TopicPriority> = Object.fromEntries(
     Object.entries(feed.topicPriorities).map(([id, priority]) => [String(id), priority]),
   );
@@ -38,7 +38,6 @@ export default async function FeedInterestsSettingsPage({ params }: PageProps<"/
           minRelevance: feed.minRelevance,
           halfLifeHours: feed.halfLifeHours,
         }}
-        name={actor.name}
       />
     </section>
   );

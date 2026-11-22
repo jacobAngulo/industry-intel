@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { requireUser } from "@/app/_lib/identity";
 import { EmptyState, PageContainer, PageHeader, RelativeTime } from "@/components/ui";
 import { listActivity, listFeeds, listSources, type ActivityRow } from "@/lib/services";
 import { nowMs } from "@/lib/time";
@@ -11,6 +12,7 @@ type EntityLink = { href: string; label: string } | null;
 
 /** §4.10 Activity: the last 100 changes to sources, feeds, and shared settings, newest first. */
 export default async function ActivityPage() {
+  await requireUser();
   const [rows, feeds, sources] = await Promise.all([
     listActivity(100),
     listFeeds({ includeArchived: true }),

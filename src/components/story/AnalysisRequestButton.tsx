@@ -3,7 +3,6 @@
 import { useState, useTransition } from "react";
 
 import { requestAnalysisAction } from "@/app/f/[slug]/actions";
-import { useNameGate } from "@/components/NameGate";
 import { Button, type ButtonVariant } from "@/components/ui";
 
 /**
@@ -14,24 +13,20 @@ import { Button, type ButtonVariant } from "@/components/ui";
 export function AnalysisRequestButton({
   feedSlug,
   storyId,
-  name,
   label,
   variant = "primary",
 }: {
   feedSlug: string;
   storyId: number;
-  name: string | null;
   label: string;
   variant?: ButtonVariant;
 }) {
-  const { ensureName, dialog } = useNameGate(name);
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
 
   const request = async () => {
     if (pending) return;
     setError(null);
-    if (!(await ensureName())) return;
     startTransition(async () => {
       try {
         const result = await requestAnalysisAction({ feedSlug, storyId });
@@ -52,7 +47,6 @@ export function AnalysisRequestButton({
           {error}
         </p>
       ) : null}
-      {dialog}
     </div>
   );
 }

@@ -67,7 +67,7 @@ export function FeedbackButton() {
         open={open}
         onClose={close}
         title="Send feedback"
-        description="Report a problem or suggest an improvement. It goes to the team's ticket board, with your display name."
+        description="Report a problem or suggest an improvement. It goes to the team's ticket board, with your name."
         size="md"
       >
         {done ? (

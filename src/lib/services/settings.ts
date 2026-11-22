@@ -10,7 +10,7 @@ import { DEFAULT_EXCLUSIONS, EMPTY_TEAM_PROFILE, defaultFeedDefaults, type Brief
 import { briefFormatSchema, exclusionsSchema, feedDefaultsSchema, nameSchema, oneLineSchema, teamProfileSchema } from "@/lib/form-schemas";
 
 import { RANK_TIME_RECOMPUTE_MS, inImmediate, q, readSetting, uniqueSlug, writeSetting } from "./_manage-db";
-import { notFound, parseOrThrow, requireName, ServiceError } from "./_manage-errors";
+import { notFound, parseOrThrow, ServiceError } from "./_manage-errors";
 import { logActivity } from "./activity";
 import type { Actor, TopicRow } from "./types";
 
@@ -35,7 +35,6 @@ export async function getTeamProfile(): Promise<TeamProfile> {
 }
 
 export async function updateTeamProfile(input: TeamProfile, actor: Actor): Promise<void> {
-  requireName(actor);
   const data = parseOrThrow(teamProfileSchema, input);
   inImmediate(() => {
     writeSetting("team_profile", data, actor.name.trim());
@@ -82,7 +81,6 @@ function requireTopic(id: number): TopicDbRow {
 
 /** A new topic is judge-time (§8.4): no recompute. */
 export async function createTopic(input: { name: string; description: string }, actor: Actor): Promise<TopicRow> {
-  requireName(actor);
   const data = parseOrThrow(topicSchema, input);
   return inImmediate(() => {
     assertNameFree(data.name, null);
@@ -98,7 +96,6 @@ export async function createTopic(input: { name: string; description: string }, 
 
 /** The slug stays. A new name changes the labels of the rank parts, so they are recomputed. */
 export async function updateTopic(id: number, input: { name: string; description: string }, actor: Actor): Promise<void> {
-  requireName(actor);
   const data = parseOrThrow(topicSchema, input);
   inImmediate(() => {
     const topic = requireTopic(id);
@@ -111,7 +108,6 @@ export async function updateTopic(id: number, input: { name: string; description
 
 /** An archived topic no longer counts in the rank (no T term, no mute): recompute (§8.4). */
 export async function archiveTopic(id: number, actor: Actor): Promise<void> {
-  requireName(actor);
   inImmediate(() => {
     const topic = requireTopic(id);
     if (topic.archivedAt !== null) return;
@@ -152,7 +148,6 @@ function feedsOnDefaultDepth(): number[] {
  * term D, §8.4): after a change, their rank of the last 30 days is recomputed.
  */
 export async function updateDefaults(input: SharedDefaults, actor: Actor): Promise<void> {
-  requireName(actor);
   const data = parseOrThrow(defaultsSchema, input);
   inImmediate(() => {
     const depthBefore = readBriefDefaults().technicalDepth;

@@ -205,7 +205,7 @@ describe("row factories", () => {
 
     const a = addVote({ feedId: feed.id, storyId: story.id, reason: "useful" });
     const b = addVote({ feedId: feed.id, storyId: story.id, reason: "off_topic" });
-    expect(a.clientId).not.toBe(b.clientId);
-    expect(() => addVote({ feedId: feed.id, storyId: story.id, reason: "useful", clientId: a.clientId })).toThrow();
+    expect(a.userId).not.toBe(b.userId);
+    expect(() => addVote({ feedId: feed.id, storyId: story.id, reason: "useful", userId: a.userId })).toThrow();
   });
 });

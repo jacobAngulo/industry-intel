@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import { archiveFeedAction, saveFeedDeliveryAction } from "@/app/f/[slug]/settings/actions";
-import { useNameGate } from "@/components/NameGate";
 import { Button, Dialog, Field, Select, fieldDescribedBy } from "@/components/ui";
 import {
   SUMMARY_LENGTHS,
@@ -54,7 +53,6 @@ export interface DeliveryFormProps {
   briefDefaults: BriefFormat;
   /** IANA zones, the current value first. */
   timeZones: string[];
-  name: string | null;
 }
 
 type Section = "brief" | "digest" | "quiet" | "alerts";
@@ -63,8 +61,7 @@ type Section = "brief" | "digest" | "quiet" | "alerts";
  * The Delivery group (§4.8). Each section has its own Save; a save sends only
  * the key of its section (a FeedDeliveryPatch).
  */
-export function DeliveryForm({ feedId, feedName, initial, briefDefaults, timeZones, name }: DeliveryFormProps) {
-  const { ensureName, dialog } = useNameGate(name);
+export function DeliveryForm({ feedId, feedName, initial, briefDefaults, timeZones }: DeliveryFormProps) {
   const [saved, setSaved] = useState<Delivery>(initial);
   const [brief, setBrief] = useState<BriefFormatOverride>(initial.briefFormat);
   const [digest, setDigest] = useState<DigestDraft>(digestToDraft(initial.digest));
@@ -73,10 +70,10 @@ export function DeliveryForm({ feedId, feedName, initial, briefDefaults, timeZon
   const [offer, setOffer] = useState<RejudgeEstimate[] | null>(null);
 
   const saves: Record<Section, SaveHandle<unknown, RejudgeEstimate[]>> = {
-    brief: useSave(saveFeedDeliveryAction, ensureName),
-    digest: useSave(saveFeedDeliveryAction, ensureName),
-    quiet: useSave(saveFeedDeliveryAction, ensureName),
-    alerts: useSave(saveFeedDeliveryAction, ensureName),
+    brief: useSave(saveFeedDeliveryAction),
+    digest: useSave(saveFeedDeliveryAction),
+    quiet: useSave(saveFeedDeliveryAction),
+    alerts: useSave(saveFeedDeliveryAction),
   };
 
   const submit = (section: Section, patch: Partial<Delivery>, offerRejudge: boolean) => {
@@ -167,7 +164,7 @@ export function DeliveryForm({ feedId, feedName, initial, briefDefaults, timeZon
             error={saves.brief.failure?.message}
           />
         </form>
-        {offer ? <RejudgeOffer estimates={offer} ensureName={ensureName} onDismiss={() => setOffer(null)} /> : null}
+        {offer ? <RejudgeOffer estimates={offer} onDismiss={() => setOffer(null)} /> : null}
       </SettingsSection>
 
       <SettingsSection
@@ -245,8 +242,7 @@ export function DeliveryForm({ feedId, feedName, initial, briefDefaults, timeZon
         </form>
       </SettingsSection>
 
-      <ArchiveFeed feedId={feedId} feedName={feedName} ensureName={ensureName} />
-      {dialog}
+      <ArchiveFeed feedId={feedId} feedName={feedName} />
     </div>
   );
 }
@@ -254,14 +250,12 @@ export function DeliveryForm({ feedId, feedName, initial, briefDefaults, timeZon
 function ArchiveFeed({
   feedId,
   feedName,
-  ensureName,
 }: {
   feedId: number;
   feedName: string;
-  ensureName: () => Promise<boolean>;
 }) {
   const [open, setOpen] = useState(false);
-  const save = useSave(archiveFeedAction, ensureName);
+  const save = useSave(archiveFeedAction);
 
   return (
     <SettingsSection
@@ -273,9 +267,7 @@ function ArchiveFeed({
       <Button
         variant="danger"
         icon="delete"
-        onClick={async () => {
-          if (await ensureName()) setOpen(true);
-        }}
+        onClick={() => setOpen(true)}
       >
         Archive this feed
       </Button>

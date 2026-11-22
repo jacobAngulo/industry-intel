@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { getActor } from "@/app/_lib/identity";
+import { getUser } from "@/app/_lib/identity";
 import { Banners } from "@/components/Banners";
 import { FeedbackButton } from "@/components/FeedbackButton";
 import { TopNav, type FeedTab } from "@/components/nav";
@@ -30,8 +30,11 @@ export const viewport: Viewport = {
 };
 
 /** The data of the page shell. A failure here must not hide the page: the page shows its own error. */
-async function loadShell(): Promise<{ feeds: FeedTab[]; banners: AppBanner[]; name: string | null }> {
-  const [feeds, banners, actor] = await Promise.all([
+async function loadShell(): Promise<{ feeds: FeedTab[]; banners: AppBanner[]; name: string } | null> {
+  // Without access the page gets no shell: the feed names are private.
+  const user = await getUser();
+  if (!user) return null;
+  const [feeds, banners] = await Promise.all([
     listFeeds().catch((error: unknown) => {
       console.error("layout: listFeeds failed", error instanceof Error ? error.message : error);
       return [];
@@ -40,7 +43,6 @@ async function loadShell(): Promise<{ feeds: FeedTab[]; banners: AppBanner[]; na
       console.error("layout: getBanners failed", error instanceof Error ? error.message : error);
       return [];
     }),
-    getActor(),
   ]);
   return {
     feeds: feeds
@@ -49,7 +51,7 @@ async function loadShell(): Promise<{ feeds: FeedTab[]; banners: AppBanner[]; na
       .map((f) => ({ slug: f.slug, name: f.name, alertIds: f.alertIds })),
     // Every page shows only the worker banner here; feed pages show their own banners.
     banners: banners.filter((b) => b.kind === "worker_down"),
-    name: actor.name,
+    name: user.name,
   };
 }
 
@@ -64,8 +66,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         >
           Skip to content
         </a>
-        <TopNav feeds={shell.feeds} name={shell.name} />
-        {shell.banners.length > 0 ? (
+        {shell ? <TopNav feeds={shell.feeds} name={shell.name} /> : null}
+        {shell && shell.banners.length > 0 ? (
           <div className="mx-auto w-full max-w-[1120px] px-4 pt-3 sm:px-6">
             <Banners banners={shell.banners} density="thin" />
           </div>
@@ -75,12 +77,16 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         </main>
         <footer className="mt-16 border-t border-border">
           <div className="mx-auto flex max-w-[1120px] flex-wrap items-center gap-x-2 gap-y-1 px-4 py-5 text-sm text-muted sm:px-6">
-            <span>Industry Intel · shared, no login.</span>
-            <Link href="/activity" className="text-muted underline hover:text-fg">
-              Recent changes
-            </Link>
-            <span aria-hidden="true">·</span>
-            <FeedbackButton />
+            <span>Industry Intel</span>
+            {shell ? (
+              <>
+                <Link href="/activity" className="text-muted underline hover:text-fg">
+                  Recent changes
+                </Link>
+                <span aria-hidden="true">·</span>
+                <FeedbackButton />
+              </>
+            ) : null}
           </div>
         </footer>
       </body>

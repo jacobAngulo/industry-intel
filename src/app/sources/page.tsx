@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { getActor } from "@/app/_lib/identity";
+import { requireUser } from "@/app/_lib/identity";
 import { DeleteSourceButton } from "@/components/sources/DeleteSourceButton";
 import { FlashMessage } from "@/components/sources/FlashMessage";
 import { SOURCE_STATUS_LABELS, SOURCE_STATUS_ORDER, formatSignalRate, plural, sourceNoteLine } from "@/components/sources/labels";
-import { SetNameButton } from "@/components/sources/SetNameButton";
 import { SourceStatusBadge } from "@/components/sources/StatusBadge";
 import {
   Banner,
@@ -28,7 +27,6 @@ import {
   Td,
   Th,
   Textarea,
-  withBasePath,
   Tr,
 } from "@/components/ui";
 import { listFeeds, listSources, type FeedSummary, type SourceRow } from "@/lib/services";
@@ -53,21 +51,18 @@ const ADD_MORE_PLACEHOLDER: Partial<Record<SourceType, string>> = {
 
 export default async function SourcesPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
   const query = parseDirectoryQuery(await searchParams);
-  const [actor, feeds] = await Promise.all([getActor(), listFeeds()]);
+  const [actor, feeds] = await Promise.all([requireUser(), listFeeds()]);
   const activeFeeds = feeds.filter((f) => !f.archived).sort((a, b) => a.position - b.position || a.id - b.id);
   const feed = query.feed ? (activeFeeds.find((f) => String(f.id) === query.feed || f.slug === query.feed) ?? null) : null;
-  const ownerBlocked = query.ownerMe && !actor.name;
 
-  const rows = ownerBlocked
-    ? []
-    : await listSources({
-        ...(query.type ? { type: query.type } : {}),
-        ...(query.status ? { status: query.status } : {}),
-        ...(feed ? { feedId: feed.id } : {}),
-        ...(query.ownerMe && actor.name ? { owner: actor.name } : {}),
-        ...(query.q ? { q: query.q } : {}),
-        sort: query.sort,
-      });
+  const rows = await listSources({
+    ...(query.type ? { type: query.type } : {}),
+    ...(query.status ? { status: query.status } : {}),
+    ...(feed ? { feedId: feed.id } : {}),
+    ...(query.ownerMe ? { owner: actor.name } : {}),
+    ...(query.q ? { q: query.q } : {}),
+    sort: query.sort,
+  });
   const now = nowMs();
   const listMode = query.type !== null && LIST_MECHANISM_TYPES.includes(query.type);
   const filtered = hasFilters(query) || (query.feed !== null && feed === null);
@@ -106,11 +101,6 @@ export default async function SourcesPage({ searchParams }: { searchParams: Prom
 
       <FilterForm query={query} feeds={activeFeeds} />
 
-      {ownerBlocked ? (
-        <Banner tone="info" className="mb-5" actions={<SetNameButton />}>
-          &quot;Owner: me&quot; matches the owner field with your display name. Set your name first.
-        </Banner>
-      ) : null}
       {query.feed !== null && feed === null ? (
         <Banner tone="warning" className="mb-5">
           The feed in the address does not exist or is archived, so the list shows no source.
@@ -121,13 +111,13 @@ export default async function SourcesPage({ searchParams }: { searchParams: Prom
         {plural(query.feed !== null && feed === null ? 0 : rows.length, "source", "sources")}
         {query.type ? ` of the type ${SOURCE_TYPE_LABELS[query.type]}` : ""}
         {filtered ? (rows.length === 1 && !(query.feed !== null && feed === null) ? " matches the filters" : " match the filters") : ""}
-        {query.ownerMe && actor.name ? ` · owner ${actor.name}, flagged sources first` : ""}
+        {query.ownerMe ? ` · owner ${actor.name}, flagged sources first` : ""}
       </p>
 
-      {(query.feed !== null && feed === null) || ownerBlocked ? null : rows.length === 0 ? (
+      {query.feed !== null && feed === null ? null : rows.length === 0 ? (
         <EmptyResult query={query} filtered={filtered} addHref={addHref} />
       ) : listMode ? (
-        <CompactList rows={rows} name={actor.name} />
+        <CompactList rows={rows} />
       ) : (
         <>
           <div className="hidden md:block">
@@ -148,7 +138,7 @@ export default async function SourcesPage({ searchParams }: { searchParams: Prom
 
 function FilterForm({ query, feeds }: { query: DirectoryQuery; feeds: FeedSummary[] }) {
   return (
-    <form method="get" action={withBasePath("/sources")} role="search" aria-label="Filter the sources" className="mb-5">
+    <form method="get" action="/sources" role="search" aria-label="Filter the sources" className="mb-5">
       {query.type ? <input type="hidden" name="type" value={query.type} /> : null}
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(12rem,1.4fr)_1fr_1fr_1fr_auto] lg:items-end">
         <Field id="sources-q" label="Search by name">
@@ -378,7 +368,7 @@ function SourceCard({ row, now }: { row: SourceRow; now: number }) {
 }
 
 /** §4.5 list mechanism: one line for each source. */
-function CompactList({ rows, name }: { rows: SourceRow[]; name: string | null }) {
+function CompactList({ rows }: { rows: SourceRow[] }) {
   return (
     <ul className="flex flex-col divide-y divide-border border-y border-border">
       {rows.map((row) => (
@@ -396,7 +386,7 @@ function CompactList({ rows, name }: { rows: SourceRow[]; name: string | null })
             <FeedChips feeds={row.feeds} />
           </span>
           <span className="shrink-0">
-            <DeleteSourceButton sourceId={row.id} sourceName={row.name} name={name} label="Remove" variant="ghost" size="sm" />
+            <DeleteSourceButton sourceId={row.id} sourceName={row.name} label="Remove" variant="ghost" size="sm" />
           </span>
         </li>
       ))}
@@ -411,7 +401,7 @@ function AddMoreBox({ type, feedSlug }: { type: SourceType; feedSlug: string | n
       <h2 id="add-more-heading" className="mb-1 font-medium">
         Add more {SOURCE_TYPE_LABELS[type]} sources
       </h2>
-      <form method="get" action={withBasePath("/sources/new")} className="flex flex-col gap-3">
+      <form method="get" action="/sources/new" className="flex flex-col gap-3">
         <input type="hidden" name="type" value={type} />
         {feedSlug ? <input type="hidden" name="feed" value={feedSlug} /> : null}
         <Field id="add-more" label="Add more: one per line" hint="The next page finds each one. Nothing is added before you confirm.">

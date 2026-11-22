@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { requireUser } from "@/app/_lib/identity";
 import { formatPeriod } from "@/components/feed/digest-format";
 import { MarkDigestsSeen } from "@/components/feed/DigestsSeen";
 import { loadActiveFeed } from "@/components/feed/load-feed";
@@ -28,6 +29,7 @@ function scheduleText(feed: FeedDetail): string | null {
 
 /** The digest list of a feed (§4.4): newest first, rows with entries only. */
 export default async function DigestsPage({ params }: PageProps<"/f/[slug]/digests">) {
+  await requireUser();
   const { slug } = await params;
   const feed = await loadActiveFeed(slug);
   if (!feed) notFound();

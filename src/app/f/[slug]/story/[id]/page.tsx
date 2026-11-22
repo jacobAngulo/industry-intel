@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache, type ReactNode } from "react";
 
-import { getActor } from "@/app/_lib/identity";
+import { requireUser } from "@/app/_lib/identity";
 import { Banners } from "@/components/Banners";
 import { loadActiveFeed } from "@/components/feed/load-feed";
 import { AnalysisSection, MODEL_BANNER_KINDS } from "@/components/story/AnalysisSection";
@@ -22,9 +22,9 @@ import { nowMs } from "@/lib/time";
 const loadStory = cache(async (slug: string, id: string) => {
   const feed = await loadActiveFeed(slug);
   if (!feed || !/^\d{1,15}$/.test(id)) return null;
-  const actor = await getActor();
-  const detail = await getStory(feed.id, Number(id), actor.clientId);
-  return detail ? { feed, detail, actor } : null;
+  const actor = await requireUser();
+  const detail = await getStory(feed.id, Number(id), actor.id);
+  return detail ? { feed, detail } : null;
 });
 
 export async function generateMetadata({ params }: PageProps<"/f/[slug]/story/[id]">): Promise<Metadata> {
@@ -58,7 +58,7 @@ export default async function StoryPage({ params }: PageProps<"/f/[slug]/story/[
   const { slug, id } = await params;
   const loaded = await loadStory(slug, id);
   if (!loaded) notFound();
-  const { feed, detail, actor } = loaded;
+  const { feed, detail } = loaded;
   const { card } = detail;
   const now = nowMs();
   const banners = await getBanners(feed.id);
@@ -117,7 +117,7 @@ export default async function StoryPage({ params }: PageProps<"/f/[slug]/story/[
       </header>
 
       <Section id="sources-title" title="Sources">
-        <StoryItems items={detail.items} feedSlug={feed.slug} storyId={card.storyId} now={now} name={actor.name} />
+        <StoryItems items={detail.items} feedSlug={feed.slug} storyId={card.storyId} now={now} />
       </Section>
 
       <Section id="judgement-title" title="Judgement">
@@ -176,7 +176,6 @@ export default async function StoryPage({ params }: PageProps<"/f/[slug]/story/[
         storyId={card.storyId}
         now={now}
         banners={banners}
-        name={actor.name}
       />
     </article>
   );

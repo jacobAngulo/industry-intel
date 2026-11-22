@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import { saveTeamProfileAction } from "@/app/settings/actions";
-import { useNameGate } from "@/components/NameGate";
 import { Field, Textarea, fieldDescribedBy } from "@/components/ui";
 import type { TeamProfile } from "@/lib/types";
 
@@ -29,8 +28,6 @@ const FIELDS: Array<{ key: keyof TeamProfile; label: string; placeholder: string
 
 export interface TeamProfileFormProps {
   profile: TeamProfile;
-  /** The display name (null = the name dialog opens before the save). */
-  name: string | null;
   /** The id prefix of the controls (unique on the page). */
   id?: string;
 }
@@ -39,9 +36,8 @@ export interface TeamProfileFormProps {
  * The shared feed profile (§4.8, §4.9). It is judge-time for every feed: after
  * a save of a change, the form offers the re-judge for each active feed.
  */
-export function TeamProfileForm({ profile, name, id = "team" }: TeamProfileFormProps) {
-  const { ensureName, dialog } = useNameGate(name);
-  const save = useSave(saveTeamProfileAction, ensureName);
+export function TeamProfileForm({ profile, id = "team" }: TeamProfileFormProps) {
+  const save = useSave(saveTeamProfileAction);
   const [saved, setSaved] = useState<TeamProfile>(profile);
   const [draft, setDraft] = useState<TeamProfile>(profile);
   const [offer, setOffer] = useState<RejudgeEstimate[] | null>(null);
@@ -87,8 +83,7 @@ export function TeamProfileForm({ profile, name, id = "team" }: TeamProfileFormP
           error={save.failure?.message}
         />
       </form>
-      {offer ? <RejudgeOffer estimates={offer} ensureName={ensureName} onDismiss={() => setOffer(null)} /> : null}
-      {dialog}
+      {offer ? <RejudgeOffer estimates={offer} onDismiss={() => setOffer(null)} /> : null}
     </>
   );
 }

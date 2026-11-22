@@ -18,7 +18,7 @@ import { ServiceError } from "./_manage-errors";
 import { estimateRejudge, rejudgeProgress, requestRejudge } from "./rejudge";
 
 const NOW = 1_800_000_000_000;
-const actor = { name: "Dana", clientId: "c1" };
+const actor = { name: "Dana", userId: "c1" };
 
 let t: InstalledTestDb;
 beforeEach(() => {
@@ -95,7 +95,6 @@ describe("requestRejudge and rejudgeProgress", () => {
     await expectCode(requestRejudge(999, {}, actor), "not_found");
     await expectCode(requestRejudge(feed.id, { sourceId: 999 }, actor), "not_found");
     await expectCode(requestRejudge(feed.id, { maxStories: 0 }, actor), "validation");
-    await expectCode(requestRejudge(feed.id, {}, { name: "", clientId: "c" }), "needs_name");
     const archived = makeFeed({ archivedAt: NOW });
     await expectCode(requestRejudge(archived.id, {}, actor), "conflict");
     expect(t.db.select().from(rejudgeRequests).all()).toEqual([]);

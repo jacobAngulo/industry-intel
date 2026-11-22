@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { getActor } from "@/app/_lib/identity";
+import { requireUser } from "@/app/_lib/identity";
 import { AutoRefresh } from "@/components/AutoRefresh";
 import { Banners } from "@/components/Banners";
 import { AlertBanner, DismissHiddenAlerts } from "@/components/feed/AlertBanner";
@@ -76,7 +76,7 @@ type Suggestions = Awaited<ReturnType<typeof listSuggestions>>;
 const MAX_SUGGESTIONS = 6;
 
 /** The starter suggestions of §12 that are not in the directory yet, each with "Add" (every empty state). */
-function StarterSuggestions({ feed, suggestions, name }: { feed: FeedDetail; suggestions: Suggestions; name: string | null }) {
+function StarterSuggestions({ feed, suggestions }: { feed: FeedDetail; suggestions: Suggestions }) {
   if (suggestions.length === 0) return null;
   const shown = suggestions.slice(0, MAX_SUGGESTIONS);
   return (
@@ -84,7 +84,6 @@ function StarterSuggestions({ feed, suggestions, name }: { feed: FeedDetail; sug
       <h3 className="font-medium text-fg">Add sources to this feed</h3>
       <SuggestionList
         feedSlug={feed.slug}
-        name={name}
         suggestions={shown.map((s) => ({ name: s.name, type: s.type, why: s.why }))}
       />
       <Link href={`/sources/new?feed=${encodeURIComponent(feed.slug)}`} className="self-start text-sm text-accent">
@@ -125,7 +124,6 @@ interface EmptyHelp {
   allBlocked: boolean;
   suggestions: Suggestions;
   feed: FeedDetail;
-  name: string | null;
 }
 
 function EmptyHelpBlock({ help }: { help: EmptyHelp }) {
@@ -133,18 +131,18 @@ function EmptyHelpBlock({ help }: { help: EmptyHelp }) {
   return (
     <div className="flex flex-col gap-6">
       <SourceProblems problems={help.problems} />
-      <StarterSuggestions feed={help.feed} suggestions={help.suggestions} name={help.name} />
+      <StarterSuggestions feed={help.feed} suggestions={help.suggestions} />
     </div>
   );
 }
 
-async function loadEmptyHelp(feed: FeedDetail, name: string | null): Promise<EmptyHelp> {
+async function loadEmptyHelp(feed: FeedDetail): Promise<EmptyHelp> {
   const [links, suggestions] = await Promise.all([listFeedSources(feed.id), listSuggestions(feed.slug)]);
   const { problems, all } = feedSourceProblems(links);
-  return { problems, allBlocked: all, suggestions, feed, name };
+  return { problems, allBlocked: all, suggestions, feed };
 }
 
-function NoSources({ feed, suggestions, name }: { feed: FeedDetail; suggestions: Suggestions; name: string | null }) {
+function NoSources({ feed, suggestions }: { feed: FeedDetail; suggestions: Suggestions }) {
   const slug = encodeURIComponent(feed.slug);
   return (
     <EmptyState
@@ -167,7 +165,7 @@ function NoSources({ feed, suggestions, name }: { feed: FeedDetail; suggestions:
         </>
       }
     >
-      <StarterSuggestions feed={feed} suggestions={suggestions} name={name} />
+      <StarterSuggestions feed={feed} suggestions={suggestions} />
     </EmptyState>
   );
 }
@@ -352,11 +350,11 @@ export default async function FeedPage({ params, searchParams }: PageProps<"/f/[
   const feed = await loadActiveFeed(slug);
   if (!feed) notFound();
   const query = parseFeedQuery(await searchParams);
-  const actor = await getActor();
+  const actor = await requireUser();
   const now = nowMs();
   const settingsHref = `/f/${encodeURIComponent(feed.slug)}/settings/sources`;
 
-  const storyArgs = { feedId: feed.id, clientId: actor.clientId, now };
+  const storyArgs = { feedId: feed.id, userId: actor.id, now };
   const [list, banners, digest] = await Promise.all([
     listFeedStories({
       ...storyArgs,
@@ -386,7 +384,7 @@ export default async function FeedPage({ params, searchParams }: PageProps<"/f/[
     return (
       <div className="flex flex-col gap-4">
         {top}
-        <NoSources feed={feed} suggestions={suggestions} name={actor.name} />
+        <NoSources feed={feed} suggestions={suggestions} />
       </div>
     );
   }
@@ -398,7 +396,7 @@ export default async function FeedPage({ params, searchParams }: PageProps<"/f/[
         ? list
         : await listFeedStories({ ...storyArgs, window: "month", sort: "top", filtered: false, limit: 1 });
     if (month.visibleCount + month.filteredCount === 0) {
-      const help = await loadEmptyHelp(feed, actor.name);
+      const help = await loadEmptyHelp(feed);
       return (
         <div className="flex flex-col gap-4">
           {top}
@@ -424,7 +422,7 @@ export default async function FeedPage({ params, searchParams }: PageProps<"/f/[
     hiddenAlertIds = alertsHiddenForMe(alerts, feed.alertIds, !week.hasMore);
   }
   const emptyHelp =
-    list.stories.length === 0 && !query.filtered && !query.topic ? await loadEmptyHelp(feed, actor.name) : null;
+    list.stories.length === 0 && !query.filtered && !query.topic ? await loadEmptyHelp(feed) : null;
 
   return (
     <div className="flex flex-col gap-4">

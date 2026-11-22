@@ -8,7 +8,7 @@ import { installTestDb, type InstalledTestDb } from "@/test/helpers";
 import { ServiceError } from "./_manage-errors";
 import { getKeyStatuses, removeStoredKey, saveStoredKey } from "./keys";
 
-const actor = { name: "Dana", clientId: "c1" };
+const actor = { name: "Dana", userId: "c1" };
 const SECRET = "ollama-secret-123";
 
 let test: InstalledTestDb;

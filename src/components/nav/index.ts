@@ -1,6 +1,6 @@
 export { TopNav, type TopNavProps } from "./TopNav";
 export { FeedTabs, type FeedTab, type FeedTabsProps } from "./FeedTabs";
-export { SiteLinks, NameButton, type SiteLinksProps } from "./SiteLinks";
+export { SiteLinks, UserMenu, type SiteLinksProps } from "./SiteLinks";
 export {
   DISMISSED_ALERTS_EVENT,
   DISMISSED_ALERTS_KEY,

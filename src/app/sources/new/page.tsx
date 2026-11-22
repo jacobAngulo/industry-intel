@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { getActor } from "@/app/_lib/identity";
+import { requireUser } from "@/app/_lib/identity";
 import { AddSourceWizard, type WizardSuggestion } from "@/components/sources/AddSourceWizard";
 import { entriesFromParam, typeFromParam } from "@/components/sources/wizard-logic";
 import { PageContainer, PageHeader } from "@/components/ui";
@@ -27,7 +27,7 @@ export default async function NewSourcePage({ searchParams }: { searchParams: Pr
   const initialText = entriesFromParam(params.entries);
   const feedParam = Array.isArray(params.feed) ? params.feed[0] : params.feed;
 
-  const [actor, feeds, suggestions] = await Promise.all([getActor(), listFeeds(), listSuggestions()]);
+  const [actor, feeds, suggestions] = await Promise.all([requireUser(), listFeeds(), listSuggestions()]);
   const activeFeeds = feeds
     .filter((f) => !f.archived)
     .sort((a, b) => a.position - b.position || a.id - b.id)

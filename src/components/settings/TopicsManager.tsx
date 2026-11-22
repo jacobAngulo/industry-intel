@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import { archiveTopicAction, updateTopicAction } from "@/app/settings/actions";
-import { useNameGate } from "@/components/NameGate";
 import { Button, Dialog, Field, Input, fieldDescribedBy } from "@/components/ui";
 
 import { errorFor, type RejudgeEstimate } from "./helpers";
@@ -21,12 +20,10 @@ export interface ManagedTopic {
 export interface TopicsManagerProps {
   topics: ManagedTopic[];
   archivedNames: string[];
-  name: string | null;
 }
 
 /** §4.9 Topics: add, rename, edit the description, archive. */
-export function TopicsManager({ topics, archivedNames, name }: TopicsManagerProps) {
-  const { ensureName, dialog } = useNameGate(name);
+export function TopicsManager({ topics, archivedNames }: TopicsManagerProps) {
   const [offer, setOffer] = useState<RejudgeEstimate[] | null>(null);
 
   return (
@@ -36,23 +33,22 @@ export function TopicsManager({ topics, archivedNames, name }: TopicsManagerProp
       ) : (
         <ul className="divide-y divide-border border-y border-border">
           {topics.map((topic) => (
-            <TopicRow key={topic.id} topic={topic} ensureName={ensureName} />
+            <TopicRow key={topic.id} topic={topic} />
           ))}
         </ul>
       )}
       {archivedNames.length > 0 ? (
         <p className="text-sm text-muted">Archived topics (no longer used in the rank): {archivedNames.join(", ")}.</p>
       ) : null}
-      <AddTopicForm idPrefix="shared-new-topic" ensureName={ensureName} onAdded={setOffer} />
-      {offer ? <RejudgeOffer estimates={offer} ensureName={ensureName} onDismiss={() => setOffer(null)} /> : null}
-      {dialog}
+      <AddTopicForm idPrefix="shared-new-topic" onAdded={setOffer} />
+      {offer ? <RejudgeOffer estimates={offer} onDismiss={() => setOffer(null)} /> : null}
     </div>
   );
 }
 
-function TopicRow({ topic, ensureName }: { topic: ManagedTopic; ensureName: () => Promise<boolean> }) {
-  const save = useSave(updateTopicAction, ensureName);
-  const archive = useSave(archiveTopicAction, ensureName);
+function TopicRow({ topic }: { topic: ManagedTopic }) {
+  const save = useSave(updateTopicAction);
+  const archive = useSave(archiveTopicAction);
   const [draft, setDraft] = useState({ name: topic.name, description: topic.description });
   const [confirm, setConfirm] = useState(false);
   const id = `topic-${topic.id}`;
@@ -113,9 +109,7 @@ function TopicRow({ topic, ensureName }: { topic: ManagedTopic; ensureName: () =
             variant="ghost"
             size="sm"
             icon="hide"
-            onClick={async () => {
-              if (await ensureName()) setConfirm(true);
-            }}
+            onClick={() => setConfirm(true)}
           >
             Archive<span className="sr-only"> the topic {topic.name}</span>
           </Button>

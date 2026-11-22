@@ -1,7 +1,7 @@
 "use server";
 
 // Server Actions of the feed settings (specification §4.8). Each action checks
-// the display name, validates its input with zod, calls one service, and
+// the session, validates its input with zod, calls one service, and
 // revalidates the pages. The actions that save a judge-time setting (§8.4)
 // return the re-judge estimate, so that the page can offer the re-judge.
 import { revalidatePath } from "next/cache";
@@ -40,7 +40,7 @@ function revalidateAll(): void {
 export async function setFeedSourceAction(
   input: unknown,
 ): Promise<ActionResult<{ queuedStories: number; estimates: RejudgeEstimate[] }>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const parsed = parseInput(feedSourceInput, input);
     if (!parsed.ok) return parsed;
     const { feedId, sourceId, ...link } = parsed.data;
@@ -57,7 +57,7 @@ export async function setFeedSourceAction(
 }
 
 export async function saveFeedProfileAction(input: unknown): Promise<ActionResult<RejudgeEstimate[]>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const parsed = parseInput(feedProfileInput, input);
     if (!parsed.ok) return parsed;
     const { feedId, ...profile } = parsed.data;
@@ -77,7 +77,7 @@ export async function saveFeedProfileAction(input: unknown): Promise<ActionResul
  * that another person saved in another section.
  */
 export async function saveFeedInterestsAction(input: unknown): Promise<ActionResult<RejudgeEstimate[]>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const parsed = parseInput(feedInterestsInput, input);
     if (!parsed.ok) return parsed;
     const { feedId, ...rest } = parsed.data;
@@ -94,7 +94,7 @@ export async function saveFeedInterestsAction(input: unknown): Promise<ActionRes
 
 /** Takes a FeedDeliveryPatch: only the keys of the saved section, merged in the same way. */
 export async function saveFeedDeliveryAction(input: unknown): Promise<ActionResult<RejudgeEstimate[]>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const parsed = parseInput(feedDeliveryInput, input);
     if (!parsed.ok) return parsed;
     const { feedId, ...rest } = parsed.data;
@@ -111,7 +111,7 @@ export async function saveFeedDeliveryAction(input: unknown): Promise<ActionResu
 
 /** Archives the feed, then opens the shared settings (where it can be restored). */
 export async function archiveFeedAction(input: unknown): Promise<ActionResult<null>> {
-  const result = await withActor<null>({ needsName: true }, async (actor) => {
+  const result = await withActor<null>(async (actor) => {
     const parsed = parseInput(feedIdInput, input);
     if (!parsed.ok) return parsed;
     try {

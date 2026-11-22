@@ -1,7 +1,7 @@
 "use server";
 
 // Server Actions of the source directory and the source page (specification
-// §4.5, §4.6, §18). Each one: zod, the actor (a name is needed), the service,
+// §4.5, §4.6, §18). Each one: zod, the actor, the service,
 // revalidatePath, an ActionResult.
 import { revalidatePath } from "next/cache";
 
@@ -41,7 +41,7 @@ function refreshSource(id: number): void {
 export async function checkNowAction(input: { id: number }): Promise<ActionResult> {
   const parsed = parseInput(sourceIdInput, input);
   if (!parsed.ok) return parsed;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     try {
       await requestCheck(parsed.data.id, actor);
     } catch (error) {
@@ -55,7 +55,7 @@ export async function checkNowAction(input: { id: number }): Promise<ActionResul
 export async function setPausedAction(input: { id: number; paused: boolean }): Promise<ActionResult> {
   const parsed = parseInput(pausedInput, input);
   if (!parsed.ok) return parsed;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     try {
       await setPaused(parsed.data.id, parsed.data.paused, actor);
     } catch (error) {
@@ -69,7 +69,7 @@ export async function setPausedAction(input: { id: number; paused: boolean }): P
 export async function deleteSourceAction(input: { id: number }): Promise<ActionResult<{ name: string }>> {
   const parsed = parseInput(sourceIdInput, input);
   if (!parsed.ok) return parsed;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const source = await getSource(parsed.data.id);
     if (!source) return fail("The source does not exist. Somebody deleted it already.", "not_found");
     try {
@@ -94,7 +94,7 @@ export async function updateAboutAction(input: {
   const parsed = parseInput(aboutInput, input);
   if (!parsed.ok) return parsed;
   const { id, ...fields } = parsed.data;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     try {
       await updateSource(id, fields, actor);
     } catch (error) {
@@ -108,7 +108,7 @@ export async function updateAboutAction(input: {
 export async function updateConfigAction(input: { id: number; config: Record<string, unknown> }): Promise<ActionResult> {
   const parsed = parseInput(configInput, input);
   if (!parsed.ok) return parsed;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     try {
       await updateSource(parsed.data.id, { config: parsed.data.config }, actor);
     } catch (error) {
@@ -131,7 +131,7 @@ export async function setFeedLinkAction(input: {
   const parsed = parseInput(feedLinkInput, input);
   if (!parsed.ok) return parsed;
   const { sourceId, feedId, included, priority, follow, ignore } = parsed.data;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     const before = await getSource(sourceId);
     if (!before) return fail("The source does not exist.", "not_found");
     const link = before.feedLinks.find((l) => l.feedId === feedId);
@@ -159,7 +159,7 @@ export async function setFeedLinkAction(input: {
 export async function rejudgeSourceAction(input: { sourceId: number; feedId: number }): Promise<ActionResult<RejudgeProgress>> {
   const parsed = parseInput(rejudgeInput, input);
   if (!parsed.ok) return parsed;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     try {
       const progress = await requestRejudge(parsed.data.feedId, { sourceId: parsed.data.sourceId }, actor);
       refreshSource(parsed.data.sourceId);
@@ -173,7 +173,7 @@ export async function rejudgeSourceAction(input: { sourceId: number; feedId: num
 export async function flagNoisyAction(input: { id: number; note: string }): Promise<ActionResult> {
   const parsed = parseInput(flagInput, input);
   if (!parsed.ok) return parsed;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     try {
       await flagNoisy(parsed.data.id, parsed.data.note, actor);
     } catch (error) {
@@ -187,7 +187,7 @@ export async function flagNoisyAction(input: { id: number; note: string }): Prom
 export async function resolveFlagsAction(input: { id: number }): Promise<ActionResult> {
   const parsed = parseInput(sourceIdInput, input);
   if (!parsed.ok) return parsed;
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     try {
       await resolveFlags(parsed.data.id, actor);
     } catch (error) {

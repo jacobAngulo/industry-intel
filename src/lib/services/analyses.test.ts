@@ -14,7 +14,7 @@ beforeEach(() => {
 });
 afterEach(() => t.cleanup());
 
-const dana = { name: "Dana", clientId: "c1" };
+const dana = { name: "Dana", userId: "c1" };
 const CONTENT = {
   whatChanged: ["Old text."],
   howItWorks: [],
@@ -72,13 +72,6 @@ function insertRow(feedId: number, storyId: number, fields: { status: string; at
 }
 
 describe("requestAnalysis", () => {
-  it("needs a display name", async () => {
-    const { feed, source } = feedWithSource();
-    const { story } = judgedStory(feed.id, source.id);
-    await expect(requestAnalysis(feed.id, story.id, { name: "  ", clientId: "c1" })).rejects.toMatchObject({ code: "needs_name" });
-    expect(rowOf(feed.id, story.id)).toBeUndefined();
-  });
-
   it("needs a judgement of the story in the feed", async () => {
     const { feed, source } = feedWithSource();
     const other = makeFeed();

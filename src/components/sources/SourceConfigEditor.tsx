@@ -9,7 +9,7 @@ import type { SourceType } from "@/lib/types";
 
 import { checkConfig, type ConfigObject } from "./config-fields";
 import { SourceConfigForm } from "./SourceConfigForm";
-import { useGatedAction } from "./use-gated-action";
+import { useAction } from "./use-action";
 import { errorsAt } from "./wizard-logic";
 
 export interface SourceConfigEditorProps {
@@ -17,17 +17,16 @@ export interface SourceConfigEditorProps {
   type: SourceType;
   config: unknown;
   identityFields: readonly string[];
-  name: string | null;
 }
 
 /** The type-specific settings of a source with Save (§4.6). Identity fields are read-only. */
-export function SourceConfigEditor({ sourceId, type, config, identityFields, name }: SourceConfigEditorProps) {
+export function SourceConfigEditor({ sourceId, type, config, identityFields }: SourceConfigEditorProps) {
   const router = useRouter();
   const [value, setValue] = useState<ConfigObject>(() => (config && typeof config === "object" ? { ...(config as ConfigObject) } : {}));
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState<string | null>(null);
   const [savedAt, setSavedAt] = useState<number | null>(null);
-  const { run, pending, dialog } = useGatedAction(name);
+  const { run, pending } = useAction();
 
   const submit = () => {
     const local = checkConfig(type, value);
@@ -81,7 +80,6 @@ export function SourceConfigEditor({ sourceId, type, config, identityFields, nam
           <SavedNote at={savedAt} />
         </div>
       </form>
-      {dialog}
     </>
   );
 }

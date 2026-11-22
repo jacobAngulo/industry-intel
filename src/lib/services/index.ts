@@ -5,8 +5,7 @@
 // - Reads never throw for a missing row: they return null or an empty list.
 // - Mutations validate their input with zod again (the caps of §14) and
 //   throw a ServiceError for an expected failure. Its `code` is one of the
-//   failure codes of ActionResult: 'needs_name' (the actor has no display
-//   name), 'validation' (with `fieldErrors`), 'not_found', 'conflict', or
+//   failure codes of ActionResult: 'validation' (with `fieldErrors`), 'not_found', 'conflict', or
 //   'limit'. Any other error is a bug or an infrastructure failure.
 // - A Server Action catches the error and returns `serviceFailure(error)`:
 //     try { await createFeed(input, actor); return ok(undefined); }
@@ -27,3 +26,4 @@ export * from "./keys";
 export * from "./rejudge";
 export * from "./status";
 export * from "./activity";
+export * from "./users";

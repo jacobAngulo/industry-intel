@@ -11,7 +11,7 @@ import { FEEDBACK_REASONS, emptyVotes, type FeedbackReason, type HiddenReason, t
 import { nameSchema, oneLineSchema } from "@/lib/form-schemas";
 
 import { inImmediate, q } from "./_manage-db";
-import { fieldErrorsOf, notFound, parseOrThrow, requireName, ServiceError } from "./_manage-errors";
+import { fieldErrorsOf, notFound, parseOrThrow, ServiceError } from "./_manage-errors";
 import { STATS_WINDOW_MS, signalRateOf, sourceStats, toSourceRows, workerEnvView } from "./_manage-source-rows";
 import { checkIntervalSchema, ownerSchema } from "./_manage-schemas";
 import { logActivity } from "./activity";
@@ -259,7 +259,6 @@ export async function updateSource(
   input: { name?: string; why?: string; owner?: string | null; checkIntervalMinutes?: number; config?: unknown },
   actor: Actor,
 ): Promise<void> {
-  requireName(actor);
   const data = parseOrThrow(updateSourceSchema, input);
   inImmediate(() => {
     const source = requireSource(id);
@@ -303,7 +302,6 @@ export async function updateSource(
  * stories that stay is recomputed (refreshStories).
  */
 export async function deleteSource(id: number, actor: Actor): Promise<void> {
-  requireName(actor);
   inImmediate(() => {
     const source = requireSource(id);
     const storyIds = (
@@ -318,7 +316,6 @@ export async function deleteSource(id: number, actor: Actor): Promise<void> {
 }
 
 export async function setPaused(id: number, paused: boolean, actor: Actor): Promise<void> {
-  requireName(actor);
   const value = parseOrThrow(z.boolean(), paused, "paused");
   inImmediate(() => {
     const source = requireSource(id);
@@ -328,7 +325,6 @@ export async function setPaused(id: number, paused: boolean, actor: Actor): Prom
 }
 
 export async function requestCheck(id: number, actor: Actor): Promise<void> {
-  requireName(actor);
   inImmediate(() => {
     const source = requireSource(id);
     getDb().update(sources).set({ checkRequestedAt: nowMs() }).where(eq(sources.id, id)).run();
@@ -342,7 +338,6 @@ export async function requestCheck(id: number, actor: Actor): Promise<void> {
  * no check can run for it. Returns the count.
  */
 export async function requestCheckAllDue(actor: Actor): Promise<number> {
-  requireName(actor);
   const env = workerEnvView();
   return inImmediate(() => {
     const ids = getDb()
@@ -360,7 +355,6 @@ export async function requestCheckAllDue(actor: Actor): Promise<number> {
 }
 
 export async function flagNoisy(id: number, note: string, actor: Actor): Promise<void> {
-  requireName(actor);
   const text = parseOrThrow(oneLineSchema, note ?? "", "note");
   inImmediate(() => {
     const source = requireSource(id);
@@ -373,7 +367,6 @@ export async function flagNoisy(id: number, note: string, actor: Actor): Promise
 }
 
 export async function resolveFlags(id: number, actor: Actor): Promise<void> {
-  requireName(actor);
   inImmediate(() => {
     const source = requireSource(id);
     const result = getDb()

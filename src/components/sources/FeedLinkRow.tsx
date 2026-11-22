@@ -9,7 +9,7 @@ import { Banner, Button, Field, Input, SavedNote, Select, Switch, fieldDescribed
 import { PRIORITIES, PRIORITY_LABELS, type Priority } from "@/lib/types";
 
 import { plural } from "./labels";
-import { useGatedAction } from "./use-gated-action";
+import { useAction } from "./use-action";
 
 export const FOLLOW_IGNORE_HELP =
   "Follow: this feed takes only these subjects from this source. Ignore: this feed never takes these.";
@@ -17,7 +17,6 @@ export const FOLLOW_IGNORE_HELP =
 export interface FeedLinkRowProps {
   sourceId: number;
   feed: { feedId: number; slug: string; name: string; included: boolean; priority: Priority; follow: string; ignore: string };
-  name: string | null;
 }
 
 type Outcome =
@@ -25,7 +24,7 @@ type Outcome =
   | { kind: "rejudged"; text: string };
 
 /** One feed of the source page (§4.6 "Feeds"): the switch, priority, Follow, Ignore, and Save. */
-export function FeedLinkRow({ sourceId, feed, name }: FeedLinkRowProps) {
+export function FeedLinkRow({ sourceId, feed }: FeedLinkRowProps) {
   const id = useId();
   const router = useRouter();
   const [included, setIncluded] = useState(feed.included);
@@ -36,8 +35,8 @@ export function FeedLinkRow({ sourceId, feed, name }: FeedLinkRowProps) {
   const [error, setError] = useState<string | null>(null);
   const [outcome, setOutcome] = useState<Outcome | null>(null);
   const [savedAt, setSavedAt] = useState<number | null>(null);
-  const save = useGatedAction(name);
-  const rejudge = useGatedAction(name);
+  const save = useAction();
+  const rejudge = useAction();
 
   const dirty =
     included !== feed.included ||
@@ -190,8 +189,6 @@ export function FeedLinkRow({ sourceId, feed, name }: FeedLinkRowProps) {
           <Banner tone="alert">{error}</Banner>
         </div>
       ) : null}
-      {save.dialog}
-      {rejudge.dialog}
     </section>
   );
 }

@@ -24,6 +24,7 @@ import {
   sources,
   stories,
   topics,
+  users,
   type FeedbackDbRow,
   type FeedDbRow,
   type FeedSourceDbRow,
@@ -584,24 +585,32 @@ export function makeJudgement(
     .get();
 }
 
-/** Inserts one feedback vote. Each call uses a new client id unless one is given. */
+/** Inserts an account (no access) if it is not there, and returns its id. */
+export function makeUser(id = `user-${next()}`, name = id): string {
+  const now = nowMs();
+  getDb()
+    .insert(users)
+    .values({ id, email: `${id}@example.com`, name, createdAt: now, lastSignInAt: now })
+    .onConflictDoNothing()
+    .run();
+  return id;
+}
+
+/** Inserts one feedback vote. Each call uses a new account unless one is given. */
 export function addVote(input: {
   feedId: number;
   storyId: number;
   reason: FeedbackReason;
-  clientId?: string;
-  createdBy?: string;
+  userId?: string;
   createdAt?: number;
 }): FeedbackDbRow {
-  const n = next();
   return getDb()
     .insert(feedback)
     .values({
       feedId: input.feedId,
       storyId: input.storyId,
       reason: input.reason,
-      clientId: input.clientId ?? `client-${n}`,
-      createdBy: input.createdBy ?? "Someone",
+      userId: makeUser(input.userId),
       createdAt: input.createdAt ?? nowMs(),
     })
     .returning()

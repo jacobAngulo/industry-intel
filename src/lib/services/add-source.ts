@@ -23,7 +23,7 @@ import { LIMITS, type ItemKind, type Priority, type SourceType } from "@/lib/typ
 import { nameSchema, oneLineSchema, prioritySchema, sourceTypeSchema } from "@/lib/form-schemas";
 
 import { countRows, formatUtc, inImmediate, limitError, q } from "./_manage-db";
-import { fieldErrorsOf, parseOrThrow, requireName, ServiceError } from "./_manage-errors";
+import { fieldErrorsOf, parseOrThrow, ServiceError } from "./_manage-errors";
 import { checkIntervalSchema, idSchema, ownerSchema } from "./_manage-schemas";
 import { logActivity } from "./activity";
 import type { Actor, PreviewItem, PreviewResult, QualifyResult, Suggestion, WizardCreate, WizardEntry } from "./types";
@@ -414,7 +414,6 @@ export async function createFromWizard(
   skipped: Array<{ name: string; reason: string }>;
   queuedStories: number;
 }> {
-  requireName(actor);
   const data = parseOrThrow(wizardSchema, input);
   const entries = parseEntryConfigs(data.entries);
   const by = actor.name.trim();

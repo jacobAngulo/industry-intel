@@ -6,12 +6,12 @@ const revalidatePath = vi.fn();
 const redirect = vi.fn((url: string) => {
   throw new Error(`REDIRECT ${url}`);
 });
-const requireActor = vi.fn();
+const getUser = vi.fn();
 const createFeed = vi.fn();
 
 vi.mock("next/cache", () => ({ revalidatePath: (...args: unknown[]) => revalidatePath(...args) }));
 vi.mock("next/navigation", () => ({ redirect: (url: string) => redirect(url) }));
-vi.mock("@/app/_lib/identity", () => ({ requireActor: (needsName: boolean) => requireActor(needsName) }));
+vi.mock("@/app/_lib/identity", () => ({ getUser: () => getUser() }));
 vi.mock("@/lib/services", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@/lib/services")>()),
   createFeed: (...args: unknown[]) => createFeed(...args),
@@ -26,8 +26,8 @@ function form(values: Record<string, string>): FormData {
 }
 
 beforeEach(() => {
-  for (const fn of [revalidatePath, redirect, requireActor, createFeed]) fn.mockClear();
-  requireActor.mockResolvedValue({ name: "Ana", clientId: "c1" });
+  for (const fn of [revalidatePath, redirect, getUser, createFeed]) fn.mockClear();
+  getUser.mockResolvedValue({ id: "c1", name: "Ana" });
 });
 
 describe("createFeedAction", () => {
@@ -36,7 +36,7 @@ describe("createFeedAction", () => {
     await expect(createFeedAction(null, form({ name: " Security Watch ", purpose: "CVEs" }))).rejects.toThrow(
       "REDIRECT /f/security-watch/settings/sources",
     );
-    expect(createFeed).toHaveBeenCalledWith({ name: "Security Watch", purpose: "CVEs" }, { name: "Ana", clientId: "c1" });
+    expect(createFeed).toHaveBeenCalledWith({ name: "Security Watch", purpose: "CVEs" }, { name: "Ana", userId: "c1" });
     expect(revalidatePath).toHaveBeenCalledWith("/", "layout");
   });
 
@@ -54,9 +54,9 @@ describe("createFeedAction", () => {
     expect(redirect).not.toHaveBeenCalled();
   });
 
-  it("needs a display name", async () => {
-    requireActor.mockResolvedValue(null);
+  it("needs a session", async () => {
+    getUser.mockResolvedValue(null);
     const state = await createFeedAction(null, form({ name: "X" }));
-    expect(state.result).toMatchObject({ ok: false, code: "needs_name" });
+    expect(state.result).toMatchObject({ ok: false, code: "unauthenticated" });
   });
 });

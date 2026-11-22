@@ -9,8 +9,6 @@ WorkingDirectory=/projects/industry-intel
 Environment=NODE_ENV=production
 Environment=PORT=8070
 Environment=WEB_HOST=127.0.0.1
-# Must match the BASE_PATH of the build: `next start` evaluates next.config.ts again.
-Environment=BASE_PATH=/industry-intel
 Environment=DATABASE_PATH=/srv/data/industry-intel/db/industry-intel.sqlite3
 # npm wants a writable HOME even to run a script; a --no-create-home system
 # account has none. Keep it inside ReadWritePaths.

@@ -8,7 +8,7 @@ import { requestCheckAllDue, retryFailedItems, serviceFailure, type ActionResult
 
 /** Asks the worker to check every source that is not paused, now. */
 export async function checkAllDueAction(): Promise<ActionResult<{ count: number }>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     let count: number;
     try {
       count = await requestCheckAllDue(actor);
@@ -22,7 +22,7 @@ export async function checkAllDueAction(): Promise<ActionResult<{ count: number 
 
 /** Puts the failed items back in the queue for the model (attempts 0). */
 export async function retryFailedAction(): Promise<ActionResult<{ count: number }>> {
-  return withActor({ needsName: true }, async (actor) => {
+  return withActor(async (actor) => {
     let count: number;
     try {
       count = await retryFailedItems(actor);

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { getActor } from "@/app/_lib/identity";
+import { requireUser } from "@/app/_lib/identity";
 import { Banners } from "@/components/Banners";
 import { failedChecksText } from "@/components/settings/helpers";
 import { SettingsSection } from "@/components/settings/SettingsSection";
@@ -32,7 +32,7 @@ const ofLimit = (used: number, limit: number) => (Number.isFinite(limit) ? `${n(
 
 /** §4.10 Status: the worker, the model, usage today, queues, failing sources, recent problems. */
 export default async function StatusPage() {
-  const [status, banners, actor] = await Promise.all([getStatus(), getBanners(), getActor()]);
+  const [status, banners] = await Promise.all([getStatus(), getBanners(), requireUser()]);
   const now = nowMs();
   const { worker, model, queues } = status;
   const paused = model.pausedUntil !== null && model.pausedUntil > now;
@@ -117,7 +117,7 @@ export default async function StatusPage() {
             ]}
           />
           <div className="mt-6">
-            <StatusActions name={actor.name} failedItems={queues.itemsFailed} />
+            <StatusActions failedItems={queues.itemsFailed} />
           </div>
         </SettingsSection>
 

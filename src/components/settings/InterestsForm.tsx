@@ -4,7 +4,6 @@ import { useState, type ReactNode } from "react";
 
 import { saveFeedInterestsAction } from "@/app/f/[slug]/settings/actions";
 import { addTopicAction } from "@/app/settings/actions";
-import { useNameGate } from "@/components/NameGate";
 import { Field, Input, SegmentedControl, Select, Textarea, fieldDescribedBy } from "@/components/ui";
 import {
   RELEVANCE_PRIORITY_LABELS,
@@ -46,7 +45,6 @@ export interface InterestsFormProps {
   feedId: number;
   topics: InterestsTopic[];
   initial: Interests;
-  name: string | null;
 }
 
 type Section = "topics" | "exclusions" | "priorities" | "minRelevance" | "halfLife";
@@ -57,8 +55,7 @@ type Section = "topics" | "exclusions" | "priorities" | "minRelevance" | "halfLi
  * only the topics whose priority changed. So a save never reverts a change
  * that another person saved in another section.
  */
-export function InterestsForm({ feedId, topics, initial, name }: InterestsFormProps) {
-  const { ensureName, dialog } = useNameGate(name);
+export function InterestsForm({ feedId, topics, initial }: InterestsFormProps) {
   const [saved, setSaved] = useState<Interests>(initial);
   const [topicDraft, setTopicDraft] = useState<Record<string, TopicPriority>>(initial.topicPriorities);
   const [exclusions, setExclusions] = useState<string[]>(initial.exclusions);
@@ -68,11 +65,11 @@ export function InterestsForm({ feedId, topics, initial, name }: InterestsFormPr
   const [offer, setOffer] = useState<{ section: Section | "addTopic"; estimates: RejudgeEstimate[] } | null>(null);
 
   const saves: Record<Section, SaveHandle<unknown, RejudgeEstimate[]>> = {
-    topics: useSave(saveFeedInterestsAction, ensureName),
-    exclusions: useSave(saveFeedInterestsAction, ensureName),
-    priorities: useSave(saveFeedInterestsAction, ensureName),
-    minRelevance: useSave(saveFeedInterestsAction, ensureName),
-    halfLife: useSave(saveFeedInterestsAction, ensureName),
+    topics: useSave(saveFeedInterestsAction),
+    exclusions: useSave(saveFeedInterestsAction),
+    priorities: useSave(saveFeedInterestsAction),
+    minRelevance: useSave(saveFeedInterestsAction),
+    halfLife: useSave(saveFeedInterestsAction),
   };
 
   /** Sends only `patch`; after the save, the patch becomes part of the values that this form saw. */
@@ -90,7 +87,7 @@ export function InterestsForm({ feedId, topics, initial, name }: InterestsFormPr
 
   const offerFor = (section: Section | "addTopic"): ReactNode =>
     offer && offer.section === section ? (
-      <RejudgeOffer estimates={offer.estimates} ensureName={ensureName} onDismiss={() => setOffer(null)} />
+      <RejudgeOffer estimates={offer.estimates} onDismiss={() => setOffer(null)} />
     ) : null;
 
   const numberSection = (section: "minRelevance" | "halfLife", raw: string, min: number, max: number, key: keyof Interests) => {
@@ -174,7 +171,7 @@ export function InterestsForm({ feedId, topics, initial, name }: InterestsFormPr
             />
           </form>
         )}
-        <AddTopicForm feedId={feedId} ensureName={ensureName} onAdded={(estimates) => setOffer({ section: "addTopic", estimates })} />
+        <AddTopicForm feedId={feedId} onAdded={(estimates) => setOffer({ section: "addTopic", estimates })} />
         {offerFor("addTopic")}
       </SettingsSection>
 
@@ -335,7 +332,6 @@ export function InterestsForm({ feedId, topics, initial, name }: InterestsFormPr
           <SaveRow pending={saves.halfLife.pending} savedAt={saves.halfLife.savedAt} error={saves.halfLife.failure?.message} />
         </form>
       </SettingsSection>
-      {dialog}
     </div>
   );
 }
@@ -343,17 +339,15 @@ export function InterestsForm({ feedId, topics, initial, name }: InterestsFormPr
 /** "Add topic": name and description. Topics are shared by all feeds. */
 export function AddTopicForm({
   feedId,
-  ensureName,
   onAdded,
   idPrefix = "new-topic",
 }: {
   /** The feed whose re-judge estimate comes back (omit on the shared settings: every active feed). */
   feedId?: number;
-  ensureName: () => Promise<boolean>;
   onAdded: (estimates: RejudgeEstimate[]) => void;
   idPrefix?: string;
 }) {
-  const save = useSave(addTopicAction, ensureName);
+  const save = useSave(addTopicAction);
   const [topicName, setTopicName] = useState("");
   const [description, setDescription] = useState("");
   const nameError = errorFor(save.failure?.fieldErrors, "name");

@@ -24,7 +24,7 @@ export function logActivity(
     .insert(activity)
     .values({
       at: nowMs(),
-      actor: actor.name.trim().slice(0, 120) || "Someone",
+      actor: actor.name.slice(0, 120),
       action,
       entityType,
       entityId,

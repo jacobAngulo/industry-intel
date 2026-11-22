@@ -23,11 +23,12 @@ import type {
   TopicPriority,
 } from "@/lib/types";
 
-export interface Actor { name: string; clientId: string }   // name 'Someone' is allowed only for votes
+/** The signed-in person who makes a change. */
+export interface Actor { userId: string; name: string }
 
 export type ActionResult<T = void> =
   | { ok: true; data: T; message?: string }
-  | { ok: false; message: string; code?: 'needs_name' | 'validation' | 'not_found' | 'conflict' | 'limit'; fieldErrors?: Record<string, string> };
+  | { ok: false; message: string; code?: 'unauthenticated' | 'forbidden' | 'validation' | 'not_found' | 'conflict' | 'limit'; fieldErrors?: Record<string, string> };
 
 export interface FeedSummary { id: number; slug: string; name: string; purpose: string; position: number; archived: boolean;
   sourceCount: number; alertIds: number[] /* visible alerts now, for the tab dot */ }

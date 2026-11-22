@@ -8,7 +8,7 @@ import { sources, type RejudgeRequestDbRow } from "@/lib/db/schema";
 import { createRejudgeRequest, estimateRejudgeCount, latestRejudgeRequest } from "@/lib/pipeline/jobs";
 
 import { inImmediate, q, requireFeed } from "./_manage-db";
-import { notFound, parseOrThrow, requireName, ServiceError } from "./_manage-errors";
+import { notFound, parseOrThrow, ServiceError } from "./_manage-errors";
 import { idSchema } from "./_manage-schemas";
 import { logActivity } from "./activity";
 import type { Actor, RejudgeProgress } from "./types";
@@ -37,7 +37,6 @@ export async function requestRejudge(
   opts: { sourceId?: number; maxStories?: number },
   actor: Actor,
 ): Promise<RejudgeProgress> {
-  requireName(actor);
   const data = parseOrThrow(requestSchema, opts ?? {});
   return inImmediate(() => {
     const feed = requireFeed(feedId);

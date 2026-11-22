@@ -14,8 +14,8 @@ afterEach(() => t.cleanup());
 describe("logActivity", () => {
   it("writes one activity row", () => {
     setNowForTests(1_800_000_000_000);
-    logActivity({ name: "Dana", clientId: "c1" }, "source.create", "source", 12, 'Added the source "Claude Code releases".');
-    logActivity({ name: "  ", clientId: "c2" }, "settings.update", "settings", null, "x".repeat(900));
+    logActivity({ name: "Dana", userId: "c1" }, "source.create", "source", 12, 'Added the source "Claude Code releases".');
+    logActivity({ name: "n".repeat(200), userId: "c2" }, "settings.update", "settings", null, "x".repeat(900));
 
     const rows = t.db.select().from(activity).all();
     expect(rows).toHaveLength(2);
@@ -27,7 +27,7 @@ describe("logActivity", () => {
       entityId: 12,
       summary: 'Added the source "Claude Code releases".',
     });
-    expect(rows[1]).toMatchObject({ actor: "Someone", entityId: null });
+    expect(rows[1]).toMatchObject({ actor: "n".repeat(120), entityId: null });
     expect(rows[1]?.summary.length).toBe(500);
   });
 
@@ -35,7 +35,7 @@ describe("logActivity", () => {
     expect(() =>
       t.db.transaction(
         () => {
-          logActivity({ name: "Dana", clientId: "c1" }, "feed.create", "feed", 1, "Created a feed.");
+          logActivity({ name: "Dana", userId: "c1" }, "feed.create", "feed", 1, "Created a feed.");
           throw new Error("roll back");
         },
         { behavior: "immediate" },
@@ -47,7 +47,7 @@ describe("logActivity", () => {
 
 describe("listActivity", () => {
   it("returns the rows newest first, the last 100 by default", async () => {
-    const actor = { name: "Dana", clientId: "c1" };
+    const actor = { name: "Dana", userId: "c1" };
     for (let i = 0; i < 105; i += 1) {
       setNowForTests(1_800_000_000_000 + i);
       logActivity(actor, "feed.update", "feed", i, `Change ${i}`);

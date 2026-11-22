@@ -110,12 +110,12 @@ export function feedbackCalibration(feedId: number, now: number): Record<Feedbac
   const sqlite = getSqlite();
   const votes = sqlite
     .prepare(
-      `SELECT f.story_id AS storyId, f.reason AS reason, f.client_id AS clientId, s.headline AS headline
+      `SELECT f.story_id AS storyId, f.reason AS reason, f.user_id AS userId, s.headline AS headline
          FROM feedback f JOIN stories s ON s.id = f.story_id
         WHERE f.feed_id = ? AND f.created_at >= ?
         ORDER BY f.created_at DESC, f.id DESC`,
     )
-    .all(feedId, now - CALIBRATION_WINDOW_MS) as Array<{ storyId: number; reason: FeedbackReason; clientId: string; headline: string }>;
+    .all(feedId, now - CALIBRATION_WINDOW_MS) as Array<{ storyId: number; reason: FeedbackReason; userId: string; headline: string }>;
 
   const counts = new Map<number, Record<string, number>>();
   const countRows = sqlite
@@ -142,13 +142,13 @@ export function feedbackCalibration(feedId: number, now: number): Record<Feedbac
   const result = Object.fromEntries(FEEDBACK_REASONS.map((reason) => [reason, [] as string[]])) as Record<FeedbackReason, string[]>;
   for (const reason of FEEDBACK_REASONS) {
     const listed = new Set<number>();
-    const perClient = new Map<string, number>();
+    const perUser = new Map<string, number>();
     for (const vote of votes) {
       if (result[reason].length >= CALIBRATION_PER_REASON) break;
       if (vote.reason !== reason || listed.has(vote.storyId) || !qualifies(vote.storyId, reason)) continue;
-      const used = perClient.get(vote.clientId) ?? 0;
+      const used = perUser.get(vote.userId) ?? 0;
       if (used >= CALIBRATION_PER_CLIENT) continue;
-      perClient.set(vote.clientId, used + 1);
+      perUser.set(vote.userId, used + 1);
       listed.add(vote.storyId);
       result[reason].push(vote.headline);
     }

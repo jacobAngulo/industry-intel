@@ -14,7 +14,7 @@ import { createUsageMeter, usageLimit } from "@/lib/usage";
 
 import { logActivity } from "./activity";
 import { workerEnvView } from "./_manage-source-rows";
-import { loadFeedFacts, parseJson, requireName } from "./_read-shared";
+import { loadFeedFacts, parseJson } from "./_read-shared";
 import type { Actor, AppBanner, StatusReport } from "./types";
 
 const STATUS_EVENTS = 50;
@@ -302,9 +302,9 @@ export async function getBanners(feedId?: number): Promise<AppBanner[]> {
 // retryFailedItems
 // ---------------------------------------------------------------------------
 
-/** Sets `failed` items back to `pending` with attempts 0. Returns the count. Needs a display name. */
+/** Sets `failed` items back to `pending` with attempts 0. Returns the count. */
 export async function retryFailedItems(actor: Actor): Promise<number> {
-  const name = requireName(actor);
+  const name = actor.name;
   const sqlite = getSqlite();
   return sqlite
     .transaction(() => {

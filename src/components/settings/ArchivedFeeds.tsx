@@ -2,13 +2,9 @@
 
 import { useRef, useState } from "react";
 
-import { setName } from "@/app/_lib/actions";
-import { NAME_MAX_LENGTH } from "@/app/_lib/identity-constants";
 import { deleteFeedAction, restoreFeedAction } from "@/app/settings/actions";
-import { useNameGate } from "@/components/NameGate";
-import { Button, Dialog, Field, Input, fieldDescribedBy } from "@/components/ui";
+import { Button, Dialog } from "@/components/ui";
 
-import { SaveRow } from "./SettingsSection";
 import { useSave } from "./use-save";
 
 export interface ArchivedFeed {
@@ -18,8 +14,7 @@ export interface ArchivedFeed {
 }
 
 /** §4.9 Archived feeds: restore, or delete for ever (with a confirmation). */
-export function ArchivedFeeds({ feeds, name }: { feeds: ArchivedFeed[]; name: string | null }) {
-  const { ensureName, dialog } = useNameGate(name);
+export function ArchivedFeeds({ feeds, canDelete }: { feeds: ArchivedFeed[]; canDelete: boolean }) {
   const [done, setDone] = useState<string | null>(null);
   const statusRef = useRef<HTMLParagraphElement>(null);
 
@@ -36,7 +31,7 @@ export function ArchivedFeeds({ feeds, name }: { feeds: ArchivedFeed[]; name: st
             <ArchivedFeedRow
               key={feed.id}
               feed={feed}
-              ensureName={ensureName}
+              canDelete={canDelete}
               onDone={(text) => {
                 setDone(text);
                 // The row goes away: move the focus to the message.
@@ -46,22 +41,21 @@ export function ArchivedFeeds({ feeds, name }: { feeds: ArchivedFeed[]; name: st
           ))}
         </ul>
       )}
-      {dialog}
     </div>
   );
 }
 
 function ArchivedFeedRow({
   feed,
-  ensureName,
+  canDelete,
   onDone,
 }: {
   feed: ArchivedFeed;
-  ensureName: () => Promise<boolean>;
+  canDelete: boolean;
   onDone: (text: string) => void;
 }) {
-  const restore = useSave(restoreFeedAction, ensureName);
-  const remove = useSave(deleteFeedAction, ensureName);
+  const restore = useSave(restoreFeedAction);
+  const remove = useSave(deleteFeedAction);
   const [confirm, setConfirm] = useState(false);
   const failure = restore.failure?.message ?? null;
 
@@ -85,16 +79,11 @@ function ArchivedFeedRow({
         >
           Restore<span className="sr-only"> {feed.name}</span>
         </Button>
-        <Button
-          size="sm"
-          variant="danger"
-          icon="delete"
-          onClick={async () => {
-            if (await ensureName()) setConfirm(true);
-          }}
-        >
-          Delete for ever<span className="sr-only">: {feed.name}</span>
-        </Button>
+        {canDelete ? (
+          <Button size="sm" variant="danger" icon="delete" onClick={() => setConfirm(true)}>
+            Delete for ever<span className="sr-only">: {feed.name}</span>
+          </Button>
+        ) : null}
       </div>
       <Dialog
         open={confirm}
@@ -130,43 +119,5 @@ function ArchivedFeedRow({
         ) : null}
       </Dialog>
     </li>
-  );
-}
-
-/** §4.9 Your name: the display name that shows next to your changes (cookie, no login). */
-export function YourNameForm({ name }: { name: string | null }) {
-  const save = useSave(setName, async () => true);
-  const [value, setValue] = useState(name ?? "");
-  const error = save.failure?.fieldErrors.name ?? null;
-
-  return (
-    <form
-      id={save.formId}
-      noValidate
-      className="flex max-w-md flex-col gap-4"
-      onSubmit={(e) => {
-        e.preventDefault();
-        void save.run(value, (data) => setValue(data.name));
-      }}
-    >
-      <Field
-        id="your-name"
-        label="Your name"
-        hint={`There is no login. Your name shows next to the things that you add or change. 1 to ${NAME_MAX_LENGTH} characters.`}
-        error={error}
-      >
-        <Input
-          id="your-name"
-          autoComplete="name"
-          required
-          maxLength={NAME_MAX_LENGTH}
-          value={value}
-          invalid={!!error}
-          aria-describedby={fieldDescribedBy("your-name", { hint: true, error })}
-          onChange={(e) => setValue(e.target.value)}
-        />
-      </Field>
-      <SaveRow pending={save.pending} savedAt={save.savedAt} error={error ? null : save.failure?.message} label="Save name" />
-    </form>
   );
 }

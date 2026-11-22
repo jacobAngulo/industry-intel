@@ -32,7 +32,7 @@ import {
 } from "./sources";
 
 const NOW = 1_800_000_000_000;
-const actor = { name: "Dana", clientId: "c1" };
+const actor = { name: "Dana", userId: "c1" };
 
 let t: InstalledTestDb;
 beforeEach(() => {
@@ -425,19 +425,17 @@ describe("setPaused, requestCheck, requestCheckAllDue", () => {
 });
 
 describe("flagNoisy and resolveFlags", () => {
-  it("needs a name and writes a flag with the optional note", async () => {
+  it("writes a flag with the optional note", async () => {
     const source = makeSource();
-    await expectCode(flagNoisy(source.id, "", { name: "", clientId: "c" }), "needs_name");
-    await expectCode(flagNoisy(source.id, "", { name: "Someone", clientId: "c" }), "needs_name");
     await expectCode(flagNoisy(source.id, "x".repeat(301), actor), "validation");
     await flagNoisy(source.id, " Too many launch posts ", actor);
-    await flagNoisy(source.id, "", { name: "Ben", clientId: "c2" });
+    await flagNoisy(source.id, "", { name: "Ben", userId: "c2" });
     expect(t.db.select().from(sourceFlags).all().map((flag) => [flag.note, flag.createdBy])).toEqual([
       ["Too many launch posts", "Dana"],
       ["", "Ben"],
     ]);
 
-    await resolveFlags(source.id, { name: "Eve", clientId: "c3" });
+    await resolveFlags(source.id, { name: "Eve", userId: "c3" });
     expect(t.db.select().from(sourceFlags).all().every((flag) => flag.resolvedAt === NOW && flag.resolvedBy === "Eve")).toBe(true);
     expect((await rowOf(source.id)).openFlags).toBe(0);
     expect(t.db.select().from(activity).all().map((row) => row.action)).toEqual(["source.flag", "source.flag", "source.resolve_flags"]);
